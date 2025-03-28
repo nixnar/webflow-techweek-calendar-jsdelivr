@@ -1,12 +1,12 @@
 export default function timeTodayOfWeek(date) {
   const dayNames = [
-    "SUNDAY",
-    "MONDAY",
-    "TUESDAY",
-    "WEDNESDAY",
-    "THURSDAY",
-    "FRIDAY",
-    "SATURDAY",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+    "Sunday",
   ];
   const dateObj = new Date(date);
   return dayNames[dateObj.getDay()];
