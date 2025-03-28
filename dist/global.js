@@ -812,24 +812,20 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 #reacttest * {
   font-family: "Space Grotesk", sans-serif !important;
 }
-
 .hover\\:bg-brand:hover{
   --tw-bg-opacity: 1 !important;
   background-color: rgba(20, 232, 255, 1) !important;
   background-color: rgba(20, 232, 255, var(--tw-bg-opacity)) !important;
 }
-
 .hover\\:text-white:hover{
   --tw-text-opacity: 1 !important;
   color: rgba(255, 255, 255, 1) !important;
   color: rgba(255, 255, 255, var(--tw-text-opacity)) !important;
 }
-
 .focus\\:outline-none:focus{
   outline: 2px solid transparent !important;
   outline-offset: 2px !important;
 }
-
 @media (max-width: 980px){
 
   .max-\\[980px\\]\\:absolute{
