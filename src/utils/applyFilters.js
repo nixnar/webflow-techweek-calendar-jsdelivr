@@ -1,7 +1,12 @@
 export default function applyFilters(data, activeFilters) {
-  // If no filters are selected in any category, return all data
-  const hasActiveFilters = Object.values(activeFilters).some(
-    (filterArray) => Array.isArray(filterArray) && filterArray.length > 0
+  // Check if any filters are active
+  const hasActiveFilters = Object.entries(activeFilters).some(
+    ([key, value]) => {
+      if (key === "search" && typeof value === "string") {
+        return value.trim() !== ""; // For search, check if string is not empty
+      }
+      return Array.isArray(value) && value.length > 0; // For array filters, check length
+    }
   );
 
   if (!hasActiveFilters) {
@@ -11,7 +16,27 @@ export default function applyFilters(data, activeFilters) {
   return data.filter((item) => {
     // For each filter category (date, neighborhood, etc.)
     return Object.keys(activeFilters).every((filterCategory) => {
-      // If no filters are selected in this category, return true (don't filter)
+      // Handle search differently since it's a string, not an array
+      if (filterCategory === "search") {
+        // If search is empty, don't filter
+        if (!activeFilters.search || activeFilters.search.trim() === "") {
+          return true;
+        }
+
+        // Search in event name, hosts, and any other relevant fields
+        const searchTerm = activeFilters.search.toLowerCase();
+        return (
+          item.event_name.toLowerCase().includes(searchTerm) ||
+          (item.hosts &&
+            item.hosts.some((host) =>
+              host.toLowerCase().includes(searchTerm)
+            )) ||
+          (item.neighborhood &&
+            item.neighborhood.toLowerCase().includes(searchTerm))
+        );
+      }
+
+      // For non-search filters (arrays)
       if (
         !activeFilters[filterCategory] ||
         activeFilters[filterCategory].length === 0

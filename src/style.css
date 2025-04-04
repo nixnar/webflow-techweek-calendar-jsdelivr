@@ -13,5 +13,21 @@
   font-family: "Space Grotesk", sans-serif !important;
 }
 
+/* Hide scrollbars across browsers */
+/* For Chrome, Safari, and newer Edge */
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* For Firefox */
+* {
+  scrollbar-width: none;
+}
+
+/* For Internet Explorer and older Edge */
+* {
+  -ms-overflow-style: none;
+}
+
 @layer components {
 }
