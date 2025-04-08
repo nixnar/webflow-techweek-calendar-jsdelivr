@@ -530,28 +530,12 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   top: 50% !important;
 }
 
-.tailwind .top-6{
-  top: 1.5rem !important;
-}
-
 .tailwind .top-4{
   top: 1rem !important;
 }
 
 .tailwind .z-10{
   z-index: 10 !important;
-}
-
-.tailwind .z-50{
-  z-index: 50 !important;
-}
-
-.tailwind .z-\\[100\\]{
-  z-index: 100 !important;
-}
-
-.tailwind .z-\\[999\\]{
-  z-index: 999 !important;
 }
 
 .tailwind .z-\\[9999\\]{
@@ -574,14 +558,6 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   margin-top: 0.25rem !important;
 }
 
-.tailwind .mt-2{
-  margin-top: 0.5rem !important;
-}
-
-.tailwind .ml-4{
-  margin-left: 1rem !important;
-}
-
 .tailwind .flex{
   display: flex !important;
 }
@@ -599,6 +575,10 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   height: 100% !important;
 }
 
+.tailwind .h-\\[calc\\(100vh-theme\\(spacing\\.4\\)\\)\\]{
+  height: calc(100vh - 1rem) !important;
+}
+
 .tailwind .max-h-0{
   max-height: 0px !important;
 }
@@ -607,24 +587,12 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   max-height: 500px !important;
 }
 
-.tailwind .max-h-\\[80dvh\\]{
-  max-height: 80dvh !important;
-}
-
 .tailwind .max-h-\\[50dvh\\]{
   max-height: 50dvh !important;
 }
 
-.tailwind .w-\\[100dvw\\]{
-  width: 100dvw !important;
-}
-
 .tailwind .w-\\[22\\.5rem\\]{
   width: 22.5rem !important;
-}
-
-.tailwind .w-\\[84\\.5rem\\]{
-  width: 84.5rem !important;
 }
 
 .tailwind .w-\\[90\\%\\]{
@@ -702,6 +670,12 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 
 .tailwind .cursor-pointer{
   cursor: pointer !important;
+}
+
+.tailwind .select-none{
+  -webkit-user-select: none !important;
+     -moz-user-select: none !important;
+          user-select: none !important;
 }
 
 .tailwind .resize{
@@ -786,10 +760,6 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   text-wrap: pretty !important;
 }
 
-.tailwind .border{
-  border-width: 1px !important;
-}
-
 .tailwind .border-\\[1px\\]{
   border-width: 1px !important;
 }
@@ -816,12 +786,6 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 
 .tailwind .border-white40{
   border-color: rgba(255, 255, 255, 0.4) !important;
-}
-
-.tailwind .border-gray-200{
-  --tw-border-opacity: 1 !important;
-  border-color: rgba(229, 231, 235, 1) !important;
-  border-color: rgba(229, 231, 235, var(--tw-border-opacity, 1)) !important;
 }
 
 .tailwind .bg-\\[\\#000\\]{
@@ -876,23 +840,9 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   padding: 4px !important;
 }
 
-.tailwind .p-1{
-  padding: 0.25rem !important;
-}
-
 .tailwind .px-2{
   padding-left: 0.5rem !important;
   padding-right: 0.5rem !important;
-}
-
-.tailwind .px-4{
-  padding-left: 1rem !important;
-  padding-right: 1rem !important;
-}
-
-.tailwind .px-6{
-  padding-left: 1.5rem !important;
-  padding-right: 1.5rem !important;
 }
 
 .tailwind .px-\\[0\\.5rem\\]{
@@ -905,24 +855,9 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   padding-right: 8px !important;
 }
 
-.tailwind .py-1{
-  padding-top: 0.25rem !important;
-  padding-bottom: 0.25rem !important;
-}
-
 .tailwind .py-1\\.5{
   padding-top: 0.375rem !important;
   padding-bottom: 0.375rem !important;
-}
-
-.tailwind .py-2{
-  padding-top: 0.5rem !important;
-  padding-bottom: 0.5rem !important;
-}
-
-.tailwind .py-6{
-  padding-top: 1.5rem !important;
-  padding-bottom: 1.5rem !important;
 }
 
 .tailwind .py-\\[0\\.375rem\\]{
@@ -955,20 +890,12 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   font-size: 0.875rem !important;
 }
 
-.tailwind .text-\\[1\\.125rem\\]{
-  font-size: 1.125rem !important;
-}
-
 .tailwind .text-\\[1\\.65rem\\]{
   font-size: 1.65rem !important;
 }
 
 .tailwind .text-\\[14px\\]{
   font-size: 14px !important;
-}
-
-.tailwind .text-\\[16px\\]{
-  font-size: 16px !important;
 }
 
 .tailwind .text-\\[17px\\]{
@@ -986,11 +913,6 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 .tailwind .text-xl{
   font-size: 1.25rem !important;
   line-height: 1.75rem !important;
-}
-
-.tailwind .text-sm{
-  font-size: 0.875rem !important;
-  line-height: 1.25rem !important;
 }
 
 .tailwind .font-\\[400\\]{
@@ -1109,10 +1031,6 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   color: rgba(255, 255, 255, var(--tw-text-opacity, 1)) !important;
 }
 
-.tailwind .underline{
-  text-decoration-line: underline !important;
-}
-
 .tailwind .opacity-0{
   opacity: 0 !important;
 }
@@ -1127,6 +1045,14 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 
 .tailwind .filter{
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow) !important;
+}
+
+.tailwind .transition{
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-backdrop-filter !important;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter !important;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter !important;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1) !important;
+  transition-duration: 150ms !important;
 }
 
 .tailwind .transition-all{
@@ -1147,24 +1073,20 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   transition-duration: 150ms !important;
 }
 
-.tailwind .transition{
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-backdrop-filter !important;
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter !important;
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter !important;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1) !important;
-  transition-duration: 150ms !important;
+.tailwind .duration-200{
+  transition-duration: 200ms !important;
 }
 
 .tailwind .duration-300{
   transition-duration: 300ms !important;
 }
 
-.tailwind .duration-200{
-  transition-duration: 200ms !important;
-}
-
 .tailwind .ease-in-out{
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.tailwind .ease-out{
+  transition-timing-function: cubic-bezier(0, 0, 0.2, 1) !important;
 }
 
 .tailwind .\\[-moz-appearance\\:none\\]{
@@ -1201,34 +1123,10 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   -ms-overflow-style: none;
 }
 
-.hover\\:rotate-180:hover{
-  --tw-rotate: 180deg !important;
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(180deg) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y)) !important;
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y)) !important;
-}
-
-.hover\\:rotate-90:hover{
-  --tw-rotate: 90deg !important;
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(90deg) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y)) !important;
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y)) !important;
-}
-
-.hover\\:border-gray-500:hover{
-  --tw-border-opacity: 1 !important;
-  border-color: rgba(107, 114, 128, 1) !important;
-  border-color: rgba(107, 114, 128, var(--tw-border-opacity, 1)) !important;
-}
-
 .hover\\:border-gray-200:hover{
   --tw-border-opacity: 1 !important;
   border-color: rgba(229, 231, 235, 1) !important;
   border-color: rgba(229, 231, 235, var(--tw-border-opacity, 1)) !important;
-}
-
-.hover\\:border-gray-900:hover{
-  --tw-border-opacity: 1 !important;
-  border-color: rgba(17, 24, 39, 1) !important;
-  border-color: rgba(17, 24, 39, var(--tw-border-opacity, 1)) !important;
 }
 
 .hover\\:border-white:hover{
@@ -1237,22 +1135,10 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   border-color: rgba(255, 255, 255, var(--tw-border-opacity, 1)) !important;
 }
 
-.hover\\:bg-brand:hover{
-  --tw-bg-opacity: 1 !important;
-  background-color: rgba(20, 232, 255, 1) !important;
-  background-color: rgba(20, 232, 255, var(--tw-bg-opacity, 1)) !important;
-}
-
 .hover\\:bg-white:hover{
   --tw-bg-opacity: 1 !important;
   background-color: rgba(255, 255, 255, 1) !important;
   background-color: rgba(255, 255, 255, var(--tw-bg-opacity, 1)) !important;
-}
-
-.hover\\:bg-gray-500:hover{
-  --tw-bg-opacity: 1 !important;
-  background-color: rgba(107, 114, 128, 1) !important;
-  background-color: rgba(107, 114, 128, var(--tw-bg-opacity, 1)) !important;
 }
 
 .hover\\:text-black:hover{
@@ -1261,28 +1147,16 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   color: rgba(0, 0, 0, var(--tw-text-opacity, 1)) !important;
 }
 
-.hover\\:text-gray-300:hover{
-  --tw-text-opacity: 1 !important;
-  color: rgba(209, 213, 219, 1) !important;
-  color: rgba(209, 213, 219, var(--tw-text-opacity, 1)) !important;
-}
-
-.hover\\:text-white:hover{
-  --tw-text-opacity: 1 !important;
-  color: rgba(255, 255, 255, 1) !important;
-  color: rgba(255, 255, 255, var(--tw-text-opacity, 1)) !important;
-}
-
-.hover\\:text-gray-500:hover{
-  --tw-text-opacity: 1 !important;
-  color: rgba(107, 114, 128, 1) !important;
-  color: rgba(107, 114, 128, var(--tw-text-opacity, 1)) !important;
-}
-
 .hover\\:text-gray-200:hover{
   --tw-text-opacity: 1 !important;
   color: rgba(229, 231, 235, 1) !important;
   color: rgba(229, 231, 235, var(--tw-text-opacity, 1)) !important;
+}
+
+.hover\\:text-gray-300:hover{
+  --tw-text-opacity: 1 !important;
+  color: rgba(209, 213, 219, 1) !important;
+  color: rgba(209, 213, 219, var(--tw-text-opacity, 1)) !important;
 }
 
 .hover\\:text-gray-900:hover{
@@ -1304,12 +1178,6 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 
 .group:hover .group-hover\\:fill-brand{
   fill: #14E8FF !important;
-}
-
-.group:hover .group-hover\\:text-\\[\\#888\\]{
-  --tw-text-opacity: 1 !important;
-  color: rgba(136, 136, 136, 1) !important;
-  color: rgba(136, 136, 136, var(--tw-text-opacity, 1)) !important;
 }
 
 .group:hover .group-hover\\:text-\\[\\#aaa\\]{
@@ -18651,6 +18519,12 @@ function FiltersBody(_ref) {
   }, typesExpanded ? "See less" : "See more")));
 }
 ;// ./src/Filters.js
+function Filters_slicedToArray(r, e) { return Filters_arrayWithHoles(r) || Filters_iterableToArrayLimit(r, e) || Filters_unsupportedIterableToArray(r, e) || Filters_nonIterableRest(); }
+function Filters_nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function Filters_unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return Filters_arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? Filters_arrayLikeToArray(r, a) : void 0; } }
+function Filters_arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
+function Filters_iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
+function Filters_arrayWithHoles(r) { if (Array.isArray(r)) return r; }
 
 
 function Filters(_ref) {
@@ -18659,9 +18533,83 @@ function Filters(_ref) {
     availableFilters = _ref.availableFilters,
     activeFilters = _ref.activeFilters,
     setActiveFilters = _ref.setActiveFilters;
+  var _React$useState = react.useState(0),
+    _React$useState2 = Filters_slicedToArray(_React$useState, 2),
+    headerHeight = _React$useState2[0],
+    setHeaderHeight = _React$useState2[1];
+  var _React$useState3 = react.useState(false),
+    _React$useState4 = Filters_slicedToArray(_React$useState3, 2),
+    isSticky = _React$useState4[0],
+    setIsSticky = _React$useState4[1];
+  var stickyTriggerRef = react.useRef(null);
+  react.useEffect(function () {
+    // Function to measure header height
+    var measureHeader = function measureHeader() {
+      // The header contains the Tech Week Schedule title and sponsors
+      var headerElement = document.querySelector(".center-outside");
+      if (headerElement) {
+        var height = headerElement.getBoundingClientRect().height;
+        setHeaderHeight(height);
+      }
+    };
+
+    // Initial measurement
+    measureHeader();
+
+    // Re-measure on window resize
+    window.addEventListener("resize", measureHeader);
+
+    // Cleanup
+    return function () {
+      return window.removeEventListener("resize", measureHeader);
+    };
+  }, []);
+  react.useEffect(function () {
+    // Create a sentinel element that will trigger when we're about to become sticky
+    var sentinel = document.createElement("div");
+    sentinel.style.position = "absolute";
+    sentinel.style.top = "0";
+    sentinel.style.height = "1px";
+    sentinel.style.width = "1px";
+    sentinel.style.visibility = "hidden";
+
+    // Add the sentinel to the DOM
+    var filtersElement = document.getElementById("filters");
+    if (filtersElement && filtersElement.parentElement) {
+      filtersElement.parentElement.insertBefore(sentinel, filtersElement);
+      stickyTriggerRef.current = sentinel;
+    }
+
+    // Create intersection observer
+    var observer = new IntersectionObserver(function (_ref2) {
+      var _ref3 = Filters_slicedToArray(_ref2, 1),
+        entry = _ref3[0];
+      // When sentinel goes out of view, we're sticky
+      setIsSticky(!entry.isIntersecting);
+    }, {
+      threshold: 1.0
+    });
+
+    // Start observing
+    if (stickyTriggerRef.current) {
+      observer.observe(stickyTriggerRef.current);
+    }
+
+    // Cleanup
+    return function () {
+      if (stickyTriggerRef.current) {
+        observer.unobserve(stickyTriggerRef.current);
+        stickyTriggerRef.current.remove();
+      }
+    };
+  }, []);
   return /*#__PURE__*/react.createElement("div", {
     id: "filters",
-    className: "w-[22.5rem] max-h-[50dvh]  border-[1px] border-white p-[4px] bg-black sticky top-4 "
+    className: "w-[22.5rem] border-[1px] border-white p-[4px] bg-black sticky top-4",
+    style: {
+      height: isSticky ? "calc(100vh - 2rem)" : headerHeight ? "calc(100vh - ".concat(headerHeight, "px - 9.5rem)") : "100vh",
+      transition: "height 0.2s ease-out"
+    }
   }, /*#__PURE__*/react.createElement("div", {
     className: "border-[1px] border-white h-full p-4 overflow-y-scroll",
     style: {
@@ -18676,7 +18624,7 @@ function Filters(_ref) {
 }
 ;// ./src/utils/timetodayofweek.js
 function timeTodayOfWeek(date) {
-  var dayNames = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+  var dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
   var dateObj = new Date(date);
   return dayNames[dateObj.getDay()];
 }
@@ -19152,28 +19100,39 @@ var App = function App() {
               return fetchData(city);
             case 5:
               result = _context.sent;
+              // Sort events by start_time before applying transformations
+              result.sort(function (a, b) {
+                // Sort featured events first
+                if (a.is_featured !== b.is_featured) {
+                  return b.is_featured - a.is_featured;
+                }
+                // Then sort by start time
+                return new Date(a.start_time) - new Date(b.start_time);
+              });
+
+              // Apply time transformations after sorting
               result.forEach(function (item) {
                 item.day = timeTodayOfWeek(item.start_time);
                 item.time = timeToAmPm(item.start_time);
               });
               setData(result);
               setAvailableFilters(sortFilters(result));
-              _context.next = 15;
+              _context.next = 16;
               break;
-            case 11:
-              _context.prev = 11;
+            case 12:
+              _context.prev = 12;
               _context.t0 = _context["catch"](0);
               setError(_context.t0.message);
               console.error("Error fetching data:", _context.t0);
-            case 15:
-              _context.prev = 15;
+            case 16:
+              _context.prev = 16;
               setIsLoading(false);
-              return _context.finish(15);
-            case 18:
+              return _context.finish(16);
+            case 19:
             case "end":
               return _context.stop();
           }
-        }, _callee, null, [[0, 11, 15, 18]]);
+        }, _callee, null, [[0, 12, 16, 19]]);
       }));
       return function loadData() {
         return _ref.apply(this, arguments);
@@ -19181,6 +19140,7 @@ var App = function App() {
     }();
     loadData();
   }, [city]);
+
   //reset filtered data when city changes
   react.useEffect(function () {
     setFilteredData(data);
@@ -19206,7 +19166,7 @@ var App = function App() {
   return /*#__PURE__*/react.createElement("div", {
     className: "tailwind"
   }, /*#__PURE__*/react.createElement("div", {
-    className: "flex w-full justify-center text-white"
+    className: "flex w-full justify-center text-white select-none"
   }, /*#__PURE__*/react.createElement("div", {
     className: "max-w-[1400px] grow flex flex-col gap-4"
   }, /*#__PURE__*/react.createElement("div", {
@@ -19215,7 +19175,7 @@ var App = function App() {
     id: "city",
     className: "flex gap-4"
   }, /*#__PURE__*/react.createElement(CitySelector, {
-    data: ["NEW YORK", "JUN 06 - JUN 10"],
+    data: ["NEW YORK", "JUN 02 - JUN 08"],
     setCity: setCity,
     currentCity: city,
     city: "NYC"

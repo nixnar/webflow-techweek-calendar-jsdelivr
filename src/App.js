@@ -10,6 +10,7 @@ import applyFilters from "./utils/applyFilters";
 import MobileFilters from "./MobileFilters";
 import MobileCityDropdown from "./MobileCityDropdown";
 import IndividualEvent from "./IndividualEvent";
+
 const App = () => {
   const [data, setData] = React.useState([]);
   const [filteredData, setFilteredData] = React.useState([]);
@@ -49,6 +50,18 @@ const App = () => {
         setIsLoading(true);
         setError(null);
         const result = await fetchData(city);
+
+        // Sort events by start_time before applying transformations
+        result.sort((a, b) => {
+          // Sort featured events first
+          if (a.is_featured !== b.is_featured) {
+            return b.is_featured - a.is_featured;
+          }
+          // Then sort by start time
+          return new Date(a.start_time) - new Date(b.start_time);
+        });
+
+        // Apply time transformations after sorting
         result.forEach((item) => {
           item.day = timeTodayOfWeek(item.start_time);
           item.time = timeToAmPm(item.start_time);
@@ -66,6 +79,7 @@ const App = () => {
 
     loadData();
   }, [city]);
+
   //reset filtered data when city changes
   React.useEffect(() => {
     setFilteredData(data);
@@ -92,12 +106,12 @@ const App = () => {
 
   return (
     <div className="tailwind">
-      <div className="flex w-full justify-center text-white">
+      <div className="flex w-full justify-center text-white select-none">
         <div className="max-w-[1400px] grow flex flex-col gap-4">
           <div className="mobile:hidden">
             <div id="city" className="flex gap-4">
               <CitySelector
-                data={["NEW YORK", "JUN 06 - JUN 10"]}
+                data={["NEW YORK", "JUN 02 - JUN 08"]}
                 setCity={setCity}
                 currentCity={city}
                 city={"NYC"}
