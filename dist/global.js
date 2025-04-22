@@ -575,8 +575,16 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   height: 100% !important;
 }
 
-.tailwind .h-\\[calc\\(100vh-theme\\(spacing\\.4\\)\\)\\]{
-  height: calc(100vh - 1rem) !important;
+.tailwind .h-\\[14px\\]{
+  height: 14px !important;
+}
+
+.tailwind .h-\\[10px\\]{
+  height: 10px !important;
+}
+
+.tailwind .h-\\[12px\\]{
+  height: 12px !important;
 }
 
 .tailwind .max-h-0{
@@ -587,8 +595,8 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   max-height: 500px !important;
 }
 
-.tailwind .max-h-\\[50dvh\\]{
-  max-height: 50dvh !important;
+.tailwind .max-h-\\[14px\\]{
+  max-height: 14px !important;
 }
 
 .tailwind .w-\\[22\\.5rem\\]{
@@ -608,12 +616,28 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   width: 100% !important;
 }
 
+.tailwind .w-\\[14px\\]{
+  width: 14px !important;
+}
+
+.tailwind .w-\\[10px\\]{
+  width: 10px !important;
+}
+
+.tailwind .w-\\[12px\\]{
+  width: 12px !important;
+}
+
 .tailwind .min-w-\\[120px\\]{
   min-width: 120px !important;
 }
 
 .tailwind .max-w-\\[1400px\\]{
   max-width: 1400px !important;
+}
+
+.tailwind .max-w-\\[14px\\]{
+  max-width: 14px !important;
 }
 
 .tailwind .flex-shrink-0{
@@ -788,6 +812,18 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   border-color: rgba(255, 255, 255, 0.4) !important;
 }
 
+.tailwind .border-\\[\\#777777\\]{
+  --tw-border-opacity: 1 !important;
+  border-color: rgba(119, 119, 119, 1) !important;
+  border-color: rgba(119, 119, 119, var(--tw-border-opacity, 1)) !important;
+}
+
+.tailwind .border-\\[\\#777\\]{
+  --tw-border-opacity: 1 !important;
+  border-color: rgba(119, 119, 119, 1) !important;
+  border-color: rgba(119, 119, 119, var(--tw-border-opacity, 1)) !important;
+}
+
 .tailwind .bg-\\[\\#000\\]{
   --tw-bg-opacity: 1 !important;
   background-color: rgba(0, 0, 0, 1) !important;
@@ -816,8 +852,43 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   background-color: rgba(255, 255, 255, var(--tw-bg-opacity, 1)) !important;
 }
 
+.tailwind .bg-gray-900{
+  --tw-bg-opacity: 1 !important;
+  background-color: rgba(17, 24, 39, 1) !important;
+  background-color: rgba(17, 24, 39, var(--tw-bg-opacity, 1)) !important;
+}
+
+.tailwind .bg-\\[\\#222222\\]{
+  --tw-bg-opacity: 1 !important;
+  background-color: rgba(34, 34, 34, 1) !important;
+  background-color: rgba(34, 34, 34, var(--tw-bg-opacity, 1)) !important;
+}
+
+.tailwind .bg-\\[\\#111\\]{
+  --tw-bg-opacity: 1 !important;
+  background-color: rgba(17, 17, 17, 1) !important;
+  background-color: rgba(17, 17, 17, var(--tw-bg-opacity, 1)) !important;
+}
+
+.tailwind .bg-\\[\\#111222\\]{
+  --tw-bg-opacity: 1 !important;
+  background-color: rgba(17, 18, 34, 1) !important;
+  background-color: rgba(17, 18, 34, var(--tw-bg-opacity, 1)) !important;
+}
+
+.tailwind .bg-\\[\\#181818\\]{
+  --tw-bg-opacity: 1 !important;
+  background-color: rgba(24, 24, 24, 1) !important;
+  background-color: rgba(24, 24, 24, var(--tw-bg-opacity, 1)) !important;
+}
+
 .tailwind .bg-opacity-50{
   --tw-bg-opacity: 0.5 !important;
+}
+
+.tailwind .object-contain{
+  -o-object-fit: contain !important;
+     object-fit: contain !important;
 }
 
 .tailwind .p-2{
@@ -1031,6 +1102,12 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   color: rgba(255, 255, 255, var(--tw-text-opacity, 1)) !important;
 }
 
+.tailwind .text-gray-400{
+  --tw-text-opacity: 1 !important;
+  color: rgba(156, 163, 175, 1) !important;
+  color: rgba(156, 163, 175, var(--tw-text-opacity, 1)) !important;
+}
+
 .tailwind .opacity-0{
   opacity: 0 !important;
 }
@@ -1039,8 +1116,16 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   opacity: 1 !important;
 }
 
+.tailwind .opacity-30{
+  opacity: 0.3 !important;
+}
+
 .tailwind .opacity-75{
   opacity: 0.75 !important;
+}
+
+.tailwind .opacity-50{
+  opacity: 0.5 !important;
 }
 
 .tailwind .filter{
@@ -18116,6 +18201,17 @@ function CitySelector(_ref) {
     setCity = _ref.setCity,
     city = _ref.city,
     currentCity = _ref.currentCity;
+  if (city !== "NYC") {
+    return /*#__PURE__*/react.createElement("div", {
+      className: "flex-grow basis-0 border-[1px] border-[#777777] p-[4px] cursor-not-allowed text-gray-400 bg-[#181818]"
+    }, /*#__PURE__*/react.createElement("div", {
+      className: "grow flex flex-col gap-[10px] p-3 pb-4 border-[1px] border-[#777777]"
+    }, /*#__PURE__*/react.createElement("div", {
+      className: "text-[1rem] font-[700] leading-[1.1rem] opacity-75"
+    }, data[1]), /*#__PURE__*/react.createElement("div", {
+      className: "text-[1.65rem] font-[600]"
+    }, data[0])));
+  }
   return /*#__PURE__*/react.createElement("div", {
     className: "flex-grow basis-0 border-[1px] border-white p-[4px] bg-black"
   }, /*#__PURE__*/react.createElement("div", {
@@ -18924,19 +19020,22 @@ function IndividualEvent(_ref) {
   }, /*#__PURE__*/react.createElement("div", {
     className: "flex w-full justify-between items-start gap-4 font-[500] tracking-[-0.45px] uppercase ".concat(windowWidth > 1030 ? "text-[0.75rem] leading-[0.75rem]" : "text-[0.5rem] leading-[0.5rem]")
   }, /*#__PURE__*/react.createElement("div", {
-    className: "flex ".concat(windowWidth > 1030 ? "gap-4" : "gap-2", " justify-between items-start")
+    className: "flex ".concat(windowWidth > 1030 ? "gap-3" : "gap-2", " justify-between items-center")
   }, /*#__PURE__*/react.createElement("div", {
-    className: "flex gap-2"
-  }, item.is_featured && /*#__PURE__*/react.createElement("svg", {
+    className: "flex gap-2 justify-center items-center"
+  }, item.is_featured && /*#__PURE__*/react.createElement("div", {
+    className: "flex justify-center items-center"
+  }, /*#__PURE__*/react.createElement("svg", {
     xmlns: "http://www.w3.org/2000/svg",
     width: "20",
     height: "20",
     viewBox: "0 0 20 20",
-    fill: "none"
+    fill: "none",
+    className: "w-[12px] h-[12px] object-contain"
   }, /*#__PURE__*/react.createElement("path", {
     d: "M9.9999 14.8972L15.6924 18.333L14.1816 11.858L19.2107 7.50134L12.5882 6.93967L9.9999 0.833008L7.41156 6.93967L0.789062 7.50134L5.81823 11.858L4.3074 18.333L9.9999 14.8972Z",
     fill: "#14E8FF"
-  })), /*#__PURE__*/react.createElement("div", {
+  }))), /*#__PURE__*/react.createElement("div", {
     className: "text-brand text-pretty w-fit"
   }, item.hosts.join(", "))), /*#__PURE__*/react.createElement("div", null, "|"), /*#__PURE__*/react.createElement("div", {
     className: "text-grayText text-nowrap"
@@ -19180,13 +19279,15 @@ var App = function App() {
     currentCity: city,
     city: "NYC"
   }), /*#__PURE__*/react.createElement(CitySelector, {
-    data: ["SAN FRANCISCO", "OCT 06 - OCT 12"],
-    setCity: setCity,
+    data: ["SAN FRANCISCO", "OCT 06 - OCT 12"]
+    //setCity={setCity}
+    ,
     currentCity: city,
     city: "SF"
   }), /*#__PURE__*/react.createElement(CitySelector, {
-    data: ["LOS ANGELES", "OCT 13 - OCT 19"],
-    setCity: setCity,
+    data: ["LOS ANGELES", "OCT 13 - OCT 19"]
+    //setCity={setCity}
+    ,
     currentCity: city,
     city: "LA"
   }))), /*#__PURE__*/react.createElement("div", {

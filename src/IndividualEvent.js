@@ -21,23 +21,26 @@ export default function IndividualEvent({
       >
         <div
           className={`flex ${
-            windowWidth > 1030 ? "gap-4" : "gap-2"
-          } justify-between items-start`}
+            windowWidth > 1030 ? "gap-3" : "gap-2"
+          } justify-between items-center`}
         >
-          <div className="flex gap-2">
+          <div className="flex gap-2 justify-center items-center">
             {item.is_featured && (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                viewBox="0 0 20 20"
-                fill="none"
-              >
-                <path
-                  d="M9.9999 14.8972L15.6924 18.333L14.1816 11.858L19.2107 7.50134L12.5882 6.93967L9.9999 0.833008L7.41156 6.93967L0.789062 7.50134L5.81823 11.858L4.3074 18.333L9.9999 14.8972Z"
-                  fill="#14E8FF"
-                />
-              </svg>
+              <div className="flex justify-center items-center">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 20 20"
+                  fill="none"
+                  className="w-[12px] h-[12px] object-contain"
+                >
+                  <path
+                    d="M9.9999 14.8972L15.6924 18.333L14.1816 11.858L19.2107 7.50134L12.5882 6.93967L9.9999 0.833008L7.41156 6.93967L0.789062 7.50134L5.81823 11.858L4.3074 18.333L9.9999 14.8972Z"
+                    fill="#14E8FF"
+                  />
+                </svg>
+              </div>
             )}
             <div className="text-brand text-pretty w-fit">
               {item.hosts.join(", ")}

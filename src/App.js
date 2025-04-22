@@ -118,13 +118,13 @@ const App = () => {
               />
               <CitySelector
                 data={["SAN FRANCISCO", "OCT 06 - OCT 12"]}
-                setCity={setCity}
+                //setCity={setCity}
                 currentCity={city}
                 city={"SF"}
               />
               <CitySelector
                 data={["LOS ANGELES", "OCT 13 - OCT 19"]}
-                setCity={setCity}
+                //setCity={setCity}
                 currentCity={city}
                 city={"LA"}
               />
