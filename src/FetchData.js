@@ -19,6 +19,6 @@ export default async function fetchData(city) {
       return data;
     }
   } catch (error) {
-    console.log(error);
+    return 10;
   }
 }

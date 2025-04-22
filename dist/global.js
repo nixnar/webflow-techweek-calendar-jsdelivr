@@ -542,6 +542,10 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   z-index: 9999 !important;
 }
 
+.tailwind .z-50{
+  z-index: 50 !important;
+}
+
 .tailwind .mb-4{
   margin-bottom: 1rem !important;
 }
@@ -556,6 +560,18 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 
 .tailwind .mt-1{
   margin-top: 0.25rem !important;
+}
+
+.tailwind .mt-6{
+  margin-top: 1.5rem !important;
+}
+
+.tailwind .mb-8{
+  margin-bottom: 2rem !important;
+}
+
+.tailwind .mt-8{
+  margin-top: 2rem !important;
 }
 
 .tailwind .flex{
@@ -638,6 +654,14 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 
 .tailwind .max-w-\\[14px\\]{
   max-width: 14px !important;
+}
+
+.tailwind .max-w-md{
+  max-width: 28rem !important;
+}
+
+.tailwind .max-w-2xl{
+  max-width: 42rem !important;
 }
 
 .tailwind .flex-shrink-0{
@@ -788,12 +812,20 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   border-width: 1px !important;
 }
 
+.tailwind .border{
+  border-width: 1px !important;
+}
+
 .tailwind .border-b-\\[1px\\]{
   border-bottom-width: 1px !important;
 }
 
 .tailwind .border-l{
   border-left-width: 1px !important;
+}
+
+.tailwind .border-none{
+  border-style: none !important;
 }
 
 .tailwind .border-gray-500{
@@ -882,6 +914,10 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   background-color: rgba(24, 24, 24, var(--tw-bg-opacity, 1)) !important;
 }
 
+.tailwind .bg-black\\/70{
+  background-color: rgba(0, 0, 0, 0.7) !important;
+}
+
 .tailwind .bg-opacity-50{
   --tw-bg-opacity: 0.5 !important;
 }
@@ -909,6 +945,14 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 
 .tailwind .p-\\[4px\\]{
   padding: 4px !important;
+}
+
+.tailwind .p-8{
+  padding: 2rem !important;
+}
+
+.tailwind .p-12{
+  padding: 3rem !important;
 }
 
 .tailwind .px-2{
@@ -939,6 +983,16 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 .tailwind .py-\\[6px\\]{
   padding-top: 6px !important;
   padding-bottom: 6px !important;
+}
+
+.tailwind .px-4{
+  padding-left: 1rem !important;
+  padding-right: 1rem !important;
+}
+
+.tailwind .py-2{
+  padding-top: 0.5rem !important;
+  padding-bottom: 0.5rem !important;
 }
 
 .tailwind .pb-4{
@@ -984,6 +1038,16 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 .tailwind .text-xl{
   font-size: 1.25rem !important;
   line-height: 1.75rem !important;
+}
+
+.tailwind .text-2xl{
+  font-size: 1.5rem !important;
+  line-height: 2rem !important;
+}
+
+.tailwind .text-4xl{
+  font-size: 2.25rem !important;
+  line-height: 2.5rem !important;
 }
 
 .tailwind .font-\\[400\\]{
@@ -1128,8 +1192,21 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   opacity: 0.5 !important;
 }
 
+.tailwind .outline-none{
+  outline: 2px solid transparent !important;
+  outline-offset: 2px !important;
+}
+
 .tailwind .filter{
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow) !important;
+}
+
+.tailwind .backdrop-blur-sm{
+  --tw-backdrop-blur: blur(4px) !important;
+  -webkit-backdrop-filter: blur(4px) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia) !important;
+  -webkit-backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia) !important;
+  backdrop-filter: blur(4px) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia) !important;
+  backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia) !important;
 }
 
 .tailwind .transition{
@@ -1226,6 +1303,18 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   background-color: rgba(255, 255, 255, var(--tw-bg-opacity, 1)) !important;
 }
 
+.hover\\:bg-gray-200:hover{
+  --tw-bg-opacity: 1 !important;
+  background-color: rgba(229, 231, 235, 1) !important;
+  background-color: rgba(229, 231, 235, var(--tw-bg-opacity, 1)) !important;
+}
+
+.hover\\:bg-gray-900:hover{
+  --tw-bg-opacity: 1 !important;
+  background-color: rgba(17, 24, 39, 1) !important;
+  background-color: rgba(17, 24, 39, var(--tw-bg-opacity, 1)) !important;
+}
+
 .hover\\:text-black:hover{
   --tw-text-opacity: 1 !important;
   color: rgba(0, 0, 0, 1) !important;
@@ -1269,6 +1358,14 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   --tw-text-opacity: 1 !important;
   color: rgba(170, 170, 170, 1) !important;
   color: rgba(170, 170, 170, var(--tw-text-opacity, 1)) !important;
+}
+
+@media (min-width: 768px){
+
+  .md\\:text-5xl{
+    font-size: 3rem !important;
+    line-height: 1 !important;
+  }
 }
 
 @media (max-width: 1030px){
@@ -18185,7 +18282,7 @@ function _fetchData() {
         case 15:
           _context.prev = 15;
           _context.t0 = _context["catch"](0);
-          console.log(_context.t0);
+          return _context.abrupt("return", 10);
         case 18:
         case "end":
           return _context.stop();
@@ -19177,6 +19274,51 @@ var App = function App() {
     _React$useState18 = App_slicedToArray(_React$useState17, 2),
     activeFilters = _React$useState18[0],
     setActiveFilters = _React$useState18[1];
+  var submitForm = /*#__PURE__*/function () {
+    var _ref = App_asyncToGenerator(/*#__PURE__*/App_regeneratorRuntime().mark(function _callee(e) {
+      var email, response, _data;
+      return App_regeneratorRuntime().wrap(function _callee$(_context) {
+        while (1) switch (_context.prev = _context.next) {
+          case 0:
+            if (e) e.preventDefault();
+            email = document.getElementById("email").value;
+            _context.prev = 2;
+            _context.next = 5;
+            return fetch("https://api.tech-week.com/submit_email/", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json"
+              },
+              body: JSON.stringify({
+                email: email
+              }),
+              credentials: "include"
+            });
+          case 5:
+            response = _context.sent;
+            _context.next = 8;
+            return response.json();
+          case 8:
+            _data = _context.sent;
+            console.log(_data);
+            // Hide the form and show the calendar
+            setError(null);
+            _context.next = 16;
+            break;
+          case 13:
+            _context.prev = 13;
+            _context.t0 = _context["catch"](2);
+            console.error("Error:", _context.t0);
+          case 16:
+          case "end":
+            return _context.stop();
+        }
+      }, _callee, null, [[2, 13]]);
+    }));
+    return function submitForm(_x) {
+      return _ref.apply(this, arguments);
+    };
+  }();
   react.useEffect(function () {
     setActiveFilters({
       date: [],
@@ -19187,18 +19329,26 @@ var App = function App() {
       search: ""
     });
     var loadData = /*#__PURE__*/function () {
-      var _ref = App_asyncToGenerator(/*#__PURE__*/App_regeneratorRuntime().mark(function _callee() {
+      var _ref2 = App_asyncToGenerator(/*#__PURE__*/App_regeneratorRuntime().mark(function _callee2() {
         var result;
-        return App_regeneratorRuntime().wrap(function _callee$(_context) {
-          while (1) switch (_context.prev = _context.next) {
+        return App_regeneratorRuntime().wrap(function _callee2$(_context2) {
+          while (1) switch (_context2.prev = _context2.next) {
             case 0:
-              _context.prev = 0;
+              _context2.prev = 0;
               setIsLoading(true);
               setError(null);
-              _context.next = 5;
+              _context2.next = 5;
               return fetchData(city);
             case 5:
-              result = _context.sent;
+              result = _context2.sent;
+              if (!(result === 10)) {
+                _context2.next = 10;
+                break;
+              }
+              setError("showForm");
+              setIsLoading(false);
+              return _context2.abrupt("return");
+            case 10:
               // Sort events by start_time before applying transformations
               result.sort(function (a, b) {
                 // Sort featured events first
@@ -19216,25 +19366,25 @@ var App = function App() {
               });
               setData(result);
               setAvailableFilters(sortFilters(result));
-              _context.next = 16;
+              _context2.next = 20;
               break;
-            case 12:
-              _context.prev = 12;
-              _context.t0 = _context["catch"](0);
-              setError(_context.t0.message);
-              console.error("Error fetching data:", _context.t0);
             case 16:
-              _context.prev = 16;
+              _context2.prev = 16;
+              _context2.t0 = _context2["catch"](0);
+              setError(_context2.t0.message);
+              console.error("Error fetching data:", _context2.t0);
+            case 20:
+              _context2.prev = 20;
               setIsLoading(false);
-              return _context.finish(16);
-            case 19:
+              return _context2.finish(20);
+            case 23:
             case "end":
-              return _context.stop();
+              return _context2.stop();
           }
-        }, _callee, null, [[0, 12, 16, 19]]);
+        }, _callee2, null, [[0, 16, 20, 23]]);
       }));
       return function loadData() {
-        return _ref.apply(this, arguments);
+        return _ref2.apply(this, arguments);
       };
     }();
     loadData();
@@ -19264,7 +19414,49 @@ var App = function App() {
   }, []);
   return /*#__PURE__*/react.createElement("div", {
     className: "tailwind"
+  }, error === "showForm" ? /*#__PURE__*/react.createElement("div", {
+    className: "fixed inset-0 z-[9999] overflow-hidden"
   }, /*#__PURE__*/react.createElement("div", {
+    className: "absolute inset-0 backdrop-blur-sm bg-black/70"
+  }), /*#__PURE__*/react.createElement("div", {
+    className: "relative h-full w-full flex items-center justify-center"
+  }, /*#__PURE__*/react.createElement("div", {
+    className: "text-center text-white p-12 max-w-2xl"
+  }, /*#__PURE__*/react.createElement("div", {
+    className: "mb-8 flex justify-center"
+  }, /*#__PURE__*/react.createElement("svg", {
+    xmlns: "http://www.w3.org/2000/svg",
+    width: "48",
+    height: "48",
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: "2"
+  }, /*#__PURE__*/react.createElement("rect", {
+    x: "3",
+    y: "11",
+    width: "18",
+    height: "11",
+    rx: "2",
+    ry: "2"
+  }), /*#__PURE__*/react.createElement("path", {
+    d: "M7 11V7a5 5 0 0 1 10 0v4"
+  }))), /*#__PURE__*/react.createElement("h2", {
+    className: "text-4xl md:text-5xl font-bold mb-4"
+  }, "ENTER YOUR EMAIL TO ACCESS THE TECH WEEK 2025 CALENDAR"), /*#__PURE__*/react.createElement("form", {
+    className: "mt-8 flex",
+    onSubmit: function onSubmit(e) {
+      return submitForm(e);
+    }
+  }, /*#__PURE__*/react.createElement("input", {
+    id: "email",
+    type: "email",
+    placeholder: "Register Email",
+    className: "bg-white text-black p-3 flex-grow outline-none border-none"
+  }), /*#__PURE__*/react.createElement("button", {
+    type: "submit",
+    className: "bg-black text-white p-3 border border-white hover:bg-gray-900"
+  }, "Submit"))))) : /*#__PURE__*/react.createElement("div", {
     className: "flex w-full justify-center text-white select-none"
   }, /*#__PURE__*/react.createElement("div", {
     className: "max-w-[1400px] grow flex flex-col gap-4"
