@@ -19303,17 +19303,18 @@ var App = function App() {
             console.log(_data);
             // Hide the form and show the calendar
             setError(null);
-            _context.next = 16;
+            window.location.reload();
+            _context.next = 17;
             break;
-          case 13:
-            _context.prev = 13;
+          case 14:
+            _context.prev = 14;
             _context.t0 = _context["catch"](2);
             console.error("Error:", _context.t0);
-          case 16:
+          case 17:
           case "end":
             return _context.stop();
         }
-      }, _callee, null, [[2, 13]]);
+      }, _callee, null, [[2, 14]]);
     }));
     return function submitForm(_x) {
       return _ref.apply(this, arguments);

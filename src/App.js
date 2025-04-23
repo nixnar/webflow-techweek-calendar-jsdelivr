@@ -54,6 +54,7 @@ const App = () => {
       console.log(data);
       // Hide the form and show the calendar
       setError(null);
+      window.location.reload();
     } catch (error) {
       console.error("Error:", error);
     }
