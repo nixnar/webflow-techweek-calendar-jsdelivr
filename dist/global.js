@@ -19322,13 +19322,15 @@ var App = function App() {
                 window.location.reload();
               }
             }, 100); // Small delay to ensure cookie has time to be set
-            _context.next = 16;
+            _context.next = 17;
             break;
           case 13:
             _context.prev = 13;
             _context.t0 = _context["catch"](2);
             console.error("Error:", _context.t0);
-          case 16:
+            // If fetch fails due to CORS or network errors, likely in incognito mode
+            setError("incognito");
+          case 17:
           case "end":
             return _context.stop();
         }

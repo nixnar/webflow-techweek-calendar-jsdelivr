@@ -72,6 +72,8 @@ const App = () => {
       }, 100); // Small delay to ensure cookie has time to be set
     } catch (error) {
       console.error("Error:", error);
+      // If fetch fails due to CORS or network errors, likely in incognito mode
+      setError("incognito");
     }
   };
 
