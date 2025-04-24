@@ -546,6 +546,10 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   margin-bottom: 1rem !important;
 }
 
+.tailwind .mb-6{
+  margin-bottom: 1.5rem !important;
+}
+
 .tailwind .mb-8{
   margin-bottom: 2rem !important;
 }
@@ -564,10 +568,6 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 
 .tailwind .mt-8{
   margin-top: 2rem !important;
-}
-
-.tailwind .mb-6{
-  margin-bottom: 1.5rem !important;
 }
 
 .tailwind .flex{
@@ -846,6 +846,12 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   background-color: rgba(0, 0, 0, 0.7) !important;
 }
 
+.tailwind .bg-gray-500{
+  --tw-bg-opacity: 1 !important;
+  background-color: rgba(107, 114, 128, 1) !important;
+  background-color: rgba(107, 114, 128, var(--tw-bg-opacity, 1)) !important;
+}
+
 .tailwind .bg-transparent{
   background-color: transparent !important;
 }
@@ -1069,6 +1075,12 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   color: rgba(20, 232, 255, var(--tw-text-opacity, 1)) !important;
 }
 
+.tailwind .text-gray-300{
+  --tw-text-opacity: 1 !important;
+  color: rgba(209, 213, 219, 1) !important;
+  color: rgba(209, 213, 219, var(--tw-text-opacity, 1)) !important;
+}
+
 .tailwind .text-gray-400{
   --tw-text-opacity: 1 !important;
   color: rgba(156, 163, 175, 1) !important;
@@ -1195,82 +1207,68 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 * {
   -ms-overflow-style: none;
 }
-
 .hover\\:border-gray-200:hover{
   --tw-border-opacity: 1 !important;
   border-color: rgba(229, 231, 235, 1) !important;
   border-color: rgba(229, 231, 235, var(--tw-border-opacity, 1)) !important;
 }
-
 .hover\\:border-white:hover{
   --tw-border-opacity: 1 !important;
   border-color: rgba(255, 255, 255, 1) !important;
   border-color: rgba(255, 255, 255, var(--tw-border-opacity, 1)) !important;
 }
-
-.hover\\:bg-gray-900:hover{
-  --tw-bg-opacity: 1 !important;
-  background-color: rgba(17, 24, 39, 1) !important;
-  background-color: rgba(17, 24, 39, var(--tw-bg-opacity, 1)) !important;
-}
-
-.hover\\:bg-white:hover{
-  --tw-bg-opacity: 1 !important;
-  background-color: rgba(255, 255, 255, 1) !important;
-  background-color: rgba(255, 255, 255, var(--tw-bg-opacity, 1)) !important;
-}
-
 .hover\\:bg-gray-200:hover{
   --tw-bg-opacity: 1 !important;
   background-color: rgba(229, 231, 235, 1) !important;
   background-color: rgba(229, 231, 235, var(--tw-bg-opacity, 1)) !important;
 }
-
+.hover\\:bg-gray-900:hover{
+  --tw-bg-opacity: 1 !important;
+  background-color: rgba(17, 24, 39, 1) !important;
+  background-color: rgba(17, 24, 39, var(--tw-bg-opacity, 1)) !important;
+}
+.hover\\:bg-white:hover{
+  --tw-bg-opacity: 1 !important;
+  background-color: rgba(255, 255, 255, 1) !important;
+  background-color: rgba(255, 255, 255, var(--tw-bg-opacity, 1)) !important;
+}
 .hover\\:text-black:hover{
   --tw-text-opacity: 1 !important;
   color: rgba(0, 0, 0, 1) !important;
   color: rgba(0, 0, 0, var(--tw-text-opacity, 1)) !important;
 }
-
 .hover\\:text-gray-200:hover{
   --tw-text-opacity: 1 !important;
   color: rgba(229, 231, 235, 1) !important;
   color: rgba(229, 231, 235, var(--tw-text-opacity, 1)) !important;
 }
-
 .hover\\:text-gray-300:hover{
   --tw-text-opacity: 1 !important;
   color: rgba(209, 213, 219, 1) !important;
   color: rgba(209, 213, 219, var(--tw-text-opacity, 1)) !important;
 }
-
 .hover\\:text-gray-900:hover{
   --tw-text-opacity: 1 !important;
   color: rgba(17, 24, 39, 1) !important;
   color: rgba(17, 24, 39, var(--tw-text-opacity, 1)) !important;
 }
-
 .focus\\:outline-none:focus{
   outline: 2px solid transparent !important;
   outline-offset: 2px !important;
 }
-
 .group:hover .group-hover\\:rotate-90{
   --tw-rotate: 90deg !important;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(90deg) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y)) !important;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y)) !important;
 }
-
 .group:hover .group-hover\\:fill-brand{
   fill: #14E8FF !important;
 }
-
 .group:hover .group-hover\\:text-\\[\\#aaa\\]{
   --tw-text-opacity: 1 !important;
   color: rgba(170, 170, 170, 1) !important;
   color: rgba(170, 170, 170, var(--tw-text-opacity, 1)) !important;
 }
-
 @media (min-width: 768px){
 
   .md\\:text-5xl{
@@ -1278,7 +1276,6 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
     line-height: 1 !important;
   }
 }
-
 @media (max-width: 1030px){
 
   .mobile\\:hidden{
@@ -19163,17 +19160,10 @@ var App = function App() {
     _React$useState14 = App_slicedToArray(_React$useState13, 2),
     filterToggle = _React$useState14[0],
     setFilterToggle = _React$useState14[1];
-  var _React$useState15 = react.useState({
-      date: [],
-      neighborhood: [],
-      start_time: [],
-      topics: [],
-      types: [],
-      search: ""
-    }),
+  var _React$useState15 = react.useState(false),
     _React$useState16 = App_slicedToArray(_React$useState15, 2),
-    availableFilters = _React$useState16[0],
-    setAvailableFilters = _React$useState16[1];
+    isValidEmail = _React$useState16[0],
+    setIsValidEmail = _React$useState16[1];
   var _React$useState17 = react.useState({
       date: [],
       neighborhood: [],
@@ -19183,8 +19173,19 @@ var App = function App() {
       search: ""
     }),
     _React$useState18 = App_slicedToArray(_React$useState17, 2),
-    activeFilters = _React$useState18[0],
-    setActiveFilters = _React$useState18[1];
+    availableFilters = _React$useState18[0],
+    setAvailableFilters = _React$useState18[1];
+  var _React$useState19 = react.useState({
+      date: [],
+      neighborhood: [],
+      start_time: [],
+      topics: [],
+      types: [],
+      search: ""
+    }),
+    _React$useState20 = App_slicedToArray(_React$useState19, 2),
+    activeFilters = _React$useState20[0],
+    setActiveFilters = _React$useState20[1];
   var submitForm = /*#__PURE__*/function () {
     var _ref = App_asyncToGenerator(/*#__PURE__*/App_regeneratorRuntime().mark(function _callee(e) {
       var email, response, _data;
@@ -19247,6 +19248,12 @@ var App = function App() {
       return _ref.apply(this, arguments);
     };
   }();
+
+  // Validate email input
+  var validateEmail = function validateEmail(email) {
+    var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+    setIsValidEmail(emailPattern.test(email));
+  };
   react.useEffect(function () {
     setActiveFilters({
       date: [],
@@ -19380,10 +19387,14 @@ var App = function App() {
     id: "email",
     type: "email",
     placeholder: "Register Email",
-    className: "bg-white text-black p-3 flex-grow outline-none border-none"
+    className: "bg-white text-black p-3 flex-grow outline-none border-none",
+    onChange: function onChange(e) {
+      return validateEmail(e.target.value);
+    }
   }), /*#__PURE__*/react.createElement("button", {
     type: "submit",
-    className: "bg-black text-white p-3 border border-white hover:bg-gray-900"
+    className: "p-3 border border-white ".concat(isValidEmail ? "bg-black text-white hover:bg-gray-900 cursor-pointer" : "bg-gray-500 text-gray-300 cursor-not-allowed"),
+    disabled: !isValidEmail
   }, "Submit"))))) : error === "incognito" ? /*#__PURE__*/react.createElement("div", {
     className: "fixed inset-0 z-[9999] overflow-hidden"
   }, /*#__PURE__*/react.createElement("div", {
@@ -19414,7 +19425,7 @@ var App = function App() {
     className: "text-xl mb-6"
   }, "Please disable incognito mode / allow cookies to access the calendar. Refresh the page to try again."), /*#__PURE__*/react.createElement("button", {
     onClick: function onClick() {
-      return setError("showForm");
+      return window.location.reload();
     },
     className: "bg-white text-black p-3 hover:bg-gray-200"
   }, "Try Again")))) : /*#__PURE__*/react.createElement("div", {
