@@ -19,6 +19,7 @@ const App = () => {
   const [city, setCity] = React.useState("NYC");
   const [windowWidth, setWindowWidth] = React.useState(window.innerWidth);
   const [filterToggle, setFilterToggle] = React.useState(false);
+  const [isValidEmail, setIsValidEmail] = React.useState(false);
   const [availableFilters, setAvailableFilters] = React.useState({
     date: [],
     neighborhood: [],
@@ -75,6 +76,12 @@ const App = () => {
       // If fetch fails due to CORS or network errors, likely in incognito mode
       setError("incognito");
     }
+  };
+
+  // Validate email input
+  const validateEmail = (email) => {
+    const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+    setIsValidEmail(emailPattern.test(email));
   };
 
   React.useEffect(() => {
@@ -189,10 +196,16 @@ const App = () => {
                   type="email"
                   placeholder="Register Email"
                   className="bg-white text-black p-3 flex-grow outline-none border-none"
+                  onChange={(e) => validateEmail(e.target.value)}
                 />
                 <button
                   type="submit"
-                  className="bg-black text-white p-3 border border-white hover:bg-gray-900"
+                  className={`p-3 border border-white ${
+                    isValidEmail
+                      ? "bg-black text-white hover:bg-gray-900 cursor-pointer"
+                      : "bg-gray-500 text-gray-300 cursor-not-allowed"
+                  }`}
+                  disabled={!isValidEmail}
                 >
                   Submit
                 </button>
@@ -221,14 +234,14 @@ const App = () => {
                 </svg>
               </div>
               <h2 className="text-4xl md:text-5xl font-bold mb-4">
-                INCOGNITO MODE DETECTED
+                ERROR DETECTED
               </h2>
               <p className="text-xl mb-6">
-                Please disable incognito mode or allow cookies to access the
-                calendar.
+                Please disable incognito mode / allow cookies to access the
+                calendar. Refresh the page to try again.
               </p>
               <button
-                onClick={() => setError("showForm")}
+                onClick={() => window.location.reload()}
                 className="bg-white text-black p-3 hover:bg-gray-200"
               >
                 Try Again
