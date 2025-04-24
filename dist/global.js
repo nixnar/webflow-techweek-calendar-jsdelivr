@@ -574,6 +574,10 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   margin-top: 2rem !important;
 }
 
+.tailwind .mb-6{
+  margin-bottom: 1.5rem !important;
+}
+
 .tailwind .flex{
   display: flex !important;
 }
@@ -19301,20 +19305,34 @@ var App = function App() {
           case 8:
             _data = _context.sent;
             console.log(_data);
-            // Hide the form and show the calendar
-            setError(null);
-            window.location.reload();
-            _context.next = 17;
+
+            // Check if cookie was set - wait a moment for cookie to be set
+            setTimeout(function () {
+              // This assumes your API sets a specific cookie named "auth_token"
+              // Replace "auth_token" with the actual name of your cookie
+              var cookieExists = document.cookie.includes("auth_token");
+              if (!cookieExists) {
+                // Cookie wasn't set - likely in incognito mode
+                console.log("Cookie not set - user may be in incognito mode");
+                // You can set a state variable here to show a message
+                setError("incognito");
+              } else {
+                // Cookie was set successfully - proceed normally
+                setError(null);
+                window.location.reload();
+              }
+            }, 100); // Small delay to ensure cookie has time to be set
+            _context.next = 16;
             break;
-          case 14:
-            _context.prev = 14;
+          case 13:
+            _context.prev = 13;
             _context.t0 = _context["catch"](2);
             console.error("Error:", _context.t0);
-          case 17:
+          case 16:
           case "end":
             return _context.stop();
         }
-      }, _callee, null, [[2, 14]]);
+      }, _callee, null, [[2, 13]]);
     }));
     return function submitForm(_x) {
       return _ref.apply(this, arguments);
@@ -19457,7 +19475,40 @@ var App = function App() {
   }), /*#__PURE__*/react.createElement("button", {
     type: "submit",
     className: "bg-black text-white p-3 border border-white hover:bg-gray-900"
-  }, "Submit"))))) : /*#__PURE__*/react.createElement("div", {
+  }, "Submit"))))) : error === "incognito" ? /*#__PURE__*/react.createElement("div", {
+    className: "fixed inset-0 z-[9999] overflow-hidden"
+  }, /*#__PURE__*/react.createElement("div", {
+    className: "absolute inset-0 backdrop-blur-sm bg-black/70"
+  }), /*#__PURE__*/react.createElement("div", {
+    className: "relative h-full w-full flex items-center justify-center"
+  }, /*#__PURE__*/react.createElement("div", {
+    className: "text-center text-white p-12 max-w-2xl"
+  }, /*#__PURE__*/react.createElement("div", {
+    className: "mb-8 flex justify-center"
+  }, /*#__PURE__*/react.createElement("svg", {
+    xmlns: "http://www.w3.org/2000/svg",
+    width: "48",
+    height: "48",
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: "2"
+  }, /*#__PURE__*/react.createElement("path", {
+    d: "M10 16l2-7"
+  }), /*#__PURE__*/react.createElement("path", {
+    d: "M12 19h.01"
+  }), /*#__PURE__*/react.createElement("path", {
+    d: "M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18Z"
+  }))), /*#__PURE__*/react.createElement("h2", {
+    className: "text-4xl md:text-5xl font-bold mb-4"
+  }, "INCOGNITO MODE DETECTED"), /*#__PURE__*/react.createElement("p", {
+    className: "text-xl mb-6"
+  }, "Please disable incognito mode or allow cookies to access the calendar."), /*#__PURE__*/react.createElement("button", {
+    onClick: function onClick() {
+      return setError("showForm");
+    },
+    className: "bg-white text-black p-3 hover:bg-gray-200"
+  }, "Try Again")))) : /*#__PURE__*/react.createElement("div", {
     className: "flex w-full justify-center text-white select-none"
   }, /*#__PURE__*/react.createElement("div", {
     className: "max-w-[1400px] grow flex flex-col gap-4"

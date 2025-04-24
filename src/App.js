@@ -52,9 +52,24 @@ const App = () => {
 
       const data = await response.json();
       console.log(data);
-      // Hide the form and show the calendar
-      setError(null);
-      window.location.reload();
+
+      // Check if cookie was set - wait a moment for cookie to be set
+      setTimeout(() => {
+        // This assumes your API sets a specific cookie named "auth_token"
+        // Replace "auth_token" with the actual name of your cookie
+        const cookieExists = document.cookie.includes("auth_token");
+
+        if (!cookieExists) {
+          // Cookie wasn't set - likely in incognito mode
+          console.log("Cookie not set - user may be in incognito mode");
+          // You can set a state variable here to show a message
+          setError("incognito");
+        } else {
+          // Cookie was set successfully - proceed normally
+          setError(null);
+          window.location.reload();
+        }
+      }, 100); // Small delay to ensure cookie has time to be set
     } catch (error) {
       console.error("Error:", error);
     }
@@ -180,6 +195,42 @@ const App = () => {
                   Submit
                 </button>
               </form>
+            </div>
+          </div>
+        </div>
+      ) : error === "incognito" ? (
+        <div className="fixed inset-0 z-[9999] overflow-hidden">
+          <div className="absolute inset-0 backdrop-blur-sm bg-black/70"></div>
+          <div className="relative h-full w-full flex items-center justify-center">
+            <div className="text-center text-white p-12 max-w-2xl">
+              <div className="mb-8 flex justify-center">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="48"
+                  height="48"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                >
+                  <path d="M10 16l2-7"></path>
+                  <path d="M12 19h.01"></path>
+                  <path d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18Z"></path>
+                </svg>
+              </div>
+              <h2 className="text-4xl md:text-5xl font-bold mb-4">
+                INCOGNITO MODE DETECTED
+              </h2>
+              <p className="text-xl mb-6">
+                Please disable incognito mode or allow cookies to access the
+                calendar.
+              </p>
+              <button
+                onClick={() => setError("showForm")}
+                className="bg-white text-black p-3 hover:bg-gray-200"
+              >
+                Try Again
+              </button>
             </div>
           </div>
         </div>
