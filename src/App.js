@@ -54,10 +54,8 @@ const App = () => {
       const data = await response.json();
       console.log(data);
 
-      // Check if cookie was set - wait a moment for cookie to be set
+      /* Check if cookie was set - wait a moment for cookie to be set
       setTimeout(() => {
-        // This assumes your API sets a specific cookie named "auth_token"
-        // Replace "auth_token" with the actual name of your cookie
         const cookieExists = document.cookie.includes("auth_token");
 
         if (!cookieExists) {
@@ -70,10 +68,9 @@ const App = () => {
           setError(null);
           window.location.reload();
         }
-      }, 100); // Small delay to ensure cookie has time to be set
+      }, 500); // Small delay to ensure cookie has time to be set*/
     } catch (error) {
       console.error("Error:", error);
-      // If fetch fails due to CORS or network errors, likely in incognito mode
       setError("incognito");
     }
   };

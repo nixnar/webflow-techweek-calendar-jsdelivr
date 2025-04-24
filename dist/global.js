@@ -1207,68 +1207,82 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 * {
   -ms-overflow-style: none;
 }
+
 .hover\\:border-gray-200:hover{
   --tw-border-opacity: 1 !important;
   border-color: rgba(229, 231, 235, 1) !important;
   border-color: rgba(229, 231, 235, var(--tw-border-opacity, 1)) !important;
 }
+
 .hover\\:border-white:hover{
   --tw-border-opacity: 1 !important;
   border-color: rgba(255, 255, 255, 1) !important;
   border-color: rgba(255, 255, 255, var(--tw-border-opacity, 1)) !important;
 }
+
 .hover\\:bg-gray-200:hover{
   --tw-bg-opacity: 1 !important;
   background-color: rgba(229, 231, 235, 1) !important;
   background-color: rgba(229, 231, 235, var(--tw-bg-opacity, 1)) !important;
 }
+
 .hover\\:bg-gray-900:hover{
   --tw-bg-opacity: 1 !important;
   background-color: rgba(17, 24, 39, 1) !important;
   background-color: rgba(17, 24, 39, var(--tw-bg-opacity, 1)) !important;
 }
+
 .hover\\:bg-white:hover{
   --tw-bg-opacity: 1 !important;
   background-color: rgba(255, 255, 255, 1) !important;
   background-color: rgba(255, 255, 255, var(--tw-bg-opacity, 1)) !important;
 }
+
 .hover\\:text-black:hover{
   --tw-text-opacity: 1 !important;
   color: rgba(0, 0, 0, 1) !important;
   color: rgba(0, 0, 0, var(--tw-text-opacity, 1)) !important;
 }
+
 .hover\\:text-gray-200:hover{
   --tw-text-opacity: 1 !important;
   color: rgba(229, 231, 235, 1) !important;
   color: rgba(229, 231, 235, var(--tw-text-opacity, 1)) !important;
 }
+
 .hover\\:text-gray-300:hover{
   --tw-text-opacity: 1 !important;
   color: rgba(209, 213, 219, 1) !important;
   color: rgba(209, 213, 219, var(--tw-text-opacity, 1)) !important;
 }
+
 .hover\\:text-gray-900:hover{
   --tw-text-opacity: 1 !important;
   color: rgba(17, 24, 39, 1) !important;
   color: rgba(17, 24, 39, var(--tw-text-opacity, 1)) !important;
 }
+
 .focus\\:outline-none:focus{
   outline: 2px solid transparent !important;
   outline-offset: 2px !important;
 }
+
 .group:hover .group-hover\\:rotate-90{
   --tw-rotate: 90deg !important;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(90deg) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y)) !important;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y)) !important;
 }
+
 .group:hover .group-hover\\:fill-brand{
   fill: #14E8FF !important;
 }
+
 .group:hover .group-hover\\:text-\\[\\#aaa\\]{
   --tw-text-opacity: 1 !important;
   color: rgba(170, 170, 170, 1) !important;
   color: rgba(170, 170, 170, var(--tw-text-opacity, 1)) !important;
 }
+
 @media (min-width: 768px){
 
   .md\\:text-5xl{
@@ -1276,6 +1290,7 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
     line-height: 1 !important;
   }
 }
+
 @media (max-width: 1030px){
 
   .mobile\\:hidden{
@@ -19214,12 +19229,10 @@ var App = function App() {
             _data = _context.sent;
             console.log(_data);
 
-            // Check if cookie was set - wait a moment for cookie to be set
-            setTimeout(function () {
-              // This assumes your API sets a specific cookie named "auth_token"
-              // Replace "auth_token" with the actual name of your cookie
-              var cookieExists = document.cookie.includes("auth_token");
-              if (!cookieExists) {
+            /* Check if cookie was set - wait a moment for cookie to be set
+            setTimeout(() => {
+              const cookieExists = document.cookie.includes("auth_token");
+                if (!cookieExists) {
                 // Cookie wasn't set - likely in incognito mode
                 console.log("Cookie not set - user may be in incognito mode");
                 // You can set a state variable here to show a message
@@ -19229,20 +19242,19 @@ var App = function App() {
                 setError(null);
                 window.location.reload();
               }
-            }, 100); // Small delay to ensure cookie has time to be set
-            _context.next = 17;
+            }, 500); // Small delay to ensure cookie has time to be set*/
+            _context.next = 16;
             break;
-          case 13:
-            _context.prev = 13;
+          case 12:
+            _context.prev = 12;
             _context.t0 = _context["catch"](2);
             console.error("Error:", _context.t0);
-            // If fetch fails due to CORS or network errors, likely in incognito mode
             setError("incognito");
-          case 17:
+          case 16:
           case "end":
             return _context.stop();
         }
-      }, _callee, null, [[2, 13]]);
+      }, _callee, null, [[2, 12]]);
     }));
     return function submitForm(_x) {
       return _ref.apply(this, arguments);
