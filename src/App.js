@@ -98,34 +98,58 @@ const App = () => {
 
         // Check if result is the error code 10
         if (result === 10) {
-          setError("showForm");
           setIsLoading(false);
+          setError("showForm");
+
           return;
         }
 
-        // Sort events by start_time before applying transformations
-        result.sort((a, b) => {
-          // Sort featured events first
-          if (a.is_featured !== b.is_featured) {
-            return b.is_featured - a.is_featured;
-          }
-          // Then sort by start time
-          return new Date(a.start_time) - new Date(b.start_time);
-        });
+        // Separate events by tier
+        const tier1Events = result.filter(
+          (event) => event.starred_on_calendar === "TIER_1"
+        );
+        const tier2Events = result.filter(
+          (event) => event.starred_on_calendar === "TIER_2"
+        );
+        const regularEvents = result.filter(
+          (event) => !event.starred_on_calendar
+        );
+
+        // Randomize TIER_1 events
+        for (let i = tier1Events.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [tier1Events[i], tier1Events[j]] = [tier1Events[j], tier1Events[i]];
+        }
+
+        // Randomize TIER_2 events
+        for (let i = tier2Events.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [tier2Events[i], tier2Events[j]] = [tier2Events[j], tier2Events[i]];
+        }
+
+        // Sort regular events by start time
+        regularEvents.sort(
+          (a, b) => new Date(a.start_time) - new Date(b.start_time)
+        );
+
+        // Combine all events in the desired order
+        const sortedResult = [...tier1Events, ...tier2Events, ...regularEvents];
 
         // Apply time transformations after sorting
-        result.forEach((item) => {
+        sortedResult.forEach((item) => {
           item.day = timeTodayOfWeek(item.start_time);
           item.time = timeToAmPm(item.start_time);
         });
 
-        setData(result);
-        setAvailableFilters(sortFilters(result));
+        setData(sortedResult);
+        setAvailableFilters(sortFilters(sortedResult));
       } catch (err) {
         setError(err.message);
         console.error("Error fetching data:", err);
       } finally {
-        setIsLoading(false);
+        setTimeout(() => {
+          setIsLoading(false);
+        }, 100);
       }
     };
 
@@ -158,7 +182,22 @@ const App = () => {
 
   return (
     <div className="tailwind">
-      {error === "showForm" ? (
+      {isLoading ? (
+        <div className="flex w-full justify-center text-white select-none">
+          <div className="max-w-[1400px] grow flex flex-col gap-4">
+            <div
+              id="loading"
+              className="border-[1px] border-white p-[4px] bg-black h-fit"
+            >
+              <div className="flex w-full justify-between items-center border-[1px] border-white p-[4px] sticky top-0 bg-black">
+                <p className="w-full text-center text-xl uppercase text-white text-[1.65rem] font-[600] py-4">
+                  Loading Amazing Events...
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      ) : error === "showForm" ? (
         <div className="fixed inset-0 z-[9999] overflow-hidden">
           <div className="absolute inset-0 backdrop-blur-sm bg-black/70"></div>
           <div className="relative h-full w-full flex items-center justify-center">
