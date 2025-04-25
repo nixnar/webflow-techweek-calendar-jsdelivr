@@ -20,6 +20,7 @@ const App = () => {
   const [windowWidth, setWindowWidth] = React.useState(window.innerWidth);
   const [filterToggle, setFilterToggle] = React.useState(false);
   const [isValidEmail, setIsValidEmail] = React.useState(false);
+  const [email, setEmail] = React.useState("");
   const [availableFilters, setAvailableFilters] = React.useState({
     date: [],
     neighborhood: [],
@@ -39,7 +40,6 @@ const App = () => {
 
   const submitForm = async (e) => {
     if (e) e.preventDefault();
-    const email = document.getElementById("email").value;
 
     try {
       const response = await fetch("https://api.tech-week.com/submit_email/", {
@@ -53,22 +53,7 @@ const App = () => {
 
       const data = await response.json();
       console.log(data);
-
-      /* Check if cookie was set - wait a moment for cookie to be set
-      setTimeout(() => {
-        const cookieExists = document.cookie.includes("auth_token");
-
-        if (!cookieExists) {
-          // Cookie wasn't set - likely in incognito mode
-          console.log("Cookie not set - user may be in incognito mode");
-          // You can set a state variable here to show a message
-          setError("incognito");
-        } else {
-          // Cookie was set successfully - proceed normally
-          setError(null);
-          window.location.reload();
-        }
-      }, 500); // Small delay to ensure cookie has time to be set*/
+      window.location.reload();
     } catch (error) {
       console.error("Error:", error);
       setError("incognito");
@@ -76,9 +61,10 @@ const App = () => {
   };
 
   // Validate email input
-  const validateEmail = (email) => {
-    const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-    setIsValidEmail(emailPattern.test(email));
+  const validateEmail = (value) => {
+    setEmail(value);
+    const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,3}$/;
+    setIsValidEmail(emailPattern.test(value));
   };
 
   React.useEffect(() => {
@@ -232,6 +218,7 @@ const App = () => {
                   type="email"
                   placeholder="Register Email"
                   className="bg-white text-black p-3 flex-grow outline-none border-none"
+                  value={email}
                   onChange={(e) => validateEmail(e.target.value)}
                 />
                 <button
@@ -273,8 +260,8 @@ const App = () => {
                 ERROR DETECTED
               </h2>
               <p className="text-xl mb-6">
-                Please disable incognito mode / allow cookies to access the
-                calendar. Refresh the page to try again.
+                Your email address maybe incorrect. You might be in incognito
+                mode or blocked cookies.
               </p>
               <button
                 onClick={() => window.location.reload()}

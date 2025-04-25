@@ -915,6 +915,11 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   padding-bottom: 0.375rem !important;
 }
 
+.tailwind .py-4{
+  padding-top: 1rem !important;
+  padding-bottom: 1rem !important;
+}
+
 .tailwind .py-\\[0\\.375rem\\]{
   padding-top: 0.375rem !important;
   padding-bottom: 0.375rem !important;
@@ -923,11 +928,6 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 .tailwind .py-\\[6px\\]{
   padding-top: 6px !important;
   padding-bottom: 6px !important;
-}
-
-.tailwind .py-4{
-  padding-top: 1rem !important;
-  padding-bottom: 1rem !important;
 }
 
 .tailwind .pb-4{
@@ -19188,17 +19188,10 @@ var App = function App() {
     _React$useState16 = App_slicedToArray(_React$useState15, 2),
     isValidEmail = _React$useState16[0],
     setIsValidEmail = _React$useState16[1];
-  var _React$useState17 = react.useState({
-      date: [],
-      neighborhood: [],
-      start_time: [],
-      topics: [],
-      types: [],
-      search: ""
-    }),
+  var _React$useState17 = react.useState(""),
     _React$useState18 = App_slicedToArray(_React$useState17, 2),
-    availableFilters = _React$useState18[0],
-    setAvailableFilters = _React$useState18[1];
+    email = _React$useState18[0],
+    setEmail = _React$useState18[1];
   var _React$useState19 = react.useState({
       date: [],
       neighborhood: [],
@@ -19208,18 +19201,28 @@ var App = function App() {
       search: ""
     }),
     _React$useState20 = App_slicedToArray(_React$useState19, 2),
-    activeFilters = _React$useState20[0],
-    setActiveFilters = _React$useState20[1];
+    availableFilters = _React$useState20[0],
+    setAvailableFilters = _React$useState20[1];
+  var _React$useState21 = react.useState({
+      date: [],
+      neighborhood: [],
+      start_time: [],
+      topics: [],
+      types: [],
+      search: ""
+    }),
+    _React$useState22 = App_slicedToArray(_React$useState21, 2),
+    activeFilters = _React$useState22[0],
+    setActiveFilters = _React$useState22[1];
   var submitForm = /*#__PURE__*/function () {
     var _ref = App_asyncToGenerator(/*#__PURE__*/App_regeneratorRuntime().mark(function _callee(e) {
-      var email, response, _data;
+      var response, _data;
       return App_regeneratorRuntime().wrap(function _callee$(_context) {
         while (1) switch (_context.prev = _context.next) {
           case 0:
             if (e) e.preventDefault();
-            email = document.getElementById("email").value;
-            _context.prev = 2;
-            _context.next = 5;
+            _context.prev = 1;
+            _context.next = 4;
             return fetch("https://api.tech-week.com/submit_email/", {
               method: "POST",
               headers: {
@@ -19230,40 +19233,26 @@ var App = function App() {
               }),
               credentials: "include"
             });
-          case 5:
+          case 4:
             response = _context.sent;
-            _context.next = 8;
+            _context.next = 7;
             return response.json();
-          case 8:
+          case 7:
             _data = _context.sent;
             console.log(_data);
-
-            /* Check if cookie was set - wait a moment for cookie to be set
-            setTimeout(() => {
-              const cookieExists = document.cookie.includes("auth_token");
-                if (!cookieExists) {
-                // Cookie wasn't set - likely in incognito mode
-                console.log("Cookie not set - user may be in incognito mode");
-                // You can set a state variable here to show a message
-                setError("incognito");
-              } else {
-                // Cookie was set successfully - proceed normally
-                setError(null);
-                window.location.reload();
-              }
-            }, 500); // Small delay to ensure cookie has time to be set*/
+            window.location.reload();
             _context.next = 16;
             break;
           case 12:
             _context.prev = 12;
-            _context.t0 = _context["catch"](2);
+            _context.t0 = _context["catch"](1);
             console.error("Error:", _context.t0);
             setError("incognito");
           case 16:
           case "end":
             return _context.stop();
         }
-      }, _callee, null, [[2, 12]]);
+      }, _callee, null, [[1, 12]]);
     }));
     return function submitForm(_x) {
       return _ref.apply(this, arguments);
@@ -19271,9 +19260,10 @@ var App = function App() {
   }();
 
   // Validate email input
-  var validateEmail = function validateEmail(email) {
-    var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-    setIsValidEmail(emailPattern.test(email));
+  var validateEmail = function validateEmail(value) {
+    setEmail(value);
+    var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,3}$/;
+    setIsValidEmail(emailPattern.test(value));
   };
   react.useEffect(function () {
     setActiveFilters({
@@ -19443,6 +19433,7 @@ var App = function App() {
     type: "email",
     placeholder: "Register Email",
     className: "bg-white text-black p-3 flex-grow outline-none border-none",
+    value: email,
     onChange: function onChange(e) {
       return validateEmail(e.target.value);
     }
@@ -19478,7 +19469,7 @@ var App = function App() {
     className: "text-4xl md:text-5xl font-bold mb-4"
   }, "ERROR DETECTED"), /*#__PURE__*/react.createElement("p", {
     className: "text-xl mb-6"
-  }, "Please disable incognito mode / allow cookies to access the calendar. Refresh the page to try again."), /*#__PURE__*/react.createElement("button", {
+  }, "Your email address maybe incorrect. You might be in incognito mode or blocked cookies."), /*#__PURE__*/react.createElement("button", {
     onClick: function onClick() {
       return window.location.reload();
     },
