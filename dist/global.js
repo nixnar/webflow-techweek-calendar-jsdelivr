@@ -19048,7 +19048,7 @@ function IndividualEvent(_ref) {
     className: "flex ".concat(windowWidth > 1030 ? "gap-3" : "gap-2", " justify-between items-center")
   }, /*#__PURE__*/react.createElement("div", {
     className: "flex gap-2 justify-center items-center"
-  }, item.is_featured && /*#__PURE__*/react.createElement("div", {
+  }, item.starred_on_calendar && /*#__PURE__*/react.createElement("div", {
     className: "flex justify-center items-center"
   }, /*#__PURE__*/react.createElement("svg", {
     xmlns: "http://www.w3.org/2000/svg",
