@@ -4,7 +4,12 @@ export default function IndividualEvent({
   windowWidth,
   hasLink,
   className,
+  activeFilters,
 }) {
+  const isStarred =
+    item.starred_on_calendar === "TIER_1" ||
+    (item.starred_on_calendar === "TIER_2" && activeFilters.date.length > 0);
+
   return (
     <div
       key={item.id}
@@ -25,7 +30,7 @@ export default function IndividualEvent({
           } justify-between items-center`}
         >
           <div className="flex gap-2 justify-center items-center">
-            {item.starred_on_calendar && (
+            {isStarred && (
               <div className="flex justify-center items-center">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

@@ -89,6 +89,7 @@ const App = () => {
 
           return;
         }
+
         result.find((event) => {
           if (event.id === "917cc4f0-3568-4738-951b-63093c8882f1") {
             event.is_featured = false;
@@ -106,6 +107,10 @@ const App = () => {
             event.event_name = "Atlassian: Unleash Every Startup";
             event.is_featured = true;
             event.starred_on_calendar = "TIER_1";
+          } else if (event.id === "38614fde-35b0-43d8-8bf9-a05cb397ba76") {
+            event.start_time = "2025-06-05T13:00:00";
+          } else if (event.id === "f990bcfb-d089-4ea7-8b9b-63bf9d4ad80a") {
+            event.start_time = "2025-06-03T17:30:00";
           }
         });
         // Separate events by tier
@@ -167,8 +172,43 @@ const App = () => {
 
   //filter data based on active filters
   React.useEffect(() => {
-    setFilteredData(applyFilters(data, activeFilters));
-  }, [activeFilters]);
+    let filtered = applyFilters(data, activeFilters);
+
+    // Apply custom sorting based on activeFilters.date
+    if (filtered.length > 0) {
+      // First separate events by tier
+      const tier1Events = filtered.filter(
+        (event) => event.starred_on_calendar === "TIER_1"
+      );
+      const tier2Events = filtered.filter(
+        (event) => event.starred_on_calendar === "TIER_2"
+      );
+      const regularEvents = filtered.filter(
+        (event) => !event.starred_on_calendar
+      );
+
+      // Randomize TIER_1 events (using a stable sort to maintain existing randomization)
+      const sortedTier1 = [...tier1Events];
+
+      // Apply different sorting based on date filter status
+      if (activeFilters.date.length > 0) {
+        // When dates are selected: randomized tier_1, then randomized tier_2, then time sorted regular events
+        const sortedTier2 = [...tier2Events];
+        const sortedRegular = [...regularEvents].sort(
+          (a, b) => new Date(a.start_time) - new Date(b.start_time)
+        );
+        filtered = [...sortedTier1, ...sortedTier2, ...sortedRegular];
+      } else {
+        // When no dates selected: randomized tier_1, then time sorted all other events (including tier_2)
+        const otherEvents = [...tier2Events, ...regularEvents].sort(
+          (a, b) => new Date(a.start_time) - new Date(b.start_time)
+        );
+        filtered = [...sortedTier1, ...otherEvents];
+      }
+    }
+
+    setFilteredData(filtered);
+  }, [activeFilters, data]);
 
   // Add resize event listener
   React.useEffect(() => {
@@ -353,6 +393,7 @@ const App = () => {
                               <IndividualEvent
                                 key={item.id}
                                 item={item}
+                                activeFilters={activeFilters}
                                 windowWidth={windowWidth}
                                 hasLink={true}
                                 className=""
@@ -364,6 +405,7 @@ const App = () => {
                             <IndividualEvent
                               key={item.id}
                               item={item}
+                              activeFilters={activeFilters}
                               windowWidth={windowWidth}
                               hasLink={false}
                               className="group-hover:"

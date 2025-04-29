@@ -19038,7 +19038,9 @@ function IndividualEvent(_ref) {
   var item = _ref.item,
     windowWidth = _ref.windowWidth,
     hasLink = _ref.hasLink,
-    className = _ref.className;
+    className = _ref.className,
+    activeFilters = _ref.activeFilters;
+  var isStarred = item.starred_on_calendar === "TIER_1" || item.starred_on_calendar === "TIER_2" && activeFilters.date.length > 0;
   return /*#__PURE__*/react.createElement("div", {
     key: item.id,
     className: "group flex flex-col w-full bg-black border-b-[1px] border-white ".concat(windowWidth > 1030 ? "p-2 gap-[0.25rem]" : "p-2 gap-[0.25rem]", " ")
@@ -19048,7 +19050,7 @@ function IndividualEvent(_ref) {
     className: "flex ".concat(windowWidth > 1030 ? "gap-3" : "gap-2", " justify-between items-center")
   }, /*#__PURE__*/react.createElement("div", {
     className: "flex gap-2 justify-center items-center"
-  }, item.starred_on_calendar && /*#__PURE__*/react.createElement("div", {
+  }, isStarred && /*#__PURE__*/react.createElement("div", {
     className: "flex justify-center items-center"
   }, /*#__PURE__*/react.createElement("svg", {
     xmlns: "http://www.w3.org/2000/svg",
@@ -19306,6 +19308,10 @@ var App = function App() {
                   event.event_name = "Atlassian: Unleash Every Startup";
                   event.is_featured = true;
                   event.starred_on_calendar = "TIER_1";
+                } else if (event.id === "38614fde-35b0-43d8-8bf9-a05cb397ba76") {
+                  event.start_time = "2025-06-05T13:00:00";
+                } else if (event.id === "f990bcfb-d089-4ea7-8b9b-63bf9d4ad80a") {
+                  event.start_time = "2025-06-03T17:30:00";
                 }
               });
               // Separate events by tier
@@ -19379,8 +19385,42 @@ var App = function App() {
 
   //filter data based on active filters
   react.useEffect(function () {
-    setFilteredData(applyFilters(data, activeFilters));
-  }, [activeFilters]);
+    var filtered = applyFilters(data, activeFilters);
+
+    // Apply custom sorting based on activeFilters.date
+    if (filtered.length > 0) {
+      // First separate events by tier
+      var tier1Events = filtered.filter(function (event) {
+        return event.starred_on_calendar === "TIER_1";
+      });
+      var tier2Events = filtered.filter(function (event) {
+        return event.starred_on_calendar === "TIER_2";
+      });
+      var regularEvents = filtered.filter(function (event) {
+        return !event.starred_on_calendar;
+      });
+
+      // Randomize TIER_1 events (using a stable sort to maintain existing randomization)
+      var sortedTier1 = App_toConsumableArray(tier1Events);
+
+      // Apply different sorting based on date filter status
+      if (activeFilters.date.length > 0) {
+        // When dates are selected: randomized tier_1, then randomized tier_2, then time sorted regular events
+        var sortedTier2 = App_toConsumableArray(tier2Events);
+        var sortedRegular = App_toConsumableArray(regularEvents).sort(function (a, b) {
+          return new Date(a.start_time) - new Date(b.start_time);
+        });
+        filtered = [].concat(App_toConsumableArray(sortedTier1), App_toConsumableArray(sortedTier2), App_toConsumableArray(sortedRegular));
+      } else {
+        // When no dates selected: randomized tier_1, then time sorted all other events (including tier_2)
+        var otherEvents = [].concat(App_toConsumableArray(tier2Events), App_toConsumableArray(regularEvents)).sort(function (a, b) {
+          return new Date(a.start_time) - new Date(b.start_time);
+        });
+        filtered = [].concat(App_toConsumableArray(sortedTier1), App_toConsumableArray(otherEvents));
+      }
+    }
+    setFilteredData(filtered);
+  }, [activeFilters, data]);
 
   // Add resize event listener
   react.useEffect(function () {
@@ -19550,6 +19590,7 @@ var App = function App() {
       }, /*#__PURE__*/react.createElement(IndividualEvent, {
         key: item.id,
         item: item,
+        activeFilters: activeFilters,
         windowWidth: windowWidth,
         hasLink: true,
         className: ""
@@ -19558,6 +19599,7 @@ var App = function App() {
       return /*#__PURE__*/react.createElement(IndividualEvent, {
         key: item.id,
         item: item,
+        activeFilters: activeFilters,
         windowWidth: windowWidth,
         hasLink: false,
         className: "group-hover:"
