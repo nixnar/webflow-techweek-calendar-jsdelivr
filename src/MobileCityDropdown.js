@@ -68,20 +68,20 @@ const MobileCityDropdown = ({ city, setCity }) => {
           NEW YORK
         </div>
         <div
-          className="py-[0.375rem] px-2 uppercase hover:bg-white hover:text-black cursor-pointer text-[0.875rem] font-medium"
-          onClick={() => {
-            setCity("SF");
-            setDropdownOpen(false);
-          }}
+          className="py-[0.375rem] px-2 uppercase hover:bg-white hover:text-black text-gray-400 cursor-not-allowed text-[0.875rem] font-medium"
+          //onClick={() => {
+          //setCity("SF");
+          //setDropdownOpen(false);
+          //}}
         >
           SAN FRANCISCO
         </div>
         <div
-          className="py-[0.375rem] px-2 uppercase hover:bg-white hover:text-black cursor-pointer text-[0.875rem] font-medium"
-          onClick={() => {
-            setCity("LA");
-            setDropdownOpen(false);
-          }}
+          className="py-[0.375rem] px-2 uppercase hover:bg-white hover:text-black text-gray-400 cursor-not-allowed text-[0.875rem] font-medium"
+          //onClick={() => {
+          //setCity("LA");
+          //setDropdownOpen(false);
+          //}}
         >
           LOS ANGELES
         </div>
