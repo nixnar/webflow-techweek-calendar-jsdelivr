@@ -20,7 +20,7 @@ const MobileCityDropdown = ({ city, setCity }) => {
   return (
     <div className="relative city-dropdown-container">
       <div
-        className="border-[1px] border-white py-[0.375rem] px-2 uppercase cursor-pointer flex items-center justify-between min-w-[120px]"
+        className="border-[1px] leading-[21.75px] border-white py-[0.375rem] px-2 uppercase cursor-pointer flex items-center justify-between min-w-[120px]"
         onClick={() => setDropdownOpen(!dropdownOpen)}
       >
         <span className="text-white text-[0.875rem] font-medium">

@@ -736,6 +736,10 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   justify-content: space-between !important;
 }
 
+.tailwind .gap-1{
+  gap: 0.25rem !important;
+}
+
 .tailwind .gap-2{
   gap: 0.5rem !important;
 }
@@ -762,10 +766,6 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 
 .tailwind .gap-\\[10px\\]{
   gap: 10px !important;
-}
-
-.tailwind .gap-1{
-  gap: 0.25rem !important;
 }
 
 .tailwind .overflow-hidden{
@@ -951,6 +951,10 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   line-height: 2.5rem !important;
 }
 
+.tailwind .text-\\[0\\.4rem\\]{
+  font-size: 0.4rem !important;
+}
+
 .tailwind .text-\\[0\\.5rem\\]{
   font-size: 0.5rem !important;
 }
@@ -986,28 +990,6 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 .tailwind .text-xl{
   font-size: 1.25rem !important;
   line-height: 1.75rem !important;
-}
-
-.tailwind .text-sm{
-  font-size: 0.875rem !important;
-  line-height: 1.25rem !important;
-}
-
-.tailwind .text-xs{
-  font-size: 0.75rem !important;
-  line-height: 1rem !important;
-}
-
-.tailwind .text-\\[0\\.25rem\\]{
-  font-size: 0.25rem !important;
-}
-
-.tailwind .text-\\[0\\.3rem\\]{
-  font-size: 0.3rem !important;
-}
-
-.tailwind .text-\\[0\\.4rem\\]{
-  font-size: 0.4rem !important;
 }
 
 .tailwind .font-\\[400\\]{
@@ -1068,6 +1050,10 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 
 .tailwind .leading-\\[23px\\]{
   line-height: 23px !important;
+}
+
+.tailwind .leading-\\[21\\.75px\\]{
+  line-height: 21.75px !important;
 }
 
 .tailwind .tracking-\\[-0\\.0281rem\\]{
@@ -19051,7 +19037,7 @@ var MobileCityDropdown = function MobileCityDropdown(_ref) {
   return /*#__PURE__*/react.createElement("div", {
     className: "relative city-dropdown-container"
   }, /*#__PURE__*/react.createElement("div", {
-    className: "border-[1px] border-white py-[0.375rem] px-2 uppercase cursor-pointer flex items-center justify-between min-w-[120px]",
+    className: "border-[1px] leading-[21.75px] border-white py-[0.375rem] px-2 uppercase cursor-pointer flex items-center justify-between min-w-[120px]",
     onClick: function onClick() {
       return setDropdownOpen(!dropdownOpen);
     }
@@ -19642,13 +19628,13 @@ var App = function App() {
     city: city,
     setCity: setCity
   }), /*#__PURE__*/react.createElement("div", {
-    className: "flex gap-2"
+    className: "flex gap-1"
   }, /*#__PURE__*/react.createElement("button", {
     onClick: function onClick() {
       setSearchMode(true);
       setFilterToggle(!filterToggle);
     },
-    className: "uppercase font-medium text-[0.875rem] flex items-center gap-[0.375rem] py-[0.375rem] px-[0.5rem] bg-white text-black"
+    className: "uppercase font-medium text-[0.875rem] flex items-center gap-[0.375rem] py-[0.375rem] px-[0.5rem] text-black"
   }, /*#__PURE__*/react.createElement("svg", {
     width: "14",
     height: "14",
@@ -19657,8 +19643,8 @@ var App = function App() {
     xmlns: "http://www.w3.org/2000/svg"
   }, /*#__PURE__*/react.createElement("path", {
     d: "M5.25002 1.16663C3.00177 1.16663 1.16669 3.00171 1.16669 5.24996C1.16669 7.49821 3.00177 9.33329 5.25002 9.33329C6.26969 9.33329 7.20128 8.95297 7.91832 8.33069L8.16669 8.57906V9.33329L11.6667 12.8333L12.8334 11.6666L9.33335 8.16663H8.57912L8.33075 7.91825C8.95303 7.20121 9.33335 6.26963 9.33335 5.24996C9.33335 3.00171 7.49827 1.16663 5.25002 1.16663ZM5.25002 2.33329C6.86776 2.33329 8.16669 3.63222 8.16669 5.24996C8.16669 6.8677 6.86776 8.16663 5.25002 8.16663C3.63228 8.16663 2.33335 6.8677 2.33335 5.24996C2.33335 3.63222 3.63228 2.33329 5.25002 2.33329Z",
-    fill: "black"
-  })), /*#__PURE__*/react.createElement("p", null, "SEARCH")), /*#__PURE__*/react.createElement("button", {
+    fill: "white"
+  }))), /*#__PURE__*/react.createElement("button", {
     onClick: function onClick() {
       setSearchMode(false);
       setFilterToggle(!filterToggle);
