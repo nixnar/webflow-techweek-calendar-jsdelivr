@@ -8,7 +8,10 @@ export default function MobileFilters({
   setActiveFilters,
   filterToggle,
   setFilterToggle,
+  searchMode,
 }) {
+  const searchRef = React.useRef(null);
+
   React.useEffect(() => {
     if (filterToggle) {
       document.body.style.overflow = "hidden";
@@ -20,6 +23,13 @@ export default function MobileFilters({
       document.body.style.overflow = "";
     };
   }, [filterToggle]);
+
+  // When opening in search mode, scroll to search section
+  React.useEffect(() => {
+    if (filterToggle && searchMode && searchRef.current) {
+      searchRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }, [filterToggle, searchMode]);
 
   return (
     <div className="fixed inset-0 z-[9999] flex">
@@ -60,6 +70,8 @@ export default function MobileFilters({
               activeFilters={activeFilters}
               setActiveFilters={setActiveFilters}
               availableFilters={availableFilters}
+              searchRef={searchRef}
+              searchMode={searchMode}
             />
           </div>
         </div>

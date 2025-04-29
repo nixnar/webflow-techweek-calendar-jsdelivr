@@ -6,6 +6,8 @@ export default function FiltersBody({
   activeFilters,
   setActiveFilters,
   availableFilters,
+  searchRef,
+  searchMode,
 }) {
   const [searchTerm, setSearchTerm] = React.useState(activeFilters.search);
   const [neighborhoodExpanded, setNeighborhoodExpanded] = React.useState(false);
@@ -21,6 +23,18 @@ export default function FiltersBody({
       search: e.target.value,
     }));
   };
+
+  // Effect to focus search input when in search mode
+  React.useEffect(() => {
+    if (searchMode && searchRef.current) {
+      const searchInput = searchRef.current.querySelector('input[type="text"]');
+      if (searchInput) {
+        setTimeout(() => {
+          searchInput.focus();
+        }, 100);
+      }
+    }
+  }, [searchMode, searchRef]);
 
   const handleFilterClick = (filterType, filterValue) => {
     if (activeFilters[filterType].includes(filterValue)) {
@@ -86,7 +100,7 @@ export default function FiltersBody({
         />
       </div>
       {/* Search Bar */}
-      <FilterCategory text="Search">
+      <FilterCategory text="Search" ref={searchRef}>
         <div className="w-full relative">
           <input
             type="text"

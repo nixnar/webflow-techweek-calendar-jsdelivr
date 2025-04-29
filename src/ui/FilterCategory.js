@@ -1,15 +1,14 @@
 import React from "react";
 
-export default function FilterCategory({
-  children,
-  text,
-  filtered,
-  onClickFunction,
-}) {
+const FilterCategory = React.forwardRef(function FilterCategory(
+  { children, text, filtered, onClickFunction },
+  ref
+) {
   return (
     <div
       id={text}
       className="flex flex-col gap-3 text-[1rem] font-[400] leading-[1.1] tracking-[-0.0281rem]"
+      ref={ref}
     >
       <div className="flex gap-2">
         <div className="text-white">{text}</div>
@@ -37,4 +36,6 @@ export default function FilterCategory({
       {children}
     </div>
   );
-}
+});
+
+export default FilterCategory;

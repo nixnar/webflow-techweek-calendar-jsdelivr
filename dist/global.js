@@ -570,6 +570,10 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   margin-top: 2rem !important;
 }
 
+.tailwind .block{
+  display: block !important;
+}
+
 .tailwind .flex{
   display: flex !important;
 }
@@ -758,6 +762,10 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 
 .tailwind .gap-\\[10px\\]{
   gap: 10px !important;
+}
+
+.tailwind .gap-1{
+  gap: 0.25rem !important;
 }
 
 .tailwind .overflow-hidden{
@@ -978,6 +986,28 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 .tailwind .text-xl{
   font-size: 1.25rem !important;
   line-height: 1.75rem !important;
+}
+
+.tailwind .text-sm{
+  font-size: 0.875rem !important;
+  line-height: 1.25rem !important;
+}
+
+.tailwind .text-xs{
+  font-size: 0.75rem !important;
+  line-height: 1rem !important;
+}
+
+.tailwind .text-\\[0\\.25rem\\]{
+  font-size: 0.25rem !important;
+}
+
+.tailwind .text-\\[0\\.3rem\\]{
+  font-size: 0.3rem !important;
+}
+
+.tailwind .text-\\[0\\.4rem\\]{
+  font-size: 0.4rem !important;
 }
 
 .tailwind .font-\\[400\\]{
@@ -18252,14 +18282,15 @@ function CitySelector(_ref) {
 }
 ;// ./src/ui/FilterCategory.js
 
-function FilterCategory(_ref) {
+var FilterCategory = /*#__PURE__*/react.forwardRef(function FilterCategory(_ref, ref) {
   var children = _ref.children,
     text = _ref.text,
     filtered = _ref.filtered,
     onClickFunction = _ref.onClickFunction;
   return /*#__PURE__*/react.createElement("div", {
     id: text,
-    className: "flex flex-col gap-3 text-[1rem] font-[400] leading-[1.1] tracking-[-0.0281rem]"
+    className: "flex flex-col gap-3 text-[1rem] font-[400] leading-[1.1] tracking-[-0.0281rem]",
+    ref: ref
   }, /*#__PURE__*/react.createElement("div", {
     className: "flex gap-2"
   }, /*#__PURE__*/react.createElement("div", {
@@ -18278,7 +18309,8 @@ function FilterCategory(_ref) {
     d: "M0.726501 9.97656L0.0233765 9.27344L4.29291 5L0.0233765 0.730469L0.726501 0.0195312L4.99994 4.29297L9.26947 0.0195312L9.98041 0.730469L5.70697 5L9.98041 9.27344L9.26947 9.97656L4.99994 5.70703L0.726501 9.97656Z",
     fill: "white"
   })))), children);
-}
+});
+/* harmony default export */ const ui_FilterCategory = (FilterCategory);
 ;// ./src/ui/FilterButton.js
 
 function FilterButton(_ref) {
@@ -18315,7 +18347,9 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
 function FiltersBody(_ref) {
   var activeFilters = _ref.activeFilters,
     setActiveFilters = _ref.setActiveFilters,
-    availableFilters = _ref.availableFilters;
+    availableFilters = _ref.availableFilters,
+    searchRef = _ref.searchRef,
+    searchMode = _ref.searchMode;
   var _React$useState = react.useState(activeFilters.search),
     _React$useState2 = _slicedToArray(_React$useState, 2),
     searchTerm = _React$useState2[0],
@@ -18343,6 +18377,18 @@ function FiltersBody(_ref) {
       });
     });
   };
+
+  // Effect to focus search input when in search mode
+  react.useEffect(function () {
+    if (searchMode && searchRef.current) {
+      var searchInput = searchRef.current.querySelector('input[type="text"]');
+      if (searchInput) {
+        setTimeout(function () {
+          searchInput.focus();
+        }, 100);
+      }
+    }
+  }, [searchMode, searchRef]);
   var handleFilterClick = function handleFilterClick(filterType, filterValue) {
     if (activeFilters[filterType].includes(filterValue)) {
       setActiveFilters(function (prevFilters) {
@@ -18402,8 +18448,9 @@ function FiltersBody(_ref) {
       });
     },
     isDisabled: Object.keys(activeFilters).length === 0
-  })), /*#__PURE__*/react.createElement(FilterCategory, {
-    text: "Search"
+  })), /*#__PURE__*/react.createElement(ui_FilterCategory, {
+    text: "Search",
+    ref: searchRef
   }, /*#__PURE__*/react.createElement("div", {
     className: "w-full relative"
   }, /*#__PURE__*/react.createElement("input", {
@@ -18440,7 +18487,7 @@ function FiltersBody(_ref) {
     y1: "6",
     x2: "18",
     y2: "18"
-  }))))), /*#__PURE__*/react.createElement(FilterCategory, {
+  }))))), /*#__PURE__*/react.createElement(ui_FilterCategory, {
     text: "Day of Week",
     filtered: activeFilters.date.length > 0,
     onClickFunction: function onClickFunction() {
@@ -18462,7 +18509,7 @@ function FiltersBody(_ref) {
       isActive: activeFilters.date.includes(day),
       isDisabled: !availableFilters.date.includes(day)
     });
-  }))), /*#__PURE__*/react.createElement(FilterCategory, {
+  }))), /*#__PURE__*/react.createElement(ui_FilterCategory, {
     text: "Neighborhood",
     filtered: activeFilters.neighborhood.length > 0,
     onClickFunction: function onClickFunction() {
@@ -18497,7 +18544,7 @@ function FiltersBody(_ref) {
     onClick: function onClick() {
       return setNeighborhoodExpanded(!neighborhoodExpanded);
     }
-  }, neighborhoodExpanded ? "See less" : "See more")), /*#__PURE__*/react.createElement(FilterCategory, {
+  }, neighborhoodExpanded ? "See less" : "See more")), /*#__PURE__*/react.createElement(ui_FilterCategory, {
     text: "Start Time"
   }, /*#__PURE__*/react.createElement("div", {
     className: "w-full"
@@ -18542,7 +18589,7 @@ function FiltersBody(_ref) {
       key: time,
       value: time
     }, time, " or later");
-  })))), /*#__PURE__*/react.createElement(FilterCategory, {
+  })))), /*#__PURE__*/react.createElement(ui_FilterCategory, {
     text: "Topics",
     filtered: activeFilters.topics.length > 0,
     onClickFunction: function onClickFunction() {
@@ -18577,7 +18624,7 @@ function FiltersBody(_ref) {
     onClick: function onClick() {
       return setTopicsExpanded(!topicsExpanded);
     }
-  }, topicsExpanded ? "See less" : "See more")), /*#__PURE__*/react.createElement(FilterCategory, {
+  }, topicsExpanded ? "See less" : "See more")), /*#__PURE__*/react.createElement(ui_FilterCategory, {
     text: "Types",
     filtered: activeFilters.types.length > 0,
     onClickFunction: function onClickFunction() {
@@ -18907,7 +18954,9 @@ function MobileFilters(_ref) {
     activeFilters = _ref.activeFilters,
     setActiveFilters = _ref.setActiveFilters,
     filterToggle = _ref.filterToggle,
-    setFilterToggle = _ref.setFilterToggle;
+    setFilterToggle = _ref.setFilterToggle,
+    searchMode = _ref.searchMode;
+  var searchRef = react.useRef(null);
   react.useEffect(function () {
     if (filterToggle) {
       document.body.style.overflow = "hidden";
@@ -18918,6 +18967,16 @@ function MobileFilters(_ref) {
       document.body.style.overflow = "";
     };
   }, [filterToggle]);
+
+  // When opening in search mode, scroll to search section
+  react.useEffect(function () {
+    if (filterToggle && searchMode && searchRef.current) {
+      searchRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+    }
+  }, [filterToggle, searchMode]);
   return /*#__PURE__*/react.createElement("div", {
     className: "fixed inset-0 z-[9999] flex"
   }, /*#__PURE__*/react.createElement("div", {
@@ -18956,7 +19015,9 @@ function MobileFilters(_ref) {
   })))), /*#__PURE__*/react.createElement(FiltersBody, {
     activeFilters: activeFilters,
     setActiveFilters: setActiveFilters,
-    availableFilters: availableFilters
+    availableFilters: availableFilters,
+    searchRef: searchRef,
+    searchMode: searchMode
   })))));
 }
 ;// ./src/MobileCityDropdown.js
@@ -19055,9 +19116,9 @@ function IndividualEvent(_ref) {
   }, /*#__PURE__*/react.createElement("div", {
     className: "flex w-full justify-between items-start gap-4 font-[500] tracking-[-0.45px] uppercase ".concat(windowWidth > 1030 ? "text-[0.75rem] leading-[0.75rem]" : "text-[0.5rem] leading-[0.5rem]")
   }, /*#__PURE__*/react.createElement("div", {
-    className: "flex ".concat(windowWidth > 1030 ? "gap-3" : "gap-2", " justify-between items-center")
+    className: "flex ".concat(windowWidth > 1030 ? "gap-3" : "gap-[0.25rem]", " justify-between items-center")
   }, /*#__PURE__*/react.createElement("div", {
-    className: "flex gap-2 justify-center items-center"
+    className: "flex justify-center items-center ".concat(windowWidth > 1030 ? "gap-2" : "gap-1")
   }, isStarred && /*#__PURE__*/react.createElement("div", {
     className: "flex justify-center items-center"
   }, /*#__PURE__*/react.createElement("svg", {
@@ -19072,7 +19133,9 @@ function IndividualEvent(_ref) {
     fill: "#14E8FF"
   }))), /*#__PURE__*/react.createElement("div", {
     className: "text-brand text-pretty w-fit"
-  }, item.hosts.join(", "))), /*#__PURE__*/react.createElement("div", null, "|"), /*#__PURE__*/react.createElement("div", {
+  }, item.hosts.join(", "))), /*#__PURE__*/react.createElement("div", {
+    className: "".concat(windowWidth > 1030 ? "text-[0.5rem]" : "text-[0.4rem]")
+  }, "|"), /*#__PURE__*/react.createElement("div", {
     className: "text-grayText text-nowrap"
   }, item.day, " ", item.time)), /*#__PURE__*/react.createElement("div", {
     className: "text-grayText text-nowrap"
@@ -19196,23 +19259,16 @@ var App = function App() {
     setFilterToggle = _React$useState14[1];
   var _React$useState15 = react.useState(false),
     _React$useState16 = App_slicedToArray(_React$useState15, 2),
-    isValidEmail = _React$useState16[0],
-    setIsValidEmail = _React$useState16[1];
-  var _React$useState17 = react.useState(""),
+    searchMode = _React$useState16[0],
+    setSearchMode = _React$useState16[1];
+  var _React$useState17 = react.useState(false),
     _React$useState18 = App_slicedToArray(_React$useState17, 2),
-    email = _React$useState18[0],
-    setEmail = _React$useState18[1];
-  var _React$useState19 = react.useState({
-      date: [],
-      neighborhood: [],
-      start_time: [],
-      topics: [],
-      types: [],
-      search: ""
-    }),
+    isValidEmail = _React$useState18[0],
+    setIsValidEmail = _React$useState18[1];
+  var _React$useState19 = react.useState(""),
     _React$useState20 = App_slicedToArray(_React$useState19, 2),
-    availableFilters = _React$useState20[0],
-    setAvailableFilters = _React$useState20[1];
+    email = _React$useState20[0],
+    setEmail = _React$useState20[1];
   var _React$useState21 = react.useState({
       date: [],
       neighborhood: [],
@@ -19222,8 +19278,19 @@ var App = function App() {
       search: ""
     }),
     _React$useState22 = App_slicedToArray(_React$useState21, 2),
-    activeFilters = _React$useState22[0],
-    setActiveFilters = _React$useState22[1];
+    availableFilters = _React$useState22[0],
+    setAvailableFilters = _React$useState22[1];
+  var _React$useState23 = react.useState({
+      date: [],
+      neighborhood: [],
+      start_time: [],
+      topics: [],
+      types: [],
+      search: ""
+    }),
+    _React$useState24 = App_slicedToArray(_React$useState23, 2),
+    activeFilters = _React$useState24[0],
+    setActiveFilters = _React$useState24[1];
   var submitForm = /*#__PURE__*/function () {
     var _ref = App_asyncToGenerator(/*#__PURE__*/App_regeneratorRuntime().mark(function _callee(e) {
       var response, _data;
@@ -19574,9 +19641,27 @@ var App = function App() {
   }, /*#__PURE__*/react.createElement(src_MobileCityDropdown, {
     city: city,
     setCity: setCity
-  }), /*#__PURE__*/react.createElement("button", {
+  }), /*#__PURE__*/react.createElement("div", {
+    className: "flex gap-2"
+  }, /*#__PURE__*/react.createElement("button", {
     onClick: function onClick() {
-      return setFilterToggle(!filterToggle);
+      setSearchMode(true);
+      setFilterToggle(!filterToggle);
+    },
+    className: "uppercase font-medium text-[0.875rem] flex items-center gap-[0.375rem] py-[0.375rem] px-[0.5rem] bg-white text-black"
+  }, /*#__PURE__*/react.createElement("svg", {
+    width: "14",
+    height: "14",
+    viewBox: "0 0 14 14",
+    fill: "none",
+    xmlns: "http://www.w3.org/2000/svg"
+  }, /*#__PURE__*/react.createElement("path", {
+    d: "M5.25002 1.16663C3.00177 1.16663 1.16669 3.00171 1.16669 5.24996C1.16669 7.49821 3.00177 9.33329 5.25002 9.33329C6.26969 9.33329 7.20128 8.95297 7.91832 8.33069L8.16669 8.57906V9.33329L11.6667 12.8333L12.8334 11.6666L9.33335 8.16663H8.57912L8.33075 7.91825C8.95303 7.20121 9.33335 6.26963 9.33335 5.24996C9.33335 3.00171 7.49827 1.16663 5.25002 1.16663ZM5.25002 2.33329C6.86776 2.33329 8.16669 3.63222 8.16669 5.24996C8.16669 6.8677 6.86776 8.16663 5.25002 8.16663C3.63228 8.16663 2.33335 6.8677 2.33335 5.24996C2.33335 3.63222 3.63228 2.33329 5.25002 2.33329Z",
+    fill: "black"
+  })), /*#__PURE__*/react.createElement("p", null, "SEARCH")), /*#__PURE__*/react.createElement("button", {
+    onClick: function onClick() {
+      setSearchMode(false);
+      setFilterToggle(!filterToggle);
     },
     className: "uppercase font-medium text-[0.875rem] flex items-center gap-[0.375rem] py-[0.375rem] px-[0.5rem] bg-white text-black"
   }, /*#__PURE__*/react.createElement("svg", {
@@ -19588,7 +19673,7 @@ var App = function App() {
   }, /*#__PURE__*/react.createElement("path", {
     d: "M2.625 1.75V3.47949C2.625 3.91016 2.83691 4.31348 3.19238 4.55957L6.125 6.78125V12.25L7.875 10.5V6.78125L10.8076 4.55957C11.1631 4.31348 11.375 3.91016 11.375 3.47949V1.75H2.625ZM3.5 2.625H10.5V3.47949C10.5 3.62305 10.4282 3.75635 10.3086 3.83838L10.3018 3.8418L7.29053 6.125H6.70947L3.69824 3.8418L3.69141 3.83838C3.57178 3.75635 3.5 3.62305 3.5 3.47949V2.625Z",
     fill: "black"
-  })), /*#__PURE__*/react.createElement("p", null, "FILTERS"))), /*#__PURE__*/react.createElement("div", {
+  })), /*#__PURE__*/react.createElement("p", null, "FILTERS")))), /*#__PURE__*/react.createElement("div", {
     className: "grow border-[1px] border-white ml-[-1px]"
   }, Array.isArray(filteredData) && filteredData.map(function (item) {
     if (item.invite_url !== "Invite Only") {
@@ -19632,7 +19717,8 @@ var App = function App() {
     activeFilters: activeFilters,
     setActiveFilters: setActiveFilters,
     filterToggle: filterToggle,
-    setFilterToggle: setFilterToggle
+    setFilterToggle: setFilterToggle,
+    searchMode: searchMode
   })))));
 };
 /* harmony default export */ const src_App = (App);

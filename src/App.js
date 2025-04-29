@@ -19,6 +19,7 @@ const App = () => {
   const [city, setCity] = React.useState("NYC");
   const [windowWidth, setWindowWidth] = React.useState(window.innerWidth);
   const [filterToggle, setFilterToggle] = React.useState(false);
+  const [searchMode, setSearchMode] = React.useState(false);
   const [isValidEmail, setIsValidEmail] = React.useState(false);
   const [email, setEmail] = React.useState("");
   const [availableFilters, setAvailableFilters] = React.useState({
@@ -364,24 +365,50 @@ const App = () => {
                   {windowWidth <= 1030 && (
                     <div className="flex w-full justify-between items-center border-[1px] border-white p-[4px] sticky top-0 bg-black">
                       <MobileCityDropdown city={city} setCity={setCity} />
-                      <button
-                        onClick={() => setFilterToggle(!filterToggle)}
-                        className="uppercase font-medium text-[0.875rem] flex items-center gap-[0.375rem] py-[0.375rem] px-[0.5rem] bg-white text-black"
-                      >
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="14"
-                          height="14"
-                          viewBox="0 0 14 14"
-                          fill="none"
+                      <div className="flex gap-2">
+                        <button
+                          onClick={() => {
+                            setSearchMode(true);
+                            setFilterToggle(!filterToggle);
+                          }}
+                          className="uppercase font-medium text-[0.875rem] flex items-center gap-[0.375rem] py-[0.375rem] px-[0.5rem] bg-white text-black"
                         >
-                          <path
-                            d="M2.625 1.75V3.47949C2.625 3.91016 2.83691 4.31348 3.19238 4.55957L6.125 6.78125V12.25L7.875 10.5V6.78125L10.8076 4.55957C11.1631 4.31348 11.375 3.91016 11.375 3.47949V1.75H2.625ZM3.5 2.625H10.5V3.47949C10.5 3.62305 10.4282 3.75635 10.3086 3.83838L10.3018 3.8418L7.29053 6.125H6.70947L3.69824 3.8418L3.69141 3.83838C3.57178 3.75635 3.5 3.62305 3.5 3.47949V2.625Z"
-                            fill="black"
-                          />
-                        </svg>
-                        <p>FILTERS</p>
-                      </button>
+                          <svg
+                            width="14"
+                            height="14"
+                            viewBox="0 0 14 14"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M5.25002 1.16663C3.00177 1.16663 1.16669 3.00171 1.16669 5.24996C1.16669 7.49821 3.00177 9.33329 5.25002 9.33329C6.26969 9.33329 7.20128 8.95297 7.91832 8.33069L8.16669 8.57906V9.33329L11.6667 12.8333L12.8334 11.6666L9.33335 8.16663H8.57912L8.33075 7.91825C8.95303 7.20121 9.33335 6.26963 9.33335 5.24996C9.33335 3.00171 7.49827 1.16663 5.25002 1.16663ZM5.25002 2.33329C6.86776 2.33329 8.16669 3.63222 8.16669 5.24996C8.16669 6.8677 6.86776 8.16663 5.25002 8.16663C3.63228 8.16663 2.33335 6.8677 2.33335 5.24996C2.33335 3.63222 3.63228 2.33329 5.25002 2.33329Z"
+                              fill="black"
+                            />
+                          </svg>
+                          <p>SEARCH</p>
+                        </button>
+                        <button
+                          onClick={() => {
+                            setSearchMode(false);
+                            setFilterToggle(!filterToggle);
+                          }}
+                          className="uppercase font-medium text-[0.875rem] flex items-center gap-[0.375rem] py-[0.375rem] px-[0.5rem] bg-white text-black"
+                        >
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="14"
+                            height="14"
+                            viewBox="0 0 14 14"
+                            fill="none"
+                          >
+                            <path
+                              d="M2.625 1.75V3.47949C2.625 3.91016 2.83691 4.31348 3.19238 4.55957L6.125 6.78125V12.25L7.875 10.5V6.78125L10.8076 4.55957C11.1631 4.31348 11.375 3.91016 11.375 3.47949V1.75H2.625ZM3.5 2.625H10.5V3.47949C10.5 3.62305 10.4282 3.75635 10.3086 3.83838L10.3018 3.8418L7.29053 6.125H6.70947L3.69824 3.8418L3.69141 3.83838C3.57178 3.75635 3.5 3.62305 3.5 3.47949V2.625Z"
+                              fill="black"
+                            />
+                          </svg>
+                          <p>FILTERS</p>
+                        </button>
+                      </div>
                     </div>
                   )}
                   <div className="grow border-[1px] border-white ml-[-1px]">
@@ -438,6 +465,7 @@ const App = () => {
                     setActiveFilters={setActiveFilters}
                     filterToggle={filterToggle}
                     setFilterToggle={setFilterToggle}
+                    searchMode={searchMode}
                   />
                 )
               )}

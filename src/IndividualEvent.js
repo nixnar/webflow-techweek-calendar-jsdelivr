@@ -26,10 +26,14 @@ export default function IndividualEvent({
       >
         <div
           className={`flex ${
-            windowWidth > 1030 ? "gap-3" : "gap-2"
+            windowWidth > 1030 ? "gap-3" : "gap-[0.25rem]"
           } justify-between items-center`}
         >
-          <div className="flex gap-2 justify-center items-center">
+          <div
+            className={`flex justify-center items-center ${
+              windowWidth > 1030 ? "gap-2" : "gap-1"
+            }`}
+          >
             {isStarred && (
               <div className="flex justify-center items-center">
                 <svg
@@ -51,7 +55,13 @@ export default function IndividualEvent({
               {item.hosts.join(", ")}
             </div>
           </div>
-          <div>|</div>
+          <div
+            className={`${
+              windowWidth > 1030 ? "text-[0.5rem]" : "text-[0.4rem]"
+            }`}
+          >
+            |
+          </div>
           <div className="text-grayText text-nowrap">
             {item.day} {item.time}
           </div>
