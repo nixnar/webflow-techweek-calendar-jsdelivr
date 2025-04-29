@@ -18339,7 +18339,7 @@ function FiltersBody(_ref) {
     // Update search filter in activeFilters
     setActiveFilters(function (prev) {
       return _objectSpread(_objectSpread({}, prev), {}, {
-        search: e.target.value.trim()
+        search: e.target.value
       });
     });
   };

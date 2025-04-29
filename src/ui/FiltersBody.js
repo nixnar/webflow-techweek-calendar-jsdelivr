@@ -18,7 +18,7 @@ export default function FiltersBody({
     // Update search filter in activeFilters
     setActiveFilters((prev) => ({
       ...prev,
-      search: e.target.value.trim(),
+      search: e.target.value,
     }));
   };
 
