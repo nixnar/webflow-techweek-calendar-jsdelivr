@@ -19295,6 +19295,12 @@ var App = function App() {
               setError("showForm");
               return _context2.abrupt("return");
             case 10:
+              result.find(function (event) {
+                if (event.id === "917cc4f0-3568-4738-951b-63093c8882f1") {
+                  event.is_featured = false;
+                  event.starred_on_calendar = null;
+                }
+              });
               // Separate events by tier
               tier1Events = result.filter(function (event) {
                 return event.starred_on_calendar === "TIER_1";
@@ -19333,24 +19339,24 @@ var App = function App() {
               });
               setData(sortedResult);
               setAvailableFilters(sortFilters(sortedResult));
-              _context2.next = 26;
+              _context2.next = 27;
               break;
-            case 22:
-              _context2.prev = 22;
+            case 23:
+              _context2.prev = 23;
               _context2.t0 = _context2["catch"](0);
               setError(_context2.t0.message);
               console.error("Error fetching data:", _context2.t0);
-            case 26:
-              _context2.prev = 26;
+            case 27:
+              _context2.prev = 27;
               setTimeout(function () {
                 setIsLoading(false);
               }, 100);
-              return _context2.finish(26);
-            case 29:
+              return _context2.finish(27);
+            case 30:
             case "end":
               return _context2.stop();
           }
-        }, _callee2, null, [[0, 22, 26, 29]]);
+        }, _callee2, null, [[0, 23, 27, 30]]);
       }));
       return function loadData() {
         return _ref2.apply(this, arguments);

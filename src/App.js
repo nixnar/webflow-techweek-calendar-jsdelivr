@@ -89,7 +89,12 @@ const App = () => {
 
           return;
         }
-
+        result.find((event) => {
+          if (event.id === "917cc4f0-3568-4738-951b-63093c8882f1") {
+            event.is_featured = false;
+            event.starred_on_calendar = null;
+          }
+        });
         // Separate events by tier
         const tier1Events = result.filter(
           (event) => event.starred_on_calendar === "TIER_1"
