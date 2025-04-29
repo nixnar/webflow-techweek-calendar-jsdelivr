@@ -19017,21 +19017,29 @@ var MobileCityDropdown = function MobileCityDropdown(_ref) {
       setCity("NYC");
       setDropdownOpen(false);
     }
-  }, "NEW YORK"), /*#__PURE__*/react.createElement("div", {
-    className: "py-[0.375rem] px-2 uppercase hover:bg-white hover:text-black cursor-pointer text-[0.875rem] font-medium",
-    onClick: function onClick() {
-      setCity("SF");
-      setDropdownOpen(false);
-    }
-  }, "SAN FRANCISCO"), /*#__PURE__*/react.createElement("div", {
-    className: "py-[0.375rem] px-2 uppercase hover:bg-white hover:text-black cursor-pointer text-[0.875rem] font-medium",
-    onClick: function onClick() {
-      setCity("LA");
-      setDropdownOpen(false);
-    }
-  }, "LOS ANGELES")));
+  }, "NEW YORK")));
 };
 /* harmony default export */ const src_MobileCityDropdown = (MobileCityDropdown);
+
+/*
+<div
+          className="py-[0.375rem] px-2 uppercase hover:bg-white hover:text-black text-gray-400 cursor-not-allowed text-[0.875rem] font-medium"
+          //onClick={() => {
+          //setCity("SF");
+          //setDropdownOpen(false);
+          //}}
+        >
+          SAN FRANCISCO
+        </div>
+        <div
+          className="py-[0.375rem] px-2 uppercase hover:bg-white hover:text-black text-gray-400 cursor-not-allowed text-[0.875rem] font-medium"
+          //onClick={() => {
+          //setCity("LA");
+          //setDropdownOpen(false);
+          //}}
+        >
+          LOS ANGELES
+        </div>*/
 ;// ./src/IndividualEvent.js
 
 function IndividualEvent(_ref) {
