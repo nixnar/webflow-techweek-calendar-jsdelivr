@@ -91,6 +91,28 @@ const App = () => {
           return;
         }
 
+        result.forEach((event) => {
+          event.formats = event.formats.map((format) => {
+            if (format.startsWith("B") || format.startsWith(" B")) {
+              return "Breakfast, Brunch or Lunch";
+            } else if (format.startsWith("Ha")) {
+              return "Happy Hour";
+            } else if (format.startsWith("Match")) {
+              return "Matchmaking";
+            } else if (format.startsWith("Pan")) {
+              return "Panel / Fireside Chat";
+            } else if (format.startsWith("Pitch")) {
+              return "Pitch Event / Demo Day";
+            } else if (
+              format.startsWith("Round") ||
+              format.startsWith("Work")
+            ) {
+              return "Roundtable / Workshop";
+            }
+
+            return format;
+          });
+        });
         result.find((event) => {
           if (event.id === "917cc4f0-3568-4738-951b-63093c8882f1") {
             event.is_featured = false;

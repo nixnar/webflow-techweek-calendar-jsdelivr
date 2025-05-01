@@ -19359,6 +19359,24 @@ var App = function App() {
               setError("showForm");
               return _context2.abrupt("return");
             case 10:
+              result.forEach(function (event) {
+                event.formats = event.formats.map(function (format) {
+                  if (format.startsWith("B") || format.startsWith(" B")) {
+                    return "Breakfast, Brunch or Lunch";
+                  } else if (format.startsWith("Ha")) {
+                    return "Happy Hour";
+                  } else if (format.startsWith("Match")) {
+                    return "Matchmaking";
+                  } else if (format.startsWith("Pan")) {
+                    return "Panel / Fireside Chat";
+                  } else if (format.startsWith("Pitch")) {
+                    return "Pitch Event / Demo Day";
+                  } else if (format.startsWith("Round") || format.startsWith("Work")) {
+                    return "Roundtable / Workshop";
+                  }
+                  return format;
+                });
+              });
               result.find(function (event) {
                 if (event.id === "917cc4f0-3568-4738-951b-63093c8882f1") {
                   event.is_featured = false;
@@ -19414,24 +19432,24 @@ var App = function App() {
               });
               setData(sortedResult);
               setAvailableFilters(sortFilters(sortedResult));
-              _context2.next = 27;
+              _context2.next = 28;
               break;
-            case 23:
-              _context2.prev = 23;
+            case 24:
+              _context2.prev = 24;
               _context2.t0 = _context2["catch"](0);
               setError(_context2.t0.message);
               console.error("Error fetching data:", _context2.t0);
-            case 27:
-              _context2.prev = 27;
+            case 28:
+              _context2.prev = 28;
               setTimeout(function () {
                 setIsLoading(false);
               }, 100);
-              return _context2.finish(27);
-            case 30:
+              return _context2.finish(28);
+            case 31:
             case "end":
               return _context2.stop();
           }
-        }, _callee2, null, [[0, 23, 27, 30]]);
+        }, _callee2, null, [[0, 24, 28, 31]]);
       }));
       return function loadData() {
         return _ref2.apply(this, arguments);
