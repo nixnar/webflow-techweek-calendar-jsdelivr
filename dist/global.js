@@ -18208,31 +18208,29 @@ function _fetchData() {
         case 4:
           response2 = _context.sent;
           if (response2.ok) {
-            _context.next = 9;
+            _context.next = 8;
             break;
           }
-          console.log("not ok", response2);
-          _context.next = 14;
+          _context.next = 12;
           break;
-        case 9:
-          _context.next = 11;
+        case 8:
+          _context.next = 10;
           return response2.json();
-        case 11:
+        case 10:
           data = _context.sent;
-          console.log("ok", data);
           return _context.abrupt("return", data);
-        case 14:
-          _context.next = 19;
+        case 12:
+          _context.next = 17;
           break;
-        case 16:
-          _context.prev = 16;
+        case 14:
+          _context.prev = 14;
           _context.t0 = _context["catch"](0);
           return _context.abrupt("return", 10);
-        case 19:
+        case 17:
         case "end":
           return _context.stop();
       }
-    }, _callee, null, [[0, 16]]);
+    }, _callee, null, [[0, 14]]);
   }));
   return _fetchData.apply(this, arguments);
 }
@@ -19303,20 +19301,20 @@ var App = function App() {
             return response.json();
           case 7:
             _data = _context.sent;
-            console.log(_data);
+            //console.log(data);
             window.location.reload();
-            _context.next = 16;
+            _context.next = 14;
             break;
-          case 12:
-            _context.prev = 12;
+          case 11:
+            _context.prev = 11;
             _context.t0 = _context["catch"](1);
-            console.error("Error:", _context.t0);
+            //console.error("Error:", error);
             setError("incognito");
-          case 16:
+          case 14:
           case "end":
             return _context.stop();
         }
-      }, _callee, null, [[1, 12]]);
+      }, _callee, null, [[1, 11]]);
     }));
     return function submitForm(_x) {
       return _ref.apply(this, arguments);
@@ -19432,24 +19430,24 @@ var App = function App() {
               });
               setData(sortedResult);
               setAvailableFilters(sortFilters(sortedResult));
-              _context2.next = 28;
+              _context2.next = 27;
               break;
             case 24:
               _context2.prev = 24;
               _context2.t0 = _context2["catch"](0);
               setError(_context2.t0.message);
-              console.error("Error fetching data:", _context2.t0);
-            case 28:
-              _context2.prev = 28;
+              //console.error("Error fetching data:", err);
+            case 27:
+              _context2.prev = 27;
               setTimeout(function () {
                 setIsLoading(false);
               }, 100);
-              return _context2.finish(28);
-            case 31:
+              return _context2.finish(27);
+            case 30:
             case "end":
               return _context2.stop();
           }
-        }, _callee2, null, [[0, 24, 28, 31]]);
+        }, _callee2, null, [[0, 24, 27, 30]]);
       }));
       return function loadData() {
         return _ref2.apply(this, arguments);

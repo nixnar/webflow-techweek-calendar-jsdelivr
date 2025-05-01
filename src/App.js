@@ -53,10 +53,10 @@ const App = () => {
       });
 
       const data = await response.json();
-      console.log(data);
+      //console.log(data);
       window.location.reload();
     } catch (error) {
-      console.error("Error:", error);
+      //console.error("Error:", error);
       setError("incognito");
     }
   };
@@ -177,7 +177,7 @@ const App = () => {
         setAvailableFilters(sortFilters(sortedResult));
       } catch (err) {
         setError(err.message);
-        console.error("Error fetching data:", err);
+        //console.error("Error fetching data:", err);
       } finally {
         setTimeout(() => {
           setIsLoading(false);
