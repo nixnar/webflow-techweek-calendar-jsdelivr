@@ -1048,12 +1048,12 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   line-height: 18px !important;
 }
 
-.tailwind .leading-\\[23px\\]{
-  line-height: 23px !important;
-}
-
 .tailwind .leading-\\[21\\.75px\\]{
   line-height: 21.75px !important;
+}
+
+.tailwind .leading-\\[23px\\]{
+  line-height: 23px !important;
 }
 
 .tailwind .tracking-\\[-0\\.0281rem\\]{
@@ -18191,47 +18191,48 @@ function fetchData(_x) {
 }
 function _fetchData() {
   _fetchData = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee(city) {
-    var response2, data;
+    var timestamp, response2, data;
     return _regeneratorRuntime().wrap(function _callee$(_context) {
       while (1) switch (_context.prev = _context.next) {
         case 0:
           _context.prev = 0;
-          _context.next = 3;
-          return fetch("https://api.tech-week.com/list_events/?city=" + city, {
+          timestamp = new Date().getTime();
+          _context.next = 4;
+          return fetch("https://api.tech-week.com/list_events/?city=".concat(city, "&_=").concat(timestamp), {
             method: "GET",
             headers: {
               "Content-Type": "application/json"
             },
             credentials: "include"
           });
-        case 3:
+        case 4:
           response2 = _context.sent;
           if (response2.ok) {
-            _context.next = 8;
+            _context.next = 9;
             break;
           }
           console.log("not ok", response2);
-          _context.next = 13;
+          _context.next = 14;
           break;
-        case 8:
-          _context.next = 10;
+        case 9:
+          _context.next = 11;
           return response2.json();
-        case 10:
+        case 11:
           data = _context.sent;
           console.log("ok", data);
           return _context.abrupt("return", data);
-        case 13:
-          _context.next = 18;
+        case 14:
+          _context.next = 19;
           break;
-        case 15:
-          _context.prev = 15;
+        case 16:
+          _context.prev = 16;
           _context.t0 = _context["catch"](0);
           return _context.abrupt("return", 10);
-        case 18:
+        case 19:
         case "end":
           return _context.stop();
       }
-    }, _callee, null, [[0, 15]]);
+    }, _callee, null, [[0, 16]]);
   }));
   return _fetchData.apply(this, arguments);
 }

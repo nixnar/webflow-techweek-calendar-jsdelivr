@@ -1,7 +1,8 @@
 export default async function fetchData(city) {
   try {
+    const timestamp = new Date().getTime();
     const response2 = await fetch(
-      "https://api.tech-week.com/list_events/?city=" + city,
+      `https://api.tech-week.com/list_events/?city=${city}&_=${timestamp}`,
       {
         method: "GET",
         headers: {
