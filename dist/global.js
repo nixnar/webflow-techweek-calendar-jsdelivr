@@ -1228,82 +1228,68 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 * {
   -ms-overflow-style: none;
 }
-
 .hover\\:border-gray-200:hover{
   --tw-border-opacity: 1 !important;
   border-color: rgba(229, 231, 235, 1) !important;
   border-color: rgba(229, 231, 235, var(--tw-border-opacity, 1)) !important;
 }
-
 .hover\\:border-white:hover{
   --tw-border-opacity: 1 !important;
   border-color: rgba(255, 255, 255, 1) !important;
   border-color: rgba(255, 255, 255, var(--tw-border-opacity, 1)) !important;
 }
-
 .hover\\:bg-gray-200:hover{
   --tw-bg-opacity: 1 !important;
   background-color: rgba(229, 231, 235, 1) !important;
   background-color: rgba(229, 231, 235, var(--tw-bg-opacity, 1)) !important;
 }
-
 .hover\\:bg-gray-900:hover{
   --tw-bg-opacity: 1 !important;
   background-color: rgba(17, 24, 39, 1) !important;
   background-color: rgba(17, 24, 39, var(--tw-bg-opacity, 1)) !important;
 }
-
 .hover\\:bg-white:hover{
   --tw-bg-opacity: 1 !important;
   background-color: rgba(255, 255, 255, 1) !important;
   background-color: rgba(255, 255, 255, var(--tw-bg-opacity, 1)) !important;
 }
-
 .hover\\:text-black:hover{
   --tw-text-opacity: 1 !important;
   color: rgba(0, 0, 0, 1) !important;
   color: rgba(0, 0, 0, var(--tw-text-opacity, 1)) !important;
 }
-
 .hover\\:text-gray-200:hover{
   --tw-text-opacity: 1 !important;
   color: rgba(229, 231, 235, 1) !important;
   color: rgba(229, 231, 235, var(--tw-text-opacity, 1)) !important;
 }
-
 .hover\\:text-gray-300:hover{
   --tw-text-opacity: 1 !important;
   color: rgba(209, 213, 219, 1) !important;
   color: rgba(209, 213, 219, var(--tw-text-opacity, 1)) !important;
 }
-
 .hover\\:text-gray-900:hover{
   --tw-text-opacity: 1 !important;
   color: rgba(17, 24, 39, 1) !important;
   color: rgba(17, 24, 39, var(--tw-text-opacity, 1)) !important;
 }
-
 .focus\\:outline-none:focus{
   outline: 2px solid transparent !important;
   outline-offset: 2px !important;
 }
-
 .group:hover .group-hover\\:rotate-90{
   --tw-rotate: 90deg !important;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(90deg) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y)) !important;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y)) !important;
 }
-
 .group:hover .group-hover\\:fill-brand{
   fill: #14E8FF !important;
 }
-
 .group:hover .group-hover\\:text-\\[\\#aaa\\]{
   --tw-text-opacity: 1 !important;
   color: rgba(170, 170, 170, 1) !important;
   color: rgba(170, 170, 170, var(--tw-text-opacity, 1)) !important;
 }
-
 @media (min-width: 768px){
 
   .md\\:text-5xl{
@@ -1311,7 +1297,6 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
     line-height: 1 !important;
   }
 }
-
 @media (max-width: 1030px){
 
   .mobile\\:hidden{
@@ -19373,6 +19358,20 @@ var App = function App() {
                     return "Roundtable / Workshop";
                   }
                   return format;
+                });
+                event.themes = event.themes.map(function (theme) {
+                  if (theme.startsWith("Crypto")) {
+                    return "Crypto / Web3";
+                  } else if (theme.startsWith("Deep")) {
+                    return "Deep Tech";
+                  } else if (theme.startsWith("GTM")) {
+                    return "GTM";
+                  } else if (theme.startsWith("International")) {
+                    return "International / Expansion";
+                  } else if (theme.startsWith("Men") || theme.startsWith("men")) {
+                    return "";
+                  }
+                  return theme;
                 });
               });
               result.find(function (event) {
