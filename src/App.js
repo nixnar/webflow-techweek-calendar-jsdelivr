@@ -113,7 +113,7 @@ const App = () => {
             return format;
           });
           event.themes = event.themes.map((theme) => {
-            if (theme.startsWith("Crypto")) {
+            if (theme.startsWith("Crypto") || theme.startsWith("Crpyto")) {
               return "Crypto / Web3";
             } else if (theme.startsWith("Deep")) {
               return "Deep Tech";
