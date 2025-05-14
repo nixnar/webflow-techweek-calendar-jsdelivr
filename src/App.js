@@ -112,7 +112,21 @@ const App = () => {
 
             return format;
           });
+          event.themes = event.themes.map((theme) => {
+            if (theme.startsWith("Crypto")) {
+              return "Crypto / Web3";
+            } else if (theme.startsWith("Deep")) {
+              return "Deep Tech";
+            } else if (theme.startsWith("GTM")) {
+              return "GTM";
+            } else if (theme.startsWith("International")) {
+              return "International / Expansion";
+            } else if (theme.startsWith("Men") || theme.startsWith("men")) {
+              return "";
+            }
+          })
         });
+        
         result.find((event) => {
           if (event.id === "917cc4f0-3568-4738-951b-63093c8882f1") {
             event.is_featured = false;
