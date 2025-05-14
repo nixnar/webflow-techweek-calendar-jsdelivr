@@ -124,6 +124,8 @@ const App = () => {
             } else if (theme.startsWith("Men") || theme.startsWith("men")) {
               return "";
             }
+
+            return theme;
           })
         });
         
