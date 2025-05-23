@@ -800,6 +800,10 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   border-left-width: 1px !important;
 }
 
+.tailwind .border-b-0{
+  border-bottom-width: 0px !important;
+}
+
 .tailwind .border-none{
   border-style: none !important;
 }
@@ -19254,17 +19258,10 @@ var App = function App() {
     _React$useState20 = App_slicedToArray(_React$useState19, 2),
     email = _React$useState20[0],
     setEmail = _React$useState20[1];
-  var _React$useState21 = react.useState({
-      date: [],
-      neighborhood: [],
-      start_time: [],
-      topics: [],
-      types: [],
-      search: ""
-    }),
+  var _React$useState21 = react.useState([]),
     _React$useState22 = App_slicedToArray(_React$useState21, 2),
-    availableFilters = _React$useState22[0],
-    setAvailableFilters = _React$useState22[1];
+    featuredEvents = _React$useState22[0],
+    setFeaturedEvents = _React$useState22[1];
   var _React$useState23 = react.useState({
       date: [],
       neighborhood: [],
@@ -19274,8 +19271,19 @@ var App = function App() {
       search: ""
     }),
     _React$useState24 = App_slicedToArray(_React$useState23, 2),
-    activeFilters = _React$useState24[0],
-    setActiveFilters = _React$useState24[1];
+    availableFilters = _React$useState24[0],
+    setAvailableFilters = _React$useState24[1];
+  var _React$useState25 = react.useState({
+      date: [],
+      neighborhood: [],
+      start_time: [],
+      topics: [],
+      types: [],
+      search: ""
+    }),
+    _React$useState26 = App_slicedToArray(_React$useState25, 2),
+    activeFilters = _React$useState26[0],
+    setActiveFilters = _React$useState26[1];
   var submitForm = /*#__PURE__*/function () {
     var _ref = App_asyncToGenerator(/*#__PURE__*/App_regeneratorRuntime().mark(function _callee(e) {
       var response, _data;
@@ -19338,7 +19346,7 @@ var App = function App() {
     });
     var loadData = /*#__PURE__*/function () {
       var _ref2 = App_asyncToGenerator(/*#__PURE__*/App_regeneratorRuntime().mark(function _callee2() {
-        var result, tier1Events, tier2Events, regularEvents, i, j, _ref3, _i, _j, _ref4, sortedResult;
+        var result, tier1Events, tier2Events, regularEvents, i, j, _ref3, _i, _j, _ref4, sortedResult, _featuredEvents;
         return App_regeneratorRuntime().wrap(function _callee2$(_context2) {
           while (1) switch (_context2.prev = _context2.next) {
             case 0:
@@ -19442,26 +19450,34 @@ var App = function App() {
                 item.day = timeTodayOfWeek(item.start_time);
                 item.time = timeToAmPm(item.start_time);
               });
+              _featuredEvents = [];
+              sortedResult.forEach(function (item) {
+                if (item.id === "9b784ee4-b607-45a9-96ca-e68434b469a2" || item.id === "d16e4dc5-087f-434a-b3a3-14c0fdff291d" || item.id === "24070956-a5d7-456b-845d-f8adad81b360") {
+                  _featuredEvents.push(item);
+                  sortedResult.splice(sortedResult.indexOf(item), 1);
+                }
+              });
+              setFeaturedEvents(_featuredEvents);
               setData(sortedResult);
               setAvailableFilters(sortFilters(sortedResult));
-              _context2.next = 27;
+              _context2.next = 30;
               break;
-            case 24:
-              _context2.prev = 24;
+            case 27:
+              _context2.prev = 27;
               _context2.t0 = _context2["catch"](0);
               setError(_context2.t0.message);
               //console.error("Error fetching data:", err);
-            case 27:
-              _context2.prev = 27;
+            case 30:
+              _context2.prev = 30;
               setTimeout(function () {
                 setIsLoading(false);
               }, 100);
-              return _context2.finish(27);
-            case 30:
+              return _context2.finish(30);
+            case 33:
             case "end":
               return _context2.stop();
           }
-        }, _callee2, null, [[0, 24, 27, 30]]);
+        }, _callee2, null, [[0, 27, 30, 33]]);
       }));
       return function loadData() {
         return _ref2.apply(this, arguments);
@@ -19650,7 +19666,30 @@ var App = function App() {
     className: "flex gap-4 justify-between"
   }, /*#__PURE__*/react.createElement("div", {
     className: "flex flex-col gap-4 grow"
+  }, featuredEvents.length > 0 && /*#__PURE__*/react.createElement("div", {
+    className: "flex flex-col gap-4 border-[1px] border-white p-[4px] bg-black h-fit"
   }, /*#__PURE__*/react.createElement("div", {
+    className: "grow border-[1px] border-white ml-[-1px] border-b-0"
+  }, featuredEvents.map(function (item) {
+    return item.invite_url !== "Invite Only" ? /*#__PURE__*/react.createElement("a", {
+      href: item.invite_url,
+      target: "_blank"
+    }, /*#__PURE__*/react.createElement(IndividualEvent, {
+      key: item.id,
+      item: item,
+      activeFilters: activeFilters,
+      windowWidth: windowWidth,
+      hasLink: true,
+      className: ""
+    })) : /*#__PURE__*/react.createElement(IndividualEvent, {
+      key: item.id,
+      item: item,
+      activeFilters: activeFilters,
+      windowWidth: windowWidth,
+      hasLink: false,
+      className: "group-hover:"
+    });
+  }))), /*#__PURE__*/react.createElement("div", {
     id: "content",
     className: "border-[1px] border-white p-[4px] bg-black h-fit"
   }, windowWidth <= 1030 && /*#__PURE__*/react.createElement("div", {

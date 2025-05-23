@@ -22,6 +22,7 @@ const App = () => {
   const [searchMode, setSearchMode] = React.useState(false);
   const [isValidEmail, setIsValidEmail] = React.useState(false);
   const [email, setEmail] = React.useState("");
+  const [featuredEvents, setFeaturedEvents] = React.useState([]);
   const [availableFilters, setAvailableFilters] = React.useState({
     date: [],
     neighborhood: [],
@@ -188,7 +189,14 @@ const App = () => {
           item.day = timeTodayOfWeek(item.start_time);
           item.time = timeToAmPm(item.start_time);
         });
-
+        const featuredEvents = [];
+        sortedResult.forEach((item) => {
+          if (item.id === "9b784ee4-b607-45a9-96ca-e68434b469a2" || item.id === "d16e4dc5-087f-434a-b3a3-14c0fdff291d" || item.id === "24070956-a5d7-456b-845d-f8adad81b360") {
+            featuredEvents.push(item);
+            sortedResult.splice(sortedResult.indexOf(item), 1);
+          }
+        });
+        setFeaturedEvents(featuredEvents);
         setData(sortedResult);
         setAvailableFilters(sortFilters(sortedResult));
       } catch (err) {
@@ -396,6 +404,34 @@ const App = () => {
             </div>
             <div id="contentAndFilters" className="flex gap-4 justify-between">
               <div className="flex flex-col gap-4 grow">
+                {featuredEvents.length > 0 && (
+                  <div className="flex flex-col gap-4 border-[1px] border-white p-[4px] bg-black h-fit">
+                    <div className="grow border-[1px] border-white ml-[-1px] border-b-0">
+                    {featuredEvents.map((item) => (
+                      item.invite_url !== "Invite Only" ? (
+                        <a href={item.invite_url} target="_blank">
+                              <IndividualEvent
+                                key={item.id}
+                                item={item}
+                                activeFilters={activeFilters}
+                                windowWidth={windowWidth}
+                                hasLink={true}
+                                className=""
+                              />
+                            </a>
+                      ) : (
+                        <IndividualEvent
+                        key={item.id}
+                        item={item}
+                        activeFilters={activeFilters}
+                        windowWidth={windowWidth}
+                        hasLink={false}
+                        className="group-hover:"
+                      />
+                      )
+                    ))}</div>
+                  </div>
+                )}
                 <div
                   id="content"
                   className="border-[1px] border-white p-[4px] bg-black h-fit"
