@@ -542,6 +542,10 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   z-index: 9999 !important;
 }
 
+.tailwind .m-\\[-1rem\\]{
+  margin: -1rem !important;
+}
+
 .tailwind .mb-4{
   margin-bottom: 1rem !important;
 }
@@ -568,6 +572,14 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 
 .tailwind .mt-8{
   margin-top: 2rem !important;
+}
+
+.tailwind .mb-\\[-1rem\\]{
+  margin-bottom: -1rem !important;
+}
+
+.tailwind .mb-\\[-0\\.5rem\\]{
+  margin-bottom: -0.5rem !important;
 }
 
 .tailwind .block{
@@ -792,6 +804,10 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   border-width: 1px !important;
 }
 
+.tailwind .border-2{
+  border-width: 2px !important;
+}
+
 .tailwind .border-b-\\[1px\\]{
   border-bottom-width: 1px !important;
 }
@@ -876,6 +892,96 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 
 .tailwind .bg-opacity-50{
   --tw-bg-opacity: 0.5 !important;
+}
+
+.tailwind .bg-gradient-to-r{
+  background-image: linear-gradient(to right, var(--tw-gradient-stops)) !important;
+}
+
+.tailwind .bg-gradient-to-l{
+  background-image: linear-gradient(to left, var(--tw-gradient-stops)) !important;
+}
+
+.tailwind .bg-gradient-to-tl{
+  background-image: linear-gradient(to top left, var(--tw-gradient-stops)) !important;
+}
+
+.tailwind .from-white{
+  --tw-gradient-from: #fff var(--tw-gradient-from-position) !important;
+  --tw-gradient-to: rgba(255, 255, 255, 0) var(--tw-gradient-to-position) !important;
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important;
+}
+
+.tailwind .from-gray-300{
+  --tw-gradient-from: #d1d5db var(--tw-gradient-from-position) !important;
+  --tw-gradient-to: rgba(209, 213, 219, 0) var(--tw-gradient-to-position) !important;
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important;
+}
+
+.tailwind .from-gray-700{
+  --tw-gradient-from: #374151 var(--tw-gradient-from-position) !important;
+  --tw-gradient-to: rgba(55, 65, 81, 0) var(--tw-gradient-to-position) !important;
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important;
+}
+
+.tailwind .from-gray-500{
+  --tw-gradient-from: #6b7280 var(--tw-gradient-from-position) !important;
+  --tw-gradient-to: rgba(107, 114, 128, 0) var(--tw-gradient-to-position) !important;
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important;
+}
+
+.tailwind .from-brand{
+  --tw-gradient-from: #14E8FF var(--tw-gradient-from-position) !important;
+  --tw-gradient-to: rgba(20, 232, 255, 0) var(--tw-gradient-to-position) !important;
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important;
+}
+
+.tailwind .from-brand\\/70{
+  --tw-gradient-from: rgba(20, 232, 255, 0.7) var(--tw-gradient-from-position) !important;
+  --tw-gradient-to: rgba(20, 232, 255, 0) var(--tw-gradient-to-position) !important;
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important;
+}
+
+.tailwind .from-brand\\/50{
+  --tw-gradient-from: rgba(20, 232, 255, 0.5) var(--tw-gradient-from-position) !important;
+  --tw-gradient-to: rgba(20, 232, 255, 0) var(--tw-gradient-to-position) !important;
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important;
+}
+
+.tailwind .from-0\\%{
+  --tw-gradient-from-position: 0% !important;
+}
+
+.tailwind .from-30\\%{
+  --tw-gradient-from-position: 30% !important;
+}
+
+.tailwind .from-10\\%{
+  --tw-gradient-from-position: 10% !important;
+}
+
+.tailwind .via-30\\%{
+  --tw-gradient-via-position: 30% !important;
+}
+
+.tailwind .via-20\\%{
+  --tw-gradient-via-position: 20% !important;
+}
+
+.tailwind .via-10\\%{
+  --tw-gradient-via-position: 10% !important;
+}
+
+.tailwind .to-black{
+  --tw-gradient-to: #000 var(--tw-gradient-to-position) !important;
+}
+
+.tailwind .to-60\\%{
+  --tw-gradient-to-position: 60% !important;
+}
+
+.tailwind .to-75\\%{
+  --tw-gradient-to-position: 75% !important;
 }
 
 .tailwind .object-contain{
@@ -1261,6 +1367,10 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   --tw-bg-opacity: 1 !important;
   background-color: rgba(255, 255, 255, 1) !important;
   background-color: rgba(255, 255, 255, var(--tw-bg-opacity, 1)) !important;
+}
+
+.hover\\:bg-gradient-to-l:hover{
+  background-image: linear-gradient(to left, var(--tw-gradient-stops)) !important;
 }
 
 .hover\\:text-black:hover{
@@ -19101,7 +19211,7 @@ function IndividualEvent(_ref) {
   var isStarred = item.starred_on_calendar === "TIER_1" || item.starred_on_calendar === "TIER_2" && activeFilters.date.length > 0;
   return /*#__PURE__*/react.createElement("div", {
     key: item.id,
-    className: "group flex flex-col w-full bg-black border-b-[1px] border-white ".concat(windowWidth > 1030 ? "p-2 gap-[0.25rem]" : "p-2 gap-[0.25rem]", " ")
+    className: "group flex flex-col w-full bg-black border-b-[1px] border-white ".concat(windowWidth > 1030 ? "p-2 gap-[0.25rem]" : "p-2 gap-[0.25rem]", " ").concat(item.starred_on_calendar === "TIER_4" ? "bg-gradient-to-tl from-brand/50 from-10% to-black to-75%" : "")
   }, /*#__PURE__*/react.createElement("div", {
     className: "flex w-full justify-between items-start gap-4 font-[500] tracking-[-0.45px] uppercase ".concat(windowWidth > 1030 ? "text-[0.75rem] leading-[0.75rem]" : "text-[0.5rem] leading-[0.5rem]")
   }, /*#__PURE__*/react.createElement("div", {
@@ -19260,8 +19370,8 @@ var App = function App() {
     setEmail = _React$useState20[1];
   var _React$useState21 = react.useState([]),
     _React$useState22 = App_slicedToArray(_React$useState21, 2),
-    featuredEvents = _React$useState22[0],
-    setFeaturedEvents = _React$useState22[1];
+    tier3Events = _React$useState22[0],
+    setTier3Events = _React$useState22[1];
   var _React$useState23 = react.useState({
       date: [],
       neighborhood: [],
@@ -19346,7 +19456,7 @@ var App = function App() {
     });
     var loadData = /*#__PURE__*/function () {
       var _ref2 = App_asyncToGenerator(/*#__PURE__*/App_regeneratorRuntime().mark(function _callee2() {
-        var result, tier1Events, tier2Events, regularEvents, i, j, _ref3, _i, _j, _ref4, sortedResult, _featuredEvents;
+        var result, tier1Events, tier2Events, _tier3Events, regularEvents, i, j, _ref3, _i, _j, _ref4, _i2, _j2, _ref5, sortedResult;
         return App_regeneratorRuntime().wrap(function _callee2$(_context2) {
           while (1) switch (_context2.prev = _context2.next) {
             case 0:
@@ -19421,8 +19531,11 @@ var App = function App() {
               tier2Events = result.filter(function (event) {
                 return event.starred_on_calendar === "TIER_2";
               });
+              _tier3Events = result.filter(function (event) {
+                return event.starred_on_calendar === "TIER_3";
+              });
               regularEvents = result.filter(function (event) {
-                return !event.starred_on_calendar;
+                return !event.starred_on_calendar || event.starred_on_calendar === "TIER_4";
               }); // Randomize TIER_1 events
               for (i = tier1Events.length - 1; i > 0; i--) {
                 j = Math.floor(Math.random() * (i + 1));
@@ -19439,6 +19552,14 @@ var App = function App() {
                 tier2Events[_j] = _ref4[1];
               }
 
+              // Randomize TIER_3 events
+              for (_i2 = _tier3Events.length - 1; _i2 > 0; _i2--) {
+                _j2 = Math.floor(Math.random() * (_i2 + 1));
+                _ref5 = [_tier3Events[_j2], _tier3Events[_i2]];
+                _tier3Events[_i2] = _ref5[0];
+                _tier3Events[_j2] = _ref5[1];
+              }
+
               // Sort regular events by start time
               regularEvents.sort(function (a, b) {
                 return new Date(a.start_time) - new Date(b.start_time);
@@ -19450,34 +19571,31 @@ var App = function App() {
                 item.day = timeTodayOfWeek(item.start_time);
                 item.time = timeToAmPm(item.start_time);
               });
-              _featuredEvents = [];
-              sortedResult.forEach(function (item) {
-                if (item.id === "9b784ee4-b607-45a9-96ca-e68434b469a2" || item.id === "d16e4dc5-087f-434a-b3a3-14c0fdff291d" || item.id === "24070956-a5d7-456b-845d-f8adad81b360") {
-                  _featuredEvents.push(item);
-                  sortedResult.splice(sortedResult.indexOf(item), 1);
-                }
+              _tier3Events.forEach(function (item) {
+                item.day = timeTodayOfWeek(item.start_time);
+                item.time = timeToAmPm(item.start_time);
               });
-              setFeaturedEvents(_featuredEvents);
               setData(sortedResult);
+              setTier3Events(_tier3Events);
               setAvailableFilters(sortFilters(sortedResult));
-              _context2.next = 30;
+              _context2.next = 31;
               break;
-            case 27:
-              _context2.prev = 27;
+            case 28:
+              _context2.prev = 28;
               _context2.t0 = _context2["catch"](0);
               setError(_context2.t0.message);
               //console.error("Error fetching data:", err);
-            case 30:
-              _context2.prev = 30;
+            case 31:
+              _context2.prev = 31;
               setTimeout(function () {
                 setIsLoading(false);
               }, 100);
-              return _context2.finish(30);
-            case 33:
+              return _context2.finish(31);
+            case 34:
             case "end":
               return _context2.stop();
           }
-        }, _callee2, null, [[0, 27, 30, 33]]);
+        }, _callee2, null, [[0, 28, 31, 34]]);
       }));
       return function loadData() {
         return _ref2.apply(this, arguments);
@@ -19505,7 +19623,7 @@ var App = function App() {
         return event.starred_on_calendar === "TIER_2";
       });
       var regularEvents = filtered.filter(function (event) {
-        return !event.starred_on_calendar;
+        return !event.starred_on_calendar || event.starred_on_calendar === "TIER_4";
       });
 
       // Randomize TIER_1 events (using a stable sort to maintain existing randomization)
@@ -19666,11 +19784,13 @@ var App = function App() {
     className: "flex gap-4 justify-between"
   }, /*#__PURE__*/react.createElement("div", {
     className: "flex flex-col gap-4 grow"
-  }, featuredEvents.length > 0 && /*#__PURE__*/react.createElement("div", {
-    className: "flex flex-col gap-4 border-[1px] border-white p-[4px] bg-black h-fit"
+  }, tier3Events.length > 0 && /*#__PURE__*/react.createElement("div", {
+    className: "mb-[-0.5rem]"
+  }, "FEATURED"), tier3Events.length > 0 && /*#__PURE__*/react.createElement("div", {
+    className: "flex flex-col border-[1px] border-white p-[4px] bg-black h-fit"
   }, /*#__PURE__*/react.createElement("div", {
     className: "grow border-[1px] border-white ml-[-1px] border-b-0"
-  }, featuredEvents.map(function (item) {
+  }, tier3Events.map(function (item) {
     return item.invite_url !== "Invite Only" ? /*#__PURE__*/react.createElement("a", {
       href: item.invite_url,
       target: "_blank"
@@ -19690,6 +19810,8 @@ var App = function App() {
       className: "group-hover:"
     });
   }))), /*#__PURE__*/react.createElement("div", {
+    className: "mb-[-0.5rem]"
+  }, "ALL EVENTS"), /*#__PURE__*/react.createElement("div", {
     id: "content",
     className: "border-[1px] border-white p-[4px] bg-black h-fit"
   }, windowWidth <= 1030 && /*#__PURE__*/react.createElement("div", {
@@ -19731,7 +19853,7 @@ var App = function App() {
     fill: "black"
   })), /*#__PURE__*/react.createElement("p", null, "FILTERS")))), /*#__PURE__*/react.createElement("div", {
     className: "grow border-[1px] border-white ml-[-1px]"
-  }, Array.isArray(filteredData) && filteredData.map(function (item) {
+  }, filteredData.length > 0 ? Array.isArray(filteredData) && filteredData.map(function (item) {
     if (item.invite_url !== "Invite Only") {
       return /*#__PURE__*/react.createElement("a", {
         href: item.invite_url,
@@ -19754,7 +19876,9 @@ var App = function App() {
         className: "group-hover:"
       });
     }
-  }))), /*#__PURE__*/react.createElement("div", {
+  }) : /*#__PURE__*/react.createElement("div", {
+    className: "w-full text-center text-white p-4"
+  }, "NO EVENTS MATCH YOUR FILTERS"))), /*#__PURE__*/react.createElement("div", {
     className: "grow"
   })), windowWidth > 1030 ? /*#__PURE__*/react.createElement("div", {
     className: "flex flex-col gap-4 relative"

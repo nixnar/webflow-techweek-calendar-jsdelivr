@@ -15,7 +15,11 @@ export default function IndividualEvent({
       key={item.id}
       className={`group flex flex-col w-full bg-black border-b-[1px] border-white ${
         windowWidth > 1030 ? "p-2 gap-[0.25rem]" : "p-2 gap-[0.25rem]"
-      } `}
+      } ${
+        item.starred_on_calendar === "TIER_4"
+          ? "bg-gradient-to-tl from-brand/50 from-10% to-black to-75%"
+          : ""
+      }`}
     >
       <div
         className={`flex w-full justify-between items-start gap-4 font-[500] tracking-[-0.45px] uppercase ${

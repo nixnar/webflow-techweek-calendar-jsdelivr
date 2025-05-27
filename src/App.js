@@ -22,7 +22,7 @@ const App = () => {
   const [searchMode, setSearchMode] = React.useState(false);
   const [isValidEmail, setIsValidEmail] = React.useState(false);
   const [email, setEmail] = React.useState("");
-  const [featuredEvents, setFeaturedEvents] = React.useState([]);
+  const [tier3Events, setTier3Events] = React.useState([]);
   const [availableFilters, setAvailableFilters] = React.useState({
     date: [],
     neighborhood: [],
@@ -129,7 +129,7 @@ const App = () => {
             return theme;
           });
         });
-        
+
         result.find((event) => {
           if (event.id === "917cc4f0-3568-4738-951b-63093c8882f1") {
             event.is_featured = false;
@@ -160,8 +160,12 @@ const App = () => {
         const tier2Events = result.filter(
           (event) => event.starred_on_calendar === "TIER_2"
         );
+        const tier3Events = result.filter(
+          (event) => event.starred_on_calendar === "TIER_3"
+        );
         const regularEvents = result.filter(
-          (event) => !event.starred_on_calendar
+          (event) =>
+            !event.starred_on_calendar || event.starred_on_calendar === "TIER_4"
         );
 
         // Randomize TIER_1 events
@@ -174,6 +178,12 @@ const App = () => {
         for (let i = tier2Events.length - 1; i > 0; i--) {
           const j = Math.floor(Math.random() * (i + 1));
           [tier2Events[i], tier2Events[j]] = [tier2Events[j], tier2Events[i]];
+        }
+
+        // Randomize TIER_3 events
+        for (let i = tier3Events.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [tier3Events[i], tier3Events[j]] = [tier3Events[j], tier3Events[i]];
         }
 
         // Sort regular events by start time
@@ -189,15 +199,13 @@ const App = () => {
           item.day = timeTodayOfWeek(item.start_time);
           item.time = timeToAmPm(item.start_time);
         });
-        const featuredEvents = [];
-        sortedResult.forEach((item) => {
-          if (item.id === "9b784ee4-b607-45a9-96ca-e68434b469a2" || item.id === "d16e4dc5-087f-434a-b3a3-14c0fdff291d" || item.id === "24070956-a5d7-456b-845d-f8adad81b360") {
-            featuredEvents.push(item);
-            sortedResult.splice(sortedResult.indexOf(item), 1);
-          }
+
+        tier3Events.forEach((item) => {
+          item.day = timeTodayOfWeek(item.start_time);
+          item.time = timeToAmPm(item.start_time);
         });
-        setFeaturedEvents(featuredEvents);
         setData(sortedResult);
+        setTier3Events(tier3Events);
         setAvailableFilters(sortFilters(sortedResult));
       } catch (err) {
         setError(err.message);
@@ -231,7 +239,8 @@ const App = () => {
         (event) => event.starred_on_calendar === "TIER_2"
       );
       const regularEvents = filtered.filter(
-        (event) => !event.starred_on_calendar
+        (event) =>
+          !event.starred_on_calendar || event.starred_on_calendar === "TIER_4"
       );
 
       // Randomize TIER_1 events (using a stable sort to maintain existing randomization)
@@ -402,36 +411,42 @@ const App = () => {
                 />
               </div>
             </div>
+
             <div id="contentAndFilters" className="flex gap-4 justify-between">
               <div className="flex flex-col gap-4 grow">
-                {featuredEvents.length > 0 && (
-                  <div className="flex flex-col gap-4 border-[1px] border-white p-[4px] bg-black h-fit">
+                {tier3Events.length > 0 && (
+                  <div className="mb-[-0.5rem]">FEATURED</div>
+                )}
+                {tier3Events.length > 0 && (
+                  <div className="flex flex-col border-[1px] border-white p-[4px] bg-black h-fit">
                     <div className="grow border-[1px] border-white ml-[-1px] border-b-0">
-                    {featuredEvents.map((item) => (
-                      item.invite_url !== "Invite Only" ? (
-                        <a href={item.invite_url} target="_blank">
-                              <IndividualEvent
-                                key={item.id}
-                                item={item}
-                                activeFilters={activeFilters}
-                                windowWidth={windowWidth}
-                                hasLink={true}
-                                className=""
-                              />
-                            </a>
-                      ) : (
-                        <IndividualEvent
-                        key={item.id}
-                        item={item}
-                        activeFilters={activeFilters}
-                        windowWidth={windowWidth}
-                        hasLink={false}
-                        className="group-hover:"
-                      />
-                      )
-                    ))}</div>
+                      {tier3Events.map((item) =>
+                        item.invite_url !== "Invite Only" ? (
+                          <a href={item.invite_url} target="_blank">
+                            <IndividualEvent
+                              key={item.id}
+                              item={item}
+                              activeFilters={activeFilters}
+                              windowWidth={windowWidth}
+                              hasLink={true}
+                              className=""
+                            />
+                          </a>
+                        ) : (
+                          <IndividualEvent
+                            key={item.id}
+                            item={item}
+                            activeFilters={activeFilters}
+                            windowWidth={windowWidth}
+                            hasLink={false}
+                            className="group-hover:"
+                          />
+                        )
+                      )}
+                    </div>
                   </div>
                 )}
+                <div className="mb-[-0.5rem]">ALL EVENTS</div>
                 <div
                   id="content"
                   className="border-[1px] border-white p-[4px] bg-black h-fit"
@@ -486,7 +501,8 @@ const App = () => {
                     </div>
                   )}
                   <div className="grow border-[1px] border-white ml-[-1px]">
-                    {Array.isArray(filteredData) &&
+                    {filteredData.length > 0 ? (
+                      Array.isArray(filteredData) &&
                       filteredData.map((item) => {
                         if (item.invite_url !== "Invite Only") {
                           return (
@@ -513,7 +529,12 @@ const App = () => {
                             />
                           );
                         }
-                      })}
+                      })
+                    ) : (
+                      <div className="w-full text-center text-white p-4">
+                        NO EVENTS MATCH YOUR FILTERS
+                      </div>
+                    )}
                   </div>
                 </div>
                 <div className="grow" />
