@@ -17,7 +17,7 @@ export default function IndividualEvent({
         windowWidth > 1030 ? "p-2 gap-[0.25rem]" : "p-2 gap-[0.25rem]"
       } ${
         item.starred_on_calendar === "TIER_4"
-          ? "bg-gradient-to-tl from-brand/50 from-10% to-black to-75%"
+          ? "bg-gradient-to-l from-brand/40 to-black"
           : ""
       }`}
     >

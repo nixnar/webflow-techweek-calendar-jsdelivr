@@ -948,6 +948,12 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important;
 }
 
+.tailwind .from-brand\\/40{
+  --tw-gradient-from: rgba(20, 232, 255, 0.4) var(--tw-gradient-from-position) !important;
+  --tw-gradient-to: rgba(20, 232, 255, 0) var(--tw-gradient-to-position) !important;
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important;
+}
+
 .tailwind .from-0\\%{
   --tw-gradient-from-position: 0% !important;
 }
@@ -19211,7 +19217,7 @@ function IndividualEvent(_ref) {
   var isStarred = item.starred_on_calendar === "TIER_1" || item.starred_on_calendar === "TIER_2" && activeFilters.date.length > 0;
   return /*#__PURE__*/react.createElement("div", {
     key: item.id,
-    className: "group flex flex-col w-full bg-black border-b-[1px] border-white ".concat(windowWidth > 1030 ? "p-2 gap-[0.25rem]" : "p-2 gap-[0.25rem]", " ").concat(item.starred_on_calendar === "TIER_4" ? "bg-gradient-to-tl from-brand/50 from-10% to-black to-75%" : "")
+    className: "group flex flex-col w-full bg-black border-b-[1px] border-white ".concat(windowWidth > 1030 ? "p-2 gap-[0.25rem]" : "p-2 gap-[0.25rem]", " ").concat(item.starred_on_calendar === "TIER_4" ? "bg-gradient-to-l from-brand/40 to-black" : "")
   }, /*#__PURE__*/react.createElement("div", {
     className: "flex w-full justify-between items-start gap-4 font-[500] tracking-[-0.45px] uppercase ".concat(windowWidth > 1030 ? "text-[0.75rem] leading-[0.75rem]" : "text-[0.5rem] leading-[0.5rem]")
   }, /*#__PURE__*/react.createElement("div", {
