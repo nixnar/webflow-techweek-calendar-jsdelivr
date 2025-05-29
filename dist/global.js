@@ -19250,7 +19250,7 @@ function IndividualEvent(_ref) {
     hasLink = _ref.hasLink,
     className = _ref.className,
     activeFilters = _ref.activeFilters;
-  var isStarred = item.starred_on_calendar === "TIER_1" || item.starred_on_calendar === "TIER_2" && activeFilters.date.length > 0;
+  var isStarred = item.starred_on_calendar === "TIER_1" || item.starred_on_calendar === "TIER_3" || item.starred_on_calendar === "TIER_2" && activeFilters.date.length > 0;
   return /*#__PURE__*/react.createElement("div", {
     key: item.id,
     className: "group flex flex-col w-full bg-black border-b-[1px] border-white ".concat(windowWidth > 1030 ? "p-2 gap-[0.25rem]" : "p-2 gap-[0.25rem]", " ").concat(item.starred_on_calendar === "TIER_3" ? "bg-gradient-to-br from-10% from-brand/20 to-70% to-black" : "", " ")

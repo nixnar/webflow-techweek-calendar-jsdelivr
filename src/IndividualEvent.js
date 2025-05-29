@@ -8,6 +8,7 @@ export default function IndividualEvent({
 }) {
   const isStarred =
     item.starred_on_calendar === "TIER_1" ||
+    item.starred_on_calendar === "TIER_3" ||
     (item.starred_on_calendar === "TIER_2" && activeFilters.date.length > 0);
 
   return (
