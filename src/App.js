@@ -22,7 +22,6 @@ const App = () => {
   const [searchMode, setSearchMode] = React.useState(false);
   const [isValidEmail, setIsValidEmail] = React.useState(false);
   const [email, setEmail] = React.useState("");
-  const [tier3Events, setTier3Events] = React.useState([]);
   const [availableFilters, setAvailableFilters] = React.useState({
     date: [],
     neighborhood: [],
@@ -160,12 +159,11 @@ const App = () => {
         const tier2Events = result.filter(
           (event) => event.starred_on_calendar === "TIER_2"
         );
-        const tier3Events = result.filter(
-          (event) => event.starred_on_calendar === "TIER_3"
-        );
         const regularEvents = result.filter(
           (event) =>
-            !event.starred_on_calendar || event.starred_on_calendar === "TIER_4"
+            !event.starred_on_calendar ||
+            (event.starred_on_calendar !== "TIER_1" &&
+              event.starred_on_calendar !== "TIER_2")
         );
 
         // Randomize TIER_1 events
@@ -178,12 +176,6 @@ const App = () => {
         for (let i = tier2Events.length - 1; i > 0; i--) {
           const j = Math.floor(Math.random() * (i + 1));
           [tier2Events[i], tier2Events[j]] = [tier2Events[j], tier2Events[i]];
-        }
-
-        // Randomize TIER_3 events
-        for (let i = tier3Events.length - 1; i > 0; i--) {
-          const j = Math.floor(Math.random() * (i + 1));
-          [tier3Events[i], tier3Events[j]] = [tier3Events[j], tier3Events[i]];
         }
 
         // Sort regular events by start time
@@ -200,12 +192,7 @@ const App = () => {
           item.time = timeToAmPm(item.start_time);
         });
 
-        tier3Events.forEach((item) => {
-          item.day = timeTodayOfWeek(item.start_time);
-          item.time = timeToAmPm(item.start_time);
-        });
         setData(sortedResult);
-        setTier3Events(tier3Events);
         setAvailableFilters(sortFilters(sortedResult));
       } catch (err) {
         setError(err.message);
@@ -240,7 +227,9 @@ const App = () => {
       );
       const regularEvents = filtered.filter(
         (event) =>
-          !event.starred_on_calendar || event.starred_on_calendar === "TIER_4"
+          !event.starred_on_calendar ||
+          (event.starred_on_calendar !== "TIER_1" &&
+            event.starred_on_calendar !== "TIER_2")
       );
 
       // Randomize TIER_1 events (using a stable sort to maintain existing randomization)
@@ -414,13 +403,10 @@ const App = () => {
 
             <div id="contentAndFilters" className="flex gap-4 justify-between">
               <div className="flex flex-col gap-4 grow">
-                {tier3Events.length > 0 && (
-                  <div className="mb-[-0.5rem]">FEATURED</div>
-                )}
-                {tier3Events.length > 0 && (
+                {/*tier3Events.length > 0 && (
                   <div className="flex flex-col border-[1px] border-white p-[4px] bg-black h-fit">
                     <div className="grow border-[1px] border-white ml-[-1px] border-b-0">
-                      {tier3Events.map((item) =>
+                      {tier3Events.map((item) =>  
                         item.invite_url !== "Invite Only" ? (
                           <a href={item.invite_url} target="_blank">
                             <IndividualEvent
@@ -445,8 +431,8 @@ const App = () => {
                       )}
                     </div>
                   </div>
-                )}
-                <div className="mb-[-0.5rem]">ALL EVENTS</div>
+                ) }
+                <div className="mb-[-0.5rem]">ALL EVENTS</div>*/}
                 <div
                   id="content"
                   className="border-[1px] border-white p-[4px] bg-black h-fit"
