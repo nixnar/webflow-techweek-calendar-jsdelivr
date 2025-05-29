@@ -14,6 +14,11 @@ export default function FiltersBody({
   const [topicsExpanded, setTopicsExpanded] = React.useState(false);
   const [typesExpanded, setTypesExpanded] = React.useState(false);
 
+  // Sync local searchTerm with activeFilters.search when it changes externally
+  React.useEffect(() => {
+    setSearchTerm(activeFilters.search);
+  }, [activeFilters.search]);
+
   // Handle search input
   const handleSearch = (e) => {
     setSearchTerm(e.target.value);

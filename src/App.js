@@ -39,6 +39,19 @@ const App = () => {
     search: "",
   });
 
+  // Parse URL parameters on component mount
+  React.useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const searchParam = urlParams.get("filter");
+    console.log(searchParam);
+    if (searchParam) {
+      setActiveFilters((prev) => ({
+        ...prev,
+        search: searchParam,
+      }));
+    }
+  }, []);
+
   const submitForm = async (e) => {
     if (e) e.preventDefault();
 
@@ -69,14 +82,14 @@ const App = () => {
   };
 
   React.useEffect(() => {
-    setActiveFilters({
+    setActiveFilters((prev) => ({
       date: [],
       neighborhood: [],
       start_time: [],
       topics: [],
       types: [],
-      search: "",
-    });
+      search: prev.search,
+    }));
     const loadData = async () => {
       try {
         setIsLoading(true);
