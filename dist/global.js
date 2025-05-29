@@ -906,6 +906,10 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   background-image: linear-gradient(to top left, var(--tw-gradient-stops)) !important;
 }
 
+.tailwind .bg-gradient-to-br{
+  background-image: linear-gradient(to bottom right, var(--tw-gradient-stops)) !important;
+}
+
 .tailwind .from-white{
   --tw-gradient-from: #fff var(--tw-gradient-from-position) !important;
   --tw-gradient-to: rgba(255, 255, 255, 0) var(--tw-gradient-to-position) !important;
@@ -954,6 +958,18 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important;
 }
 
+.tailwind .from-brand\\/30{
+  --tw-gradient-from: rgba(20, 232, 255, 0.3) var(--tw-gradient-from-position) !important;
+  --tw-gradient-to: rgba(20, 232, 255, 0) var(--tw-gradient-to-position) !important;
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important;
+}
+
+.tailwind .from-brand\\/20{
+  --tw-gradient-from: rgba(20, 232, 255, 0.2) var(--tw-gradient-from-position) !important;
+  --tw-gradient-to: rgba(20, 232, 255, 0) var(--tw-gradient-to-position) !important;
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important;
+}
+
 .tailwind .from-0\\%{
   --tw-gradient-from-position: 0% !important;
 }
@@ -964,6 +980,14 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 
 .tailwind .from-10\\%{
   --tw-gradient-from-position: 10% !important;
+}
+
+.tailwind .from-20\\%{
+  --tw-gradient-from-position: 20% !important;
+}
+
+.tailwind .from-15\\%{
+  --tw-gradient-from-position: 15% !important;
 }
 
 .tailwind .via-30\\%{
@@ -988,6 +1012,18 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 
 .tailwind .to-75\\%{
   --tw-gradient-to-position: 75% !important;
+}
+
+.tailwind .to-30\\%{
+  --tw-gradient-to-position: 30% !important;
+}
+
+.tailwind .to-70\\%{
+  --tw-gradient-to-position: 70% !important;
+}
+
+.tailwind .to-80\\%{
+  --tw-gradient-to-position: 80% !important;
 }
 
 .tailwind .object-contain{
@@ -19217,7 +19253,7 @@ function IndividualEvent(_ref) {
   var isStarred = item.starred_on_calendar === "TIER_1" || item.starred_on_calendar === "TIER_2" && activeFilters.date.length > 0;
   return /*#__PURE__*/react.createElement("div", {
     key: item.id,
-    className: "group flex flex-col w-full bg-black border-b-[1px] border-white ".concat(windowWidth > 1030 ? "p-2 gap-[0.25rem]" : "p-2 gap-[0.25rem]", " ")
+    className: "group flex flex-col w-full bg-black border-b-[1px] border-white ".concat(windowWidth > 1030 ? "p-2 gap-[0.25rem]" : "p-2 gap-[0.25rem]", " ").concat(item.starred_on_calendar === "TIER_3" ? "bg-gradient-to-br from-10% from-brand/20 to-70% to-black" : "", " ")
   }, /*#__PURE__*/react.createElement("div", {
     className: "flex w-full justify-between items-start gap-4 font-[500] tracking-[-0.45px] uppercase ".concat(windowWidth > 1030 ? "text-[0.75rem] leading-[0.75rem]" : "text-[0.5rem] leading-[0.5rem]")
   }, /*#__PURE__*/react.createElement("div", {
@@ -19458,7 +19494,7 @@ var App = function App() {
     });
     var loadData = /*#__PURE__*/function () {
       var _ref2 = App_asyncToGenerator(/*#__PURE__*/App_regeneratorRuntime().mark(function _callee2() {
-        var result, tier1Events, tier2Events, regularEvents, i, j, _ref3, _i, _j, _ref4, sortedResult;
+        var result, tier1Events, tier2Events, tier3Events, regularEvents, i, j, _ref3, _i, _j, _ref4, _i2, _j2, _ref5, sortedResult;
         return App_regeneratorRuntime().wrap(function _callee2$(_context2) {
           while (1) switch (_context2.prev = _context2.next) {
             case 0:
@@ -19533,8 +19569,11 @@ var App = function App() {
               tier2Events = result.filter(function (event) {
                 return event.starred_on_calendar === "TIER_2";
               });
+              tier3Events = result.filter(function (event) {
+                return event.starred_on_calendar === "TIER_3";
+              });
               regularEvents = result.filter(function (event) {
-                return !event.starred_on_calendar || event.starred_on_calendar !== "TIER_1" && event.starred_on_calendar !== "TIER_2";
+                return !event.starred_on_calendar || event.starred_on_calendar !== "TIER_1" && event.starred_on_calendar !== "TIER_2" && event.starred_on_calendar !== "TIER_3";
               }); // Randomize TIER_1 events
               for (i = tier1Events.length - 1; i > 0; i--) {
                 j = Math.floor(Math.random() * (i + 1));
@@ -19551,37 +19590,45 @@ var App = function App() {
                 tier2Events[_j] = _ref4[1];
               }
 
+              // Randomize TIER_3 events
+              for (_i2 = tier3Events.length - 1; _i2 > 0; _i2--) {
+                _j2 = Math.floor(Math.random() * (_i2 + 1));
+                _ref5 = [tier3Events[_j2], tier3Events[_i2]];
+                tier3Events[_i2] = _ref5[0];
+                tier3Events[_j2] = _ref5[1];
+              }
+
               // Sort regular events by start time
               regularEvents.sort(function (a, b) {
                 return new Date(a.start_time) - new Date(b.start_time);
               });
 
               // Combine all events in the desired order
-              sortedResult = [].concat(App_toConsumableArray(tier1Events), App_toConsumableArray(tier2Events), App_toConsumableArray(regularEvents)); // Apply time transformations after sorting
+              sortedResult = [].concat(App_toConsumableArray(tier3Events), App_toConsumableArray(tier1Events), App_toConsumableArray(tier2Events), App_toConsumableArray(regularEvents)); // Apply time transformations after sorting
               sortedResult.forEach(function (item) {
                 item.day = timeTodayOfWeek(item.start_time);
                 item.time = timeToAmPm(item.start_time);
               });
               setData(sortedResult);
               setAvailableFilters(sortFilters(sortedResult));
-              _context2.next = 27;
+              _context2.next = 29;
               break;
-            case 24:
-              _context2.prev = 24;
+            case 26:
+              _context2.prev = 26;
               _context2.t0 = _context2["catch"](0);
               setError(_context2.t0.message);
               //console.error("Error fetching data:", err);
-            case 27:
-              _context2.prev = 27;
+            case 29:
+              _context2.prev = 29;
               setTimeout(function () {
                 setIsLoading(false);
               }, 100);
-              return _context2.finish(27);
-            case 30:
+              return _context2.finish(29);
+            case 32:
             case "end":
               return _context2.stop();
           }
-        }, _callee2, null, [[0, 24, 27, 30]]);
+        }, _callee2, null, [[0, 26, 29, 32]]);
       }));
       return function loadData() {
         return _ref2.apply(this, arguments);
@@ -19593,12 +19640,11 @@ var App = function App() {
   //reset filtered data when city changes
   react.useEffect(function () {
     setFilteredData(data);
-  }, [data]);
+  }, [city]);
 
   //filter data based on active filters
   react.useEffect(function () {
     var filtered = applyFilters(data, activeFilters);
-
     // Apply custom sorting based on activeFilters.date
     if (filtered.length > 0) {
       // First separate events by tier
@@ -19608,27 +19654,32 @@ var App = function App() {
       var tier2Events = filtered.filter(function (event) {
         return event.starred_on_calendar === "TIER_2";
       });
+      var tier3Events = filtered.filter(function (event) {
+        return event.starred_on_calendar === "TIER_3";
+      });
       var regularEvents = filtered.filter(function (event) {
-        return !event.starred_on_calendar || event.starred_on_calendar !== "TIER_1" && event.starred_on_calendar !== "TIER_2";
+        return !event.starred_on_calendar || event.starred_on_calendar !== "TIER_1" && event.starred_on_calendar !== "TIER_2" && event.starred_on_calendar !== "TIER_3";
       });
 
       // Randomize TIER_1 events (using a stable sort to maintain existing randomization)
       var sortedTier1 = App_toConsumableArray(tier1Events);
+      var sortedTier3 = App_toConsumableArray(tier3Events);
 
       // Apply different sorting based on date filter status
       if (activeFilters.date.length > 0) {
         // When dates are selected: randomized tier_1, then randomized tier_2, then time sorted regular events
         var sortedTier2 = App_toConsumableArray(tier2Events);
+        var _sortedTier = App_toConsumableArray(tier3Events);
         var sortedRegular = App_toConsumableArray(regularEvents).sort(function (a, b) {
           return new Date(a.start_time) - new Date(b.start_time);
         });
-        filtered = [].concat(App_toConsumableArray(sortedTier1), App_toConsumableArray(sortedTier2), App_toConsumableArray(sortedRegular));
+        filtered = [].concat(App_toConsumableArray(_sortedTier), App_toConsumableArray(sortedTier1), App_toConsumableArray(sortedTier2), App_toConsumableArray(sortedRegular));
       } else {
         // When no dates selected: randomized tier_1, then time sorted all other events (including tier_2)
         var otherEvents = [].concat(App_toConsumableArray(tier2Events), App_toConsumableArray(regularEvents)).sort(function (a, b) {
           return new Date(a.start_time) - new Date(b.start_time);
         });
-        filtered = [].concat(App_toConsumableArray(sortedTier1), App_toConsumableArray(otherEvents));
+        filtered = [].concat(App_toConsumableArray(sortedTier3), App_toConsumableArray(sortedTier1), App_toConsumableArray(otherEvents));
       }
     }
     setFilteredData(filtered);
@@ -19815,10 +19866,10 @@ var App = function App() {
   }, filteredData.length > 0 ? Array.isArray(filteredData) && filteredData.map(function (item) {
     if (item.invite_url !== "Invite Only") {
       return /*#__PURE__*/react.createElement("a", {
+        key: item.id,
         href: item.invite_url,
         target: "_blank"
       }, /*#__PURE__*/react.createElement(IndividualEvent, {
-        key: item.id,
         item: item,
         activeFilters: activeFilters,
         windowWidth: windowWidth,

@@ -159,11 +159,17 @@ const App = () => {
         const tier2Events = result.filter(
           (event) => event.starred_on_calendar === "TIER_2"
         );
+
+        const tier3Events = result.filter(
+          (event) => event.starred_on_calendar === "TIER_3"
+        );
+
         const regularEvents = result.filter(
           (event) =>
             !event.starred_on_calendar ||
             (event.starred_on_calendar !== "TIER_1" &&
-              event.starred_on_calendar !== "TIER_2")
+              event.starred_on_calendar !== "TIER_2" &&
+              event.starred_on_calendar !== "TIER_3")
         );
 
         // Randomize TIER_1 events
@@ -178,14 +184,24 @@ const App = () => {
           [tier2Events[i], tier2Events[j]] = [tier2Events[j], tier2Events[i]];
         }
 
+        // Randomize TIER_3 events
+        for (let i = tier3Events.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [tier3Events[i], tier3Events[j]] = [tier3Events[j], tier3Events[i]];
+        }
+
         // Sort regular events by start time
         regularEvents.sort(
           (a, b) => new Date(a.start_time) - new Date(b.start_time)
         );
 
         // Combine all events in the desired order
-        const sortedResult = [...tier1Events, ...tier2Events, ...regularEvents];
-
+        const sortedResult = [
+          ...tier3Events,
+          ...tier1Events,
+          ...tier2Events,
+          ...regularEvents,
+        ];
         // Apply time transformations after sorting
         sortedResult.forEach((item) => {
           item.day = timeTodayOfWeek(item.start_time);
@@ -210,12 +226,11 @@ const App = () => {
   //reset filtered data when city changes
   React.useEffect(() => {
     setFilteredData(data);
-  }, [data]);
+  }, [city]);
 
   //filter data based on active filters
   React.useEffect(() => {
     let filtered = applyFilters(data, activeFilters);
-
     // Apply custom sorting based on activeFilters.date
     if (filtered.length > 0) {
       // First separate events by tier
@@ -225,30 +240,41 @@ const App = () => {
       const tier2Events = filtered.filter(
         (event) => event.starred_on_calendar === "TIER_2"
       );
+      const tier3Events = filtered.filter(
+        (event) => event.starred_on_calendar === "TIER_3"
+      );
       const regularEvents = filtered.filter(
         (event) =>
           !event.starred_on_calendar ||
           (event.starred_on_calendar !== "TIER_1" &&
-            event.starred_on_calendar !== "TIER_2")
+            event.starred_on_calendar !== "TIER_2" &&
+            event.starred_on_calendar !== "TIER_3")
       );
 
       // Randomize TIER_1 events (using a stable sort to maintain existing randomization)
       const sortedTier1 = [...tier1Events];
+      const sortedTier3 = [...tier3Events];
 
       // Apply different sorting based on date filter status
       if (activeFilters.date.length > 0) {
         // When dates are selected: randomized tier_1, then randomized tier_2, then time sorted regular events
         const sortedTier2 = [...tier2Events];
+        const sortedTier3 = [...tier3Events];
         const sortedRegular = [...regularEvents].sort(
           (a, b) => new Date(a.start_time) - new Date(b.start_time)
         );
-        filtered = [...sortedTier1, ...sortedTier2, ...sortedRegular];
+        filtered = [
+          ...sortedTier3,
+          ...sortedTier1,
+          ...sortedTier2,
+          ...sortedRegular,
+        ];
       } else {
         // When no dates selected: randomized tier_1, then time sorted all other events (including tier_2)
         const otherEvents = [...tier2Events, ...regularEvents].sort(
           (a, b) => new Date(a.start_time) - new Date(b.start_time)
         );
-        filtered = [...sortedTier1, ...otherEvents];
+        filtered = [...sortedTier3, ...sortedTier1, ...otherEvents];
       }
     }
 
@@ -492,9 +518,12 @@ const App = () => {
                       filteredData.map((item) => {
                         if (item.invite_url !== "Invite Only") {
                           return (
-                            <a href={item.invite_url} target="_blank">
+                            <a
+                              key={item.id}
+                              href={item.invite_url}
+                              target="_blank"
+                            >
                               <IndividualEvent
-                                key={item.id}
                                 item={item}
                                 activeFilters={activeFilters}
                                 windowWidth={windowWidth}

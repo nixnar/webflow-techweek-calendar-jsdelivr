@@ -15,13 +15,12 @@ export default function IndividualEvent({
       key={item.id}
       className={`group flex flex-col w-full bg-black border-b-[1px] border-white ${
         windowWidth > 1030 ? "p-2 gap-[0.25rem]" : "p-2 gap-[0.25rem]"
+      } ${
+        item.starred_on_calendar === "TIER_3"
+          ? "bg-gradient-to-br from-10% from-brand/20 to-70% to-black"
+          : ""
       } `}
     >
-      {/*
-      item.starred_on_calendar === "TIER_4"
-        ? "bg-gradient-to-l from-brand/40 to-black"
-        : ""
-    */}
       <div
         className={`flex w-full justify-between items-start gap-4 font-[500] tracking-[-0.45px] uppercase ${
           windowWidth > 1030
