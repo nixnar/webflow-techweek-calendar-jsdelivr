@@ -150,7 +150,6 @@ const App = () => {
             event.id === "215cb379-0621-4d27-9da4-e0291a0f3997" ||
             event.id === "c7b6d327-9ea5-41ab-9585-8d1534eb7e55" ||
             event.id === "f155fbd6-51d8-4779-80e0-e37a11e51711" ||
-            event.id === "9a49d027-74e3-4059-8961-6bdd93650636" ||
             event.id === "bc975332-2258-4664-b67e-1ae383d2c17d"
           ) {
             event.is_featured = true;
