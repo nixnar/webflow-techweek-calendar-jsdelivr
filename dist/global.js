@@ -18553,19 +18553,23 @@ function FiltersBody(_ref) {
     }
   };
   var convertTimeToMinutes = function convertTimeToMinutes(timeStr) {
-    // Handle formats like "8am", "9pm", "12pm", etc.
-    var isPM = timeStr.toLowerCase().includes("pm") && !timeStr.toLowerCase().includes("12pm");
-    var is12AM = timeStr.toLowerCase().includes("12am");
-
-    // Extract the hour
-    var hourMatch = timeStr.match(/\d+/);
-    var hour = hourMatch ? parseInt(hourMatch[0]) : 0;
-
-    // Adjust for PM times (add 12 hours)
-    if (isPM) hour += 12;
-    // 12am is actually 0 in 24-hour format
-    if (is12AM) hour = 0;
-    return hour * 60; // Convert to minutes for easy comparison
+    // Handle formats like "11:30 AM", "1:00 PM", etc.
+    var _timeStr$split = timeStr.split(" "),
+      _timeStr$split2 = _slicedToArray(_timeStr$split, 2),
+      time = _timeStr$split2[0],
+      period = _timeStr$split2[1];
+    var _time$split$map = time.split(":").map(Number),
+      _time$split$map2 = _slicedToArray(_time$split$map, 2),
+      hour = _time$split$map2[0],
+      minute = _time$split$map2[1];
+    var hours24 = hour;
+    if (period === "AM") {
+      if (hour === 12) hours24 = 0; // 12 AM is midnight
+    } else {
+      // PM
+      if (hour !== 12) hours24 = hour + 12; // 12 PM stays 12, others add 12
+    }
+    return hours24 * 60 + (minute || 0); // Convert to minutes, handle cases where minute might be undefined
   };
 
   // Helper to limit items to 2 rows (approximately 4-5 items per row based on current styling)
@@ -18957,6 +18961,12 @@ function timeToAmPm(time) {
   return "".concat(displayHours, ":").concat(minutes, " ").concat(ampm);
 }
 ;// ./src/utils/sortFilters.js
+function sortFilters_slicedToArray(r, e) { return sortFilters_arrayWithHoles(r) || sortFilters_iterableToArrayLimit(r, e) || sortFilters_unsupportedIterableToArray(r, e) || sortFilters_nonIterableRest(); }
+function sortFilters_nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function sortFilters_unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return sortFilters_arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? sortFilters_arrayLikeToArray(r, a) : void 0; } }
+function sortFilters_arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
+function sortFilters_iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
+function sortFilters_arrayWithHoles(r) { if (Array.isArray(r)) return r; }
 function sortFilters(result) {
   var newFilters = {
     date: [],
@@ -19007,18 +19017,26 @@ function sortFilters(result) {
 
   // Custom sort for time (AM first, PM last)
   newFilters.start_time.sort(function (a, b) {
-    var aIsPM = a.includes("PM");
-    var bIsPM = b.includes("PM");
-
-    // If one is AM and one is PM
-    if (aIsPM !== bIsPM) {
-      return aIsPM ? 1 : -1; // AM comes first
-    }
-
-    // Both are AM or both are PM, sort by hour
-    var aTime = parseFloat(a.split(":")[0]);
-    var bTime = parseFloat(b.split(":")[0]);
-    return aTime - bTime;
+    // Helper function to convert time string to minutes since midnight
+    var timeToMinutes = function timeToMinutes(timeStr) {
+      var _timeStr$split = timeStr.split(" "),
+        _timeStr$split2 = sortFilters_slicedToArray(_timeStr$split, 2),
+        time = _timeStr$split2[0],
+        period = _timeStr$split2[1];
+      var _time$split$map = time.split(":").map(Number),
+        _time$split$map2 = sortFilters_slicedToArray(_time$split$map, 2),
+        hour = _time$split$map2[0],
+        minute = _time$split$map2[1];
+      var hours24 = hour;
+      if (period === "AM") {
+        if (hour === 12) hours24 = 0; // 12 AM is midnight
+      } else {
+        // PM
+        if (hour !== 12) hours24 = hour + 12; // 12 PM stays 12, others add 12
+      }
+      return hours24 * 60 + minute;
+    };
+    return timeToMinutes(a) - timeToMinutes(b);
   });
 
   // Standard alphabetical sort for other filters
@@ -19476,7 +19494,7 @@ var App = function App() {
   react.useEffect(function () {
     var urlParams = new URLSearchParams(window.location.search);
     var searchParam = urlParams.get("filter");
-    console.log(searchParam);
+    //console.log(searchParam);
     if (searchParam) {
       setActiveFilters(function (prev) {
         return App_objectSpread(App_objectSpread({}, prev), {}, {
@@ -19743,6 +19761,7 @@ var App = function App() {
         filtered = [].concat(App_toConsumableArray(sortedTier3), App_toConsumableArray(sortedTier1), App_toConsumableArray(otherEvents));
       }
     }
+    //console.log(activeFilters);
     setFilteredData(filtered);
   }, [activeFilters, data]);
 

@@ -56,22 +56,19 @@ export default function FiltersBody({
   };
 
   const convertTimeToMinutes = (timeStr) => {
-    // Handle formats like "8am", "9pm", "12pm", etc.
-    const isPM =
-      timeStr.toLowerCase().includes("pm") &&
-      !timeStr.toLowerCase().includes("12pm");
-    const is12AM = timeStr.toLowerCase().includes("12am");
+    // Handle formats like "11:30 AM", "1:00 PM", etc.
+    const [time, period] = timeStr.split(" ");
+    const [hour, minute] = time.split(":").map(Number);
 
-    // Extract the hour
-    const hourMatch = timeStr.match(/\d+/);
-    let hour = hourMatch ? parseInt(hourMatch[0]) : 0;
+    let hours24 = hour;
+    if (period === "AM") {
+      if (hour === 12) hours24 = 0; // 12 AM is midnight
+    } else {
+      // PM
+      if (hour !== 12) hours24 = hour + 12; // 12 PM stays 12, others add 12
+    }
 
-    // Adjust for PM times (add 12 hours)
-    if (isPM) hour += 12;
-    // 12am is actually 0 in 24-hour format
-    if (is12AM) hour = 0;
-
-    return hour * 60; // Convert to minutes for easy comparison
+    return hours24 * 60 + (minute || 0); // Convert to minutes, handle cases where minute might be undefined
   };
 
   // Helper to limit items to 2 rows (approximately 4-5 items per row based on current styling)

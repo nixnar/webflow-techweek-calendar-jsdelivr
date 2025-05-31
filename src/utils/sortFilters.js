@@ -54,18 +54,23 @@ export default function sortFilters(result) {
 
   // Custom sort for time (AM first, PM last)
   newFilters.start_time.sort((a, b) => {
-    const aIsPM = a.includes("PM");
-    const bIsPM = b.includes("PM");
+    // Helper function to convert time string to minutes since midnight
+    const timeToMinutes = (timeStr) => {
+      const [time, period] = timeStr.split(" ");
+      const [hour, minute] = time.split(":").map(Number);
 
-    // If one is AM and one is PM
-    if (aIsPM !== bIsPM) {
-      return aIsPM ? 1 : -1; // AM comes first
-    }
+      let hours24 = hour;
+      if (period === "AM") {
+        if (hour === 12) hours24 = 0; // 12 AM is midnight
+      } else {
+        // PM
+        if (hour !== 12) hours24 = hour + 12; // 12 PM stays 12, others add 12
+      }
 
-    // Both are AM or both are PM, sort by hour
-    const aTime = parseFloat(a.split(":")[0]);
-    const bTime = parseFloat(b.split(":")[0]);
-    return aTime - bTime;
+      return hours24 * 60 + minute;
+    };
+
+    return timeToMinutes(a) - timeToMinutes(b);
   });
 
   // Standard alphabetical sort for other filters

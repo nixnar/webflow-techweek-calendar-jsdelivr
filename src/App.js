@@ -69,7 +69,7 @@ const App = () => {
   React.useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
     const searchParam = urlParams.get("filter");
-    console.log(searchParam);
+    //console.log(searchParam);
     if (searchParam) {
       setActiveFilters((prev) => ({
         ...prev,
@@ -321,7 +321,7 @@ const App = () => {
         filtered = [...sortedTier3, ...sortedTier1, ...otherEvents];
       }
     }
-
+    //console.log(activeFilters);
     setFilteredData(filtered);
   }, [activeFilters, data]);
 
