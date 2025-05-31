@@ -19383,6 +19383,31 @@ function App_arrayWithHoles(r) { if (Array.isArray(r)) return r; }
 
 
 
+var afterNow = function afterNow(date) {
+  // Get current time in New York timezone using Intl API
+  var now = new Date();
+
+  // Create a date formatter for NY timezone
+  var formatter = new Intl.DateTimeFormat("en", {
+    timeZone: "America/New_York",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    hour12: false
+  });
+
+  // Get the current time in NY timezone as formatted string
+  var parts = formatter.formatToParts(now);
+  var nyTimeString = "".concat(parts[4].value, "-").concat(parts[0].value, "-").concat(parts[2].value, "T").concat(parts[6].value, ":").concat(parts[8].value, ":").concat(parts[10].value);
+  var nyTime = new Date(nyTimeString);
+
+  // Parse event date (assuming it's in NY timezone)
+  var eventDate = new Date(date);
+  return eventDate > nyTime;
+};
 var App = function App() {
   var _React$useState = react.useState([]),
     _React$useState2 = App_slicedToArray(_React$useState, 2),
@@ -19524,7 +19549,7 @@ var App = function App() {
     });
     var loadData = /*#__PURE__*/function () {
       var _ref2 = App_asyncToGenerator(/*#__PURE__*/App_regeneratorRuntime().mark(function _callee2() {
-        var result, tier1Events, tier2Events, tier3Events, regularEvents, i, j, _ref3, _i, _j, _ref4, _i2, _j2, _ref5, sortedResult;
+        var result, filteredResult, tier1Events, tier2Events, tier3Events, regularEvents, i, j, _ref3, _i, _j, _ref4, _i2, _j2, _ref5, sortedResult;
         return App_regeneratorRuntime().wrap(function _callee2$(_context2) {
           while (1) switch (_context2.prev = _context2.next) {
             case 0:
@@ -19543,7 +19568,29 @@ var App = function App() {
               setError("showForm");
               return _context2.abrupt("return");
             case 10:
-              result.forEach(function (event) {
+              result.find(function (event) {
+                if (event.id === "917cc4f0-3568-4738-951b-63093c8882f1") {
+                  event.is_featured = false;
+                  event.starred_on_calendar = null;
+                } else if (event.id === "215cb379-0621-4d27-9da4-e0291a0f3997" || event.id === "c7b6d327-9ea5-41ab-9585-8d1534eb7e55" || event.id === "f155fbd6-51d8-4779-80e0-e37a11e51711" || event.id === "bc975332-2258-4664-b67e-1ae383d2c17d") {
+                  event.is_featured = true;
+                  event.starred_on_calendar = "TIER_1";
+                } else if (event.id === "9061f759-2368-45cf-9663-5df3e7a143ef") {
+                  event.event_name = "Atlassian: Unleash Every Startup";
+                  event.is_featured = true;
+                  event.starred_on_calendar = "TIER_1";
+                } else if (event.id === "38614fde-35b0-43d8-8bf9-a05cb397ba76") {
+                  event.start_time = "2025-06-05T13:00:00";
+                } else if (event.id === "f990bcfb-d089-4ea7-8b9b-63bf9d4ad80a") {
+                  event.start_time = "2025-06-03T17:30:00";
+                }
+              });
+
+              // Filter out events that have already passed
+              filteredResult = result.filter(function (event) {
+                return afterNow(event.start_time);
+              });
+              filteredResult.forEach(function (event) {
                 event.formats = event.formats.map(function (format) {
                   if (format.startsWith("B") || format.startsWith(" B")) {
                     return "Breakfast, Brunch or Lunch";
@@ -19575,34 +19622,18 @@ var App = function App() {
                   return theme;
                 });
               });
-              result.find(function (event) {
-                if (event.id === "917cc4f0-3568-4738-951b-63093c8882f1") {
-                  event.is_featured = false;
-                  event.starred_on_calendar = null;
-                } else if (event.id === "215cb379-0621-4d27-9da4-e0291a0f3997" || event.id === "c7b6d327-9ea5-41ab-9585-8d1534eb7e55" || event.id === "f155fbd6-51d8-4779-80e0-e37a11e51711" || event.id === "bc975332-2258-4664-b67e-1ae383d2c17d") {
-                  event.is_featured = true;
-                  event.starred_on_calendar = "TIER_1";
-                } else if (event.id === "9061f759-2368-45cf-9663-5df3e7a143ef") {
-                  event.event_name = "Atlassian: Unleash Every Startup";
-                  event.is_featured = true;
-                  event.starred_on_calendar = "TIER_1";
-                } else if (event.id === "38614fde-35b0-43d8-8bf9-a05cb397ba76") {
-                  event.start_time = "2025-06-05T13:00:00";
-                } else if (event.id === "f990bcfb-d089-4ea7-8b9b-63bf9d4ad80a") {
-                  event.start_time = "2025-06-03T17:30:00";
-                }
-              });
+
               // Separate events by tier
-              tier1Events = result.filter(function (event) {
+              tier1Events = filteredResult.filter(function (event) {
                 return event.starred_on_calendar === "TIER_1";
               });
-              tier2Events = result.filter(function (event) {
+              tier2Events = filteredResult.filter(function (event) {
                 return event.starred_on_calendar === "TIER_2";
               });
-              tier3Events = result.filter(function (event) {
+              tier3Events = filteredResult.filter(function (event) {
                 return event.starred_on_calendar === "TIER_3";
               });
-              regularEvents = result.filter(function (event) {
+              regularEvents = filteredResult.filter(function (event) {
                 return !event.starred_on_calendar || event.starred_on_calendar !== "TIER_1" && event.starred_on_calendar !== "TIER_2" && event.starred_on_calendar !== "TIER_3";
               }); // Randomize TIER_1 events
               for (i = tier1Events.length - 1; i > 0; i--) {
@@ -19641,24 +19672,24 @@ var App = function App() {
               });
               setData(sortedResult);
               setAvailableFilters(sortFilters(sortedResult));
-              _context2.next = 29;
+              _context2.next = 30;
               break;
-            case 26:
-              _context2.prev = 26;
+            case 27:
+              _context2.prev = 27;
               _context2.t0 = _context2["catch"](0);
               setError(_context2.t0.message);
               //console.error("Error fetching data:", err);
-            case 29:
-              _context2.prev = 29;
+            case 30:
+              _context2.prev = 30;
               setTimeout(function () {
                 setIsLoading(false);
               }, 100);
-              return _context2.finish(29);
-            case 32:
+              return _context2.finish(30);
+            case 33:
             case "end":
               return _context2.stop();
           }
-        }, _callee2, null, [[0, 26, 29, 32]]);
+        }, _callee2, null, [[0, 27, 30, 33]]);
       }));
       return function loadData() {
         return _ref2.apply(this, arguments);

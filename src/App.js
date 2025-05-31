@@ -11,6 +11,32 @@ import MobileFilters from "./MobileFilters";
 import MobileCityDropdown from "./MobileCityDropdown";
 import IndividualEvent from "./IndividualEvent";
 
+const afterNow = (date) => {
+  // Get current time in New York timezone using Intl API
+  const now = new Date();
+
+  // Create a date formatter for NY timezone
+  const formatter = new Intl.DateTimeFormat("en", {
+    timeZone: "America/New_York",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    hour12: false,
+  });
+
+  // Get the current time in NY timezone as formatted string
+  const parts = formatter.formatToParts(now);
+  const nyTimeString = `${parts[4].value}-${parts[0].value}-${parts[2].value}T${parts[6].value}:${parts[8].value}:${parts[10].value}`;
+  const nyTime = new Date(nyTimeString);
+
+  // Parse event date (assuming it's in NY timezone)
+  const eventDate = new Date(date);
+  return eventDate > nyTime;
+};
+
 const App = () => {
   const [data, setData] = React.useState([]);
   const [filteredData, setFilteredData] = React.useState([]);
@@ -104,7 +130,35 @@ const App = () => {
           return;
         }
 
-        result.forEach((event) => {
+        result.find((event) => {
+          if (event.id === "917cc4f0-3568-4738-951b-63093c8882f1") {
+            event.is_featured = false;
+            event.starred_on_calendar = null;
+          } else if (
+            event.id === "215cb379-0621-4d27-9da4-e0291a0f3997" ||
+            event.id === "c7b6d327-9ea5-41ab-9585-8d1534eb7e55" ||
+            event.id === "f155fbd6-51d8-4779-80e0-e37a11e51711" ||
+            event.id === "bc975332-2258-4664-b67e-1ae383d2c17d"
+          ) {
+            event.is_featured = true;
+            event.starred_on_calendar = "TIER_1";
+          } else if (event.id === "9061f759-2368-45cf-9663-5df3e7a143ef") {
+            event.event_name = "Atlassian: Unleash Every Startup";
+            event.is_featured = true;
+            event.starred_on_calendar = "TIER_1";
+          } else if (event.id === "38614fde-35b0-43d8-8bf9-a05cb397ba76") {
+            event.start_time = "2025-06-05T13:00:00";
+          } else if (event.id === "f990bcfb-d089-4ea7-8b9b-63bf9d4ad80a") {
+            event.start_time = "2025-06-03T17:30:00";
+          }
+        });
+
+        // Filter out events that have already passed
+        const filteredResult = result.filter((event) => {
+          return afterNow(event.start_time);
+        });
+
+        filteredResult.forEach((event) => {
           event.formats = event.formats.map((format) => {
             if (format.startsWith("B") || format.startsWith(" B")) {
               return "Breakfast, Brunch or Lunch";
@@ -142,41 +196,19 @@ const App = () => {
           });
         });
 
-        result.find((event) => {
-          if (event.id === "917cc4f0-3568-4738-951b-63093c8882f1") {
-            event.is_featured = false;
-            event.starred_on_calendar = null;
-          } else if (
-            event.id === "215cb379-0621-4d27-9da4-e0291a0f3997" ||
-            event.id === "c7b6d327-9ea5-41ab-9585-8d1534eb7e55" ||
-            event.id === "f155fbd6-51d8-4779-80e0-e37a11e51711" ||
-            event.id === "bc975332-2258-4664-b67e-1ae383d2c17d"
-          ) {
-            event.is_featured = true;
-            event.starred_on_calendar = "TIER_1";
-          } else if (event.id === "9061f759-2368-45cf-9663-5df3e7a143ef") {
-            event.event_name = "Atlassian: Unleash Every Startup";
-            event.is_featured = true;
-            event.starred_on_calendar = "TIER_1";
-          } else if (event.id === "38614fde-35b0-43d8-8bf9-a05cb397ba76") {
-            event.start_time = "2025-06-05T13:00:00";
-          } else if (event.id === "f990bcfb-d089-4ea7-8b9b-63bf9d4ad80a") {
-            event.start_time = "2025-06-03T17:30:00";
-          }
-        });
         // Separate events by tier
-        const tier1Events = result.filter(
+        const tier1Events = filteredResult.filter(
           (event) => event.starred_on_calendar === "TIER_1"
         );
-        const tier2Events = result.filter(
+        const tier2Events = filteredResult.filter(
           (event) => event.starred_on_calendar === "TIER_2"
         );
 
-        const tier3Events = result.filter(
+        const tier3Events = filteredResult.filter(
           (event) => event.starred_on_calendar === "TIER_3"
         );
 
-        const regularEvents = result.filter(
+        const regularEvents = filteredResult.filter(
           (event) =>
             !event.starred_on_calendar ||
             (event.starred_on_calendar !== "TIER_1" &&
