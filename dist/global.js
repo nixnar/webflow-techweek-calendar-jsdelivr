@@ -615,6 +615,10 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   max-height: 500px !important;
 }
 
+.tailwind .min-h-\\[20rem\\]{
+  min-height: 20rem !important;
+}
+
 .tailwind .w-\\[12px\\]{
   width: 12px !important;
 }
@@ -806,6 +810,10 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 
 .tailwind .border-2{
   border-width: 2px !important;
+}
+
+.tailwind .border-4{
+  border-width: 4px !important;
 }
 
 .tailwind .border-b-\\[1px\\]{
@@ -18927,7 +18935,7 @@ function Filters(_ref) {
   }, []);
   return /*#__PURE__*/react.createElement("div", {
     id: "filters",
-    className: "w-[22.5rem] border-[1px] border-white p-[4px] bg-black sticky top-4",
+    className: "w-[22.5rem] min-h-[20rem] border-[1px] border-white p-[4px] bg-black sticky top-4 overflow-hidden",
     style: {
       height: isSticky ? "calc(100vh - 2rem)" : headerHeight ? "calc(100vh - ".concat(headerHeight, "px - 9.5rem)") : "100vh",
       transition: "height 0.2s ease-out"
@@ -19587,17 +19595,7 @@ var App = function App() {
               return _context2.abrupt("return");
             case 10:
               result.find(function (event) {
-                if (event.id === "917cc4f0-3568-4738-951b-63093c8882f1") {
-                  event.is_featured = false;
-                  event.starred_on_calendar = null;
-                } else if (event.id === "215cb379-0621-4d27-9da4-e0291a0f3997" || event.id === "c7b6d327-9ea5-41ab-9585-8d1534eb7e55" || event.id === "f155fbd6-51d8-4779-80e0-e37a11e51711" || event.id === "bc975332-2258-4664-b67e-1ae383d2c17d") {
-                  event.is_featured = true;
-                  event.starred_on_calendar = "TIER_1";
-                } else if (event.id === "9061f759-2368-45cf-9663-5df3e7a143ef") {
-                  event.event_name = "Atlassian: Unleash Every Startup";
-                  event.is_featured = true;
-                  event.starred_on_calendar = "TIER_1";
-                } else if (event.id === "38614fde-35b0-43d8-8bf9-a05cb397ba76") {
+                if (event.id === "917cc4f0-3568-4738-951b-63093c8882f1") {} else if (event.id === "38614fde-35b0-43d8-8bf9-a05cb397ba76") {
                   event.start_time = "2025-06-05T13:00:00";
                 } else if (event.id === "f990bcfb-d089-4ea7-8b9b-63bf9d4ad80a") {
                   event.start_time = "2025-06-03T17:30:00";

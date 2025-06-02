@@ -77,7 +77,7 @@ export default function Filters({
   return (
     <div
       id="filters"
-      className="w-[22.5rem] border-[1px] border-white p-[4px] bg-black sticky top-4"
+      className="w-[22.5rem] min-h-[20rem] border-[1px] border-white p-[4px] bg-black sticky top-4 overflow-hidden"
       style={{
         height: isSticky
           ? `calc(100vh - 2rem)`

@@ -132,20 +132,6 @@ const App = () => {
 
         result.find((event) => {
           if (event.id === "917cc4f0-3568-4738-951b-63093c8882f1") {
-            event.is_featured = false;
-            event.starred_on_calendar = null;
-          } else if (
-            event.id === "215cb379-0621-4d27-9da4-e0291a0f3997" ||
-            event.id === "c7b6d327-9ea5-41ab-9585-8d1534eb7e55" ||
-            event.id === "f155fbd6-51d8-4779-80e0-e37a11e51711" ||
-            event.id === "bc975332-2258-4664-b67e-1ae383d2c17d"
-          ) {
-            event.is_featured = true;
-            event.starred_on_calendar = "TIER_1";
-          } else if (event.id === "9061f759-2368-45cf-9663-5df3e7a143ef") {
-            event.event_name = "Atlassian: Unleash Every Startup";
-            event.is_featured = true;
-            event.starred_on_calendar = "TIER_1";
           } else if (event.id === "38614fde-35b0-43d8-8bf9-a05cb397ba76") {
             event.start_time = "2025-06-05T13:00:00";
           } else if (event.id === "f990bcfb-d089-4ea7-8b9b-63bf9d4ad80a") {
