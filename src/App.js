@@ -416,11 +416,10 @@ const App = () => {
                 </svg>
               </div>
               <h2 className="text-4xl md:text-5xl font-bold mb-4">
-                ERROR DETECTED
+                DOWN FOR MAINTENANCE
               </h2>
               <p className="text-xl mb-6">
-                Your email address maybe incorrect. You might be in incognito
-                mode or blocked cookies.
+                Calendar is currently down for maintenance. Please try again later.
               </p>
               <button
                 onClick={() => window.location.reload()}

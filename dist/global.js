@@ -542,10 +542,6 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   z-index: 9999 !important;
 }
 
-.tailwind .m-\\[-1rem\\]{
-  margin: -1rem !important;
-}
-
 .tailwind .mb-4{
   margin-bottom: 1rem !important;
 }
@@ -556,6 +552,10 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 
 .tailwind .mb-8{
   margin-bottom: 2rem !important;
+}
+
+.tailwind .mb-\\[-0\\.5rem\\]{
+  margin-bottom: -0.5rem !important;
 }
 
 .tailwind .ml-2{
@@ -572,14 +572,6 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 
 .tailwind .mt-8{
   margin-top: 2rem !important;
-}
-
-.tailwind .mb-\\[-1rem\\]{
-  margin-bottom: -1rem !important;
-}
-
-.tailwind .mb-\\[-0\\.5rem\\]{
-  margin-bottom: -0.5rem !important;
 }
 
 .tailwind .block{
@@ -808,12 +800,8 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   border-width: 1px !important;
 }
 
-.tailwind .border-2{
-  border-width: 2px !important;
-}
-
-.tailwind .border-4{
-  border-width: 4px !important;
+.tailwind .border-b-0{
+  border-bottom-width: 0px !important;
 }
 
 .tailwind .border-b-\\[1px\\]{
@@ -822,10 +810,6 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 
 .tailwind .border-l{
   border-left-width: 1px !important;
-}
-
-.tailwind .border-b-0{
-  border-bottom-width: 0px !important;
 }
 
 .tailwind .border-none{
@@ -902,74 +886,8 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   --tw-bg-opacity: 0.5 !important;
 }
 
-.tailwind .bg-gradient-to-r{
-  background-image: linear-gradient(to right, var(--tw-gradient-stops)) !important;
-}
-
-.tailwind .bg-gradient-to-l{
-  background-image: linear-gradient(to left, var(--tw-gradient-stops)) !important;
-}
-
-.tailwind .bg-gradient-to-tl{
-  background-image: linear-gradient(to top left, var(--tw-gradient-stops)) !important;
-}
-
 .tailwind .bg-gradient-to-br{
   background-image: linear-gradient(to bottom right, var(--tw-gradient-stops)) !important;
-}
-
-.tailwind .from-white{
-  --tw-gradient-from: #fff var(--tw-gradient-from-position) !important;
-  --tw-gradient-to: rgba(255, 255, 255, 0) var(--tw-gradient-to-position) !important;
-  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important;
-}
-
-.tailwind .from-gray-300{
-  --tw-gradient-from: #d1d5db var(--tw-gradient-from-position) !important;
-  --tw-gradient-to: rgba(209, 213, 219, 0) var(--tw-gradient-to-position) !important;
-  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important;
-}
-
-.tailwind .from-gray-700{
-  --tw-gradient-from: #374151 var(--tw-gradient-from-position) !important;
-  --tw-gradient-to: rgba(55, 65, 81, 0) var(--tw-gradient-to-position) !important;
-  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important;
-}
-
-.tailwind .from-gray-500{
-  --tw-gradient-from: #6b7280 var(--tw-gradient-from-position) !important;
-  --tw-gradient-to: rgba(107, 114, 128, 0) var(--tw-gradient-to-position) !important;
-  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important;
-}
-
-.tailwind .from-brand{
-  --tw-gradient-from: #14E8FF var(--tw-gradient-from-position) !important;
-  --tw-gradient-to: rgba(20, 232, 255, 0) var(--tw-gradient-to-position) !important;
-  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important;
-}
-
-.tailwind .from-brand\\/70{
-  --tw-gradient-from: rgba(20, 232, 255, 0.7) var(--tw-gradient-from-position) !important;
-  --tw-gradient-to: rgba(20, 232, 255, 0) var(--tw-gradient-to-position) !important;
-  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important;
-}
-
-.tailwind .from-brand\\/50{
-  --tw-gradient-from: rgba(20, 232, 255, 0.5) var(--tw-gradient-from-position) !important;
-  --tw-gradient-to: rgba(20, 232, 255, 0) var(--tw-gradient-to-position) !important;
-  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important;
-}
-
-.tailwind .from-brand\\/40{
-  --tw-gradient-from: rgba(20, 232, 255, 0.4) var(--tw-gradient-from-position) !important;
-  --tw-gradient-to: rgba(20, 232, 255, 0) var(--tw-gradient-to-position) !important;
-  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important;
-}
-
-.tailwind .from-brand\\/30{
-  --tw-gradient-from: rgba(20, 232, 255, 0.3) var(--tw-gradient-from-position) !important;
-  --tw-gradient-to: rgba(20, 232, 255, 0) var(--tw-gradient-to-position) !important;
-  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important;
 }
 
 .tailwind .from-brand\\/20{
@@ -978,60 +896,12 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important;
 }
 
-.tailwind .from-0\\%{
-  --tw-gradient-from-position: 0% !important;
-}
-
-.tailwind .from-30\\%{
-  --tw-gradient-from-position: 30% !important;
-}
-
-.tailwind .from-10\\%{
-  --tw-gradient-from-position: 10% !important;
-}
-
 .tailwind .from-20\\%{
   --tw-gradient-from-position: 20% !important;
 }
 
-.tailwind .from-15\\%{
-  --tw-gradient-from-position: 15% !important;
-}
-
-.tailwind .via-30\\%{
-  --tw-gradient-via-position: 30% !important;
-}
-
-.tailwind .via-20\\%{
-  --tw-gradient-via-position: 20% !important;
-}
-
-.tailwind .via-10\\%{
-  --tw-gradient-via-position: 10% !important;
-}
-
 .tailwind .to-black{
   --tw-gradient-to: #000 var(--tw-gradient-to-position) !important;
-}
-
-.tailwind .to-60\\%{
-  --tw-gradient-to-position: 60% !important;
-}
-
-.tailwind .to-75\\%{
-  --tw-gradient-to-position: 75% !important;
-}
-
-.tailwind .to-30\\%{
-  --tw-gradient-to-position: 30% !important;
-}
-
-.tailwind .to-70\\%{
-  --tw-gradient-to-position: 70% !important;
-}
-
-.tailwind .to-80\\%{
-  --tw-gradient-to-position: 80% !important;
 }
 
 .tailwind .to-90\\%{
@@ -1065,6 +935,10 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 
 .tailwind .p-\\[4px\\]{
   padding: 4px !important;
+}
+
+.tailwind .p-8{
+  padding: 2rem !important;
 }
 
 .tailwind .px-2{
@@ -1154,6 +1028,11 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 .tailwind .text-xl{
   font-size: 1.25rem !important;
   line-height: 1.75rem !important;
+}
+
+.tailwind .text-2xl{
+  font-size: 1.5rem !important;
+  line-height: 2rem !important;
 }
 
 .tailwind .font-\\[400\\]{
@@ -1423,10 +1302,6 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   background-color: rgba(255, 255, 255, var(--tw-bg-opacity, 1)) !important;
 }
 
-.hover\\:bg-gradient-to-l:hover{
-  background-image: linear-gradient(to left, var(--tw-gradient-stops)) !important;
-}
-
 .hover\\:text-black:hover{
   --tw-text-opacity: 1 !important;
   color: rgba(0, 0, 0, 1) !important;
@@ -1477,6 +1352,11 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   .md\\:text-5xl{
     font-size: 3rem !important;
     line-height: 1 !important;
+  }
+
+  .md\\:text-3xl{
+    font-size: 1.875rem !important;
+    line-height: 2.25rem !important;
   }
 }
 
@@ -19861,9 +19741,9 @@ var App = function App() {
     d: "M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18Z"
   }))), /*#__PURE__*/react.createElement("h2", {
     className: "text-4xl md:text-5xl font-bold mb-4"
-  }, "ERROR DETECTED"), /*#__PURE__*/react.createElement("p", {
+  }, "DOWN FOR MAINTENANCE"), /*#__PURE__*/react.createElement("p", {
     className: "text-xl mb-6"
-  }, "Your email address maybe incorrect. You might be in incognito mode or blocked cookies."), /*#__PURE__*/react.createElement("button", {
+  }, "Calendar is currently down for maintenance. Please try again later."), /*#__PURE__*/react.createElement("button", {
     onClick: function onClick() {
       return window.location.reload();
     },
