@@ -937,10 +937,6 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   padding: 4px !important;
 }
 
-.tailwind .p-8{
-  padding: 2rem !important;
-}
-
 .tailwind .px-2{
   padding-left: 0.5rem !important;
   padding-right: 0.5rem !important;
@@ -1028,11 +1024,6 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 .tailwind .text-xl{
   font-size: 1.25rem !important;
   line-height: 1.75rem !important;
-}
-
-.tailwind .text-2xl{
-  font-size: 1.5rem !important;
-  line-height: 2rem !important;
 }
 
 .tailwind .font-\\[400\\]{
@@ -1352,11 +1343,6 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   .md\\:text-5xl{
     font-size: 3rem !important;
     line-height: 1 !important;
-  }
-
-  .md\\:text-3xl{
-    font-size: 1.875rem !important;
-    line-height: 2.25rem !important;
   }
 }
 
@@ -19290,29 +19276,33 @@ function App_arrayWithHoles(r) { if (Array.isArray(r)) return r; }
 
 
 var afterNow = function afterNow(date) {
-  // Get current time in New York timezone using Intl API
+  // Get current date in NY timezone
   var now = new Date();
-
-  // Create a date formatter for NY timezone
   var formatter = new Intl.DateTimeFormat("en", {
     timeZone: "America/New_York",
     year: "numeric",
     month: "2-digit",
-    day: "2-digit",
-    hour: "2-digit",
-    minute: "2-digit",
-    second: "2-digit",
-    hour12: false
+    day: "2-digit"
   });
-
-  // Get the current time in NY timezone as formatted string
   var parts = formatter.formatToParts(now);
-  var nyTimeString = "".concat(parts[4].value, "-").concat(parts[0].value, "-").concat(parts[2].value, "T").concat(parts[6].value, ":").concat(parts[8].value, ":").concat(parts[10].value);
-  var nyTime = new Date(nyTimeString);
 
-  // Parse event date (assuming it's in NY timezone)
-  var eventDate = new Date(date);
-  return eventDate > nyTime;
+  // Extract parts by type instead of assuming array order
+  var year = parts.find(function (part) {
+    return part.type === 'year';
+  }).value;
+  var month = parts.find(function (part) {
+    return part.type === 'month';
+  }).value;
+  var day = parts.find(function (part) {
+    return part.type === 'day';
+  }).value;
+  var todayString = "".concat(year, "-").concat(month, "-").concat(day);
+
+  // Get event date string (YYYY-MM-DD format) - events are already in NY timezone
+  var eventString = date.split('T')[0]; // Direct string split instead of Date parsing
+
+  // Compare date strings directly
+  return eventString >= todayString;
 };
 var App = function App() {
   var _React$useState = react.useState([]),
@@ -19741,9 +19731,9 @@ var App = function App() {
     d: "M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18Z"
   }))), /*#__PURE__*/react.createElement("h2", {
     className: "text-4xl md:text-5xl font-bold mb-4"
-  }, "DOWN FOR MAINTENANCE"), /*#__PURE__*/react.createElement("p", {
+  }, "ERROR DETECTED"), /*#__PURE__*/react.createElement("p", {
     className: "text-xl mb-6"
-  }, "Calendar is currently down for maintenance. Please try again later."), /*#__PURE__*/react.createElement("button", {
+  }, "Your email address maybe incorrect. You might be in incognito mode or blocked cookies."), /*#__PURE__*/react.createElement("button", {
     onClick: function onClick() {
       return window.location.reload();
     },

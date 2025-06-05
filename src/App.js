@@ -12,29 +12,27 @@ import MobileCityDropdown from "./MobileCityDropdown";
 import IndividualEvent from "./IndividualEvent";
 
 const afterNow = (date) => {
-  // Get current time in New York timezone using Intl API
+  // Get current date in NY timezone
   const now = new Date();
-
-  // Create a date formatter for NY timezone
   const formatter = new Intl.DateTimeFormat("en", {
     timeZone: "America/New_York",
     year: "numeric",
     month: "2-digit",
     day: "2-digit",
-    hour: "2-digit",
-    minute: "2-digit",
-    second: "2-digit",
-    hour12: false,
   });
-
-  // Get the current time in NY timezone as formatted string
   const parts = formatter.formatToParts(now);
-  const nyTimeString = `${parts[4].value}-${parts[0].value}-${parts[2].value}T${parts[6].value}:${parts[8].value}:${parts[10].value}`;
-  const nyTime = new Date(nyTimeString);
+  
+  // Extract parts by type instead of assuming array order
+  const year = parts.find(part => part.type === 'year').value;
+  const month = parts.find(part => part.type === 'month').value;
+  const day = parts.find(part => part.type === 'day').value;
+  const todayString = `${year}-${month}-${day}`;
 
-  // Parse event date (assuming it's in NY timezone)
-  const eventDate = new Date(date);
-  return eventDate > nyTime;
+  // Get event date string (YYYY-MM-DD format) - events are already in NY timezone
+  const eventString = date.split('T')[0]; // Direct string split instead of Date parsing
+
+  // Compare date strings directly
+  return eventString >= todayString;
 };
 
 const App = () => {
@@ -416,10 +414,11 @@ const App = () => {
                 </svg>
               </div>
               <h2 className="text-4xl md:text-5xl font-bold mb-4">
-                DOWN FOR MAINTENANCE
+                ERROR DETECTED
               </h2>
               <p className="text-xl mb-6">
-                Calendar is currently down for maintenance. Please try again later.
+                Your email address maybe incorrect. You might be in incognito
+                mode or blocked cookies.
               </p>
               <button
                 onClick={() => window.location.reload()}
