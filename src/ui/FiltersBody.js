@@ -8,6 +8,8 @@ export default function FiltersBody({
   availableFilters,
   searchRef,
   searchMode,
+  showPastEvents,
+  setShowPastEvents,
 }) {
   const [searchTerm, setSearchTerm] = React.useState(activeFilters.search);
   const [neighborhoodExpanded, setNeighborhoodExpanded] = React.useState(false);
@@ -101,7 +103,37 @@ export default function FiltersBody({
           isDisabled={Object.keys(activeFilters).length === 0}
         />
       </div>
-      {/* Search Bar */}
+      {/* Past Events Toggle */}
+      <div className="flex gap-2 items-start">
+        <div className="relative mt-[0.5px]">
+          <input 
+            type="checkbox" 
+            name="pastEvents" 
+            id="pastEvents" 
+            className="w-4 h-4 appearance-none border border-white bg-black checked:bg-white checked:border-white cursor-pointer"
+            checked={showPastEvents}
+            onChange={(e) => setShowPastEvents(e.target.checked)}
+          />
+          {showPastEvents && (
+            <svg 
+              className="absolute top-0 left-0 w-4 h-4 pointer-events-none"
+              viewBox="0 0 16 16"
+              fill="none"
+            >
+              <path 
+                d="M3 8L6 11L13 4" 
+                stroke="black" 
+                strokeWidth="2" 
+                strokeLinecap="round" 
+                strokeLinejoin="round"
+              />
+            </svg>
+          )}
+        </div>
+        <label htmlFor="pastEvents" className="font-[400] text-[14px] cursor-pointer leading-4">
+          Show Past Events
+        </label>
+      </div>
       <FilterCategory text="Search" ref={searchRef}>
         <div className="w-full relative">
           <input

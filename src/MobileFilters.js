@@ -9,6 +9,8 @@ export default function MobileFilters({
   filterToggle,
   setFilterToggle,
   searchMode,
+  showPastEvents,
+  setShowPastEvents,
 }) {
   const searchRef = React.useRef(null);
 
@@ -72,6 +74,8 @@ export default function MobileFilters({
               availableFilters={availableFilters}
               searchRef={searchRef}
               searchMode={searchMode}
+              showPastEvents={showPastEvents}
+              setShowPastEvents={setShowPastEvents}
             />
           </div>
         </div>

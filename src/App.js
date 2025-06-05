@@ -29,14 +29,15 @@ const afterNow = (date) => {
   const todayString = `${year}-${month}-${day}`;
 
   // Get event date string (YYYY-MM-DD format) - events are already in NY timezone
-  const eventString = date.split('T')[0]; // Direct string split instead of Date parsing
+  const eventString = date.split('T')[0];
 
-  // Compare date strings directly
+  // Compare date strings directly - return true if event is today or in the future
   return eventString >= todayString;
 };
 
 const App = () => {
   const [data, setData] = React.useState([]);
+  const [pastEvents, setPastEvents] = React.useState([]);
   const [filteredData, setFilteredData] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
   const [error, setError] = React.useState(null);
@@ -44,6 +45,7 @@ const App = () => {
   const [windowWidth, setWindowWidth] = React.useState(window.innerWidth);
   const [filterToggle, setFilterToggle] = React.useState(false);
   const [searchMode, setSearchMode] = React.useState(false);
+  const [showPastEvents, setShowPastEvents] = React.useState(false);
   const [isValidEmail, setIsValidEmail] = React.useState(false);
   const [email, setEmail] = React.useState("");
   const [availableFilters, setAvailableFilters] = React.useState({
@@ -137,62 +139,72 @@ const App = () => {
           }
         });
 
-        // Filter out events that have already passed
-        const filteredResult = result.filter((event) => {
+        // Separate past and current/future events
+        const currentEvents = result.filter((event) => {
           return afterNow(event.start_time);
         });
-
-        filteredResult.forEach((event) => {
-          event.formats = event.formats.map((format) => {
-            if (format.startsWith("B") || format.startsWith(" B")) {
-              return "Breakfast, Brunch or Lunch";
-            } else if (format.startsWith("Ha")) {
-              return "Happy Hour";
-            } else if (format.startsWith("Match")) {
-              return "Matchmaking";
-            } else if (format.startsWith("Pan")) {
-              return "Panel / Fireside Chat";
-            } else if (format.startsWith("Pitch")) {
-              return "Pitch Event / Demo Day";
-            } else if (
-              format.startsWith("Round") ||
-              format.startsWith("Work")
-            ) {
-              return "Roundtable / Workshop";
-            }
-
-            return format;
-          });
-          event.themes = event.themes.map((theme) => {
-            if (theme.startsWith("Crypto") || theme.startsWith("Crpyto")) {
-              return "Crypto / Web3";
-            } else if (theme.startsWith("Deep")) {
-              return "Deep Tech";
-            } else if (theme.startsWith("GTM")) {
-              return "GTM";
-            } else if (theme.startsWith("International")) {
-              return "International / Expansion";
-            } else if (theme.startsWith("Men") || theme.startsWith("men")) {
-              return "";
-            }
-
-            return theme;
-          });
+        
+        const pastEventsResult = result.filter((event) => {
+          return !afterNow(event.start_time);
         });
+        
+        // Apply format transformations to both current and past events
+        const formatEvents = (events) => {
+          events.forEach((event) => {
+            event.formats = event.formats.map((format) => {
+              if (format.startsWith("B") || format.startsWith(" B")) {
+                return "Breakfast, Brunch or Lunch";
+              } else if (format.startsWith("Ha")) {
+                return "Happy Hour";
+              } else if (format.startsWith("Match")) {
+                return "Matchmaking";
+              } else if (format.startsWith("Pan")) {
+                return "Panel / Fireside Chat";
+              } else if (format.startsWith("Pitch")) {
+                return "Pitch Event / Demo Day";
+              } else if (
+                format.startsWith("Round") ||
+                format.startsWith("Work")
+              ) {
+                return "Roundtable / Workshop";
+              }
+
+              return format;
+            });
+            event.themes = event.themes.map((theme) => {
+              if (theme.startsWith("Crypto") || theme.startsWith("Crpyto")) {
+                return "Crypto / Web3";
+              } else if (theme.startsWith("Deep")) {
+                return "Deep Tech";
+              } else if (theme.startsWith("GTM")) {
+                return "GTM";
+              } else if (theme.startsWith("International")) {
+                return "International / Expansion";
+              } else if (theme.startsWith("Men") || theme.startsWith("men")) {
+                return "";
+              }
+
+              return theme;
+            });
+          });
+        };
+
+        formatEvents(currentEvents);
+        formatEvents(pastEventsResult);
 
         // Separate events by tier
-        const tier1Events = filteredResult.filter(
+        const tier1Events = currentEvents.filter(
           (event) => event.starred_on_calendar === "TIER_1"
         );
-        const tier2Events = filteredResult.filter(
+        const tier2Events = currentEvents.filter(
           (event) => event.starred_on_calendar === "TIER_2"
         );
 
-        const tier3Events = filteredResult.filter(
+        const tier3Events = currentEvents.filter(
           (event) => event.starred_on_calendar === "TIER_3"
         );
 
-        const regularEvents = filteredResult.filter(
+        const regularEvents = currentEvents.filter(
           (event) =>
             !event.starred_on_calendar ||
             (event.starred_on_calendar !== "TIER_1" &&
@@ -236,7 +248,17 @@ const App = () => {
           item.time = timeToAmPm(item.start_time);
         });
 
+        // Sort and format past events (most recent first)
+        const sortedPastEvents = pastEventsResult.sort(
+          (a, b) => new Date(b.start_time) - new Date(a.start_time)
+        );
+        sortedPastEvents.forEach((item) => {
+          item.day = timeTodayOfWeek(item.start_time);
+          item.time = timeToAmPm(item.start_time);
+        });
+
         setData(sortedResult);
+        setPastEvents(sortedPastEvents);
         setAvailableFilters(sortFilters(sortedResult));
       } catch (err) {
         setError(err.message);
@@ -256,9 +278,37 @@ const App = () => {
     setFilteredData(data);
   }, [city]);
 
+  // Update available filters based on showPastEvents
+  React.useEffect(() => {
+    if (showPastEvents && pastEvents.length > 0) {
+      setAvailableFilters(sortFilters(pastEvents));
+      // Clear active filters when switching to past events to avoid confusion
+      setActiveFilters((prev) => ({
+        date: [],
+        neighborhood: [],
+        start_time: [],
+        topics: [],
+        types: [],
+        search: prev.search, // Keep search term
+      }));
+    } else if (data.length > 0) {
+      setAvailableFilters(sortFilters(data));
+      // Clear active filters when switching back to current events
+      setActiveFilters((prev) => ({
+        date: [],
+        neighborhood: [],
+        start_time: [],
+        topics: [],
+        types: [],
+        search: prev.search, // Keep search term
+      }));
+    }
+  }, [showPastEvents, pastEvents, data]);
+
   //filter data based on active filters
   React.useEffect(() => {
-    let filtered = applyFilters(data, activeFilters);
+    const dataToFilter = showPastEvents ? pastEvents : data;
+    let filtered = applyFilters(dataToFilter, activeFilters);
     // Apply custom sorting based on activeFilters.date
     if (filtered.length > 0) {
       // First separate events by tier
@@ -307,7 +357,7 @@ const App = () => {
     }
     //console.log(activeFilters);
     setFilteredData(filtered);
-  }, [activeFilters, data]);
+  }, [activeFilters, data, showPastEvents, pastEvents]);
 
   // Add resize event listener
   React.useEffect(() => {
@@ -590,6 +640,8 @@ const App = () => {
                     availableFilters={availableFilters}
                     activeFilters={activeFilters}
                     setActiveFilters={setActiveFilters}
+                    showPastEvents={showPastEvents}
+                    setShowPastEvents={setShowPastEvents}
                   />
                   <div className="grow" />
                 </div>
@@ -604,6 +656,8 @@ const App = () => {
                     filterToggle={filterToggle}
                     setFilterToggle={setFilterToggle}
                     searchMode={searchMode}
+                    showPastEvents={showPastEvents}
+                    setShowPastEvents={setShowPastEvents}
                   />
                 )
               )}

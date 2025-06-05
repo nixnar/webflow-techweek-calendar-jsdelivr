@@ -7,6 +7,8 @@ export default function Filters({
   availableFilters,
   activeFilters,
   setActiveFilters,
+  showPastEvents,
+  setShowPastEvents,
 }) {
   const [headerHeight, setHeaderHeight] = React.useState(0);
   const [isSticky, setIsSticky] = React.useState(false);
@@ -95,6 +97,8 @@ export default function Filters({
           activeFilters={activeFilters}
           setActiveFilters={setActiveFilters}
           availableFilters={availableFilters}
+          showPastEvents={showPastEvents}
+          setShowPastEvents={setShowPastEvents}
         />
       </div>
     </div>

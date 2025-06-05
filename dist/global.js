@@ -491,6 +491,10 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   display: none;
 }
 
+.tailwind .pointer-events-none{
+  pointer-events: none !important;
+}
+
 .tailwind .fixed{
   position: fixed !important;
 }
@@ -574,6 +578,26 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   margin-top: 2rem !important;
 }
 
+.tailwind .mt-\\[1px\\]{
+  margin-top: 1px !important;
+}
+
+.tailwind .mt-\\[2px\\]{
+  margin-top: 2px !important;
+}
+
+.tailwind .mt-\\[3px\\]{
+  margin-top: 3px !important;
+}
+
+.tailwind .mt-\\[-1px\\]{
+  margin-top: -1px !important;
+}
+
+.tailwind .mt-\\[0\\.5px\\]{
+  margin-top: 0.5px !important;
+}
+
 .tailwind .block{
   display: block !important;
 }
@@ -597,6 +621,10 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 
 .tailwind .h-full{
   height: 100% !important;
+}
+
+.tailwind .h-4{
+  height: 1rem !important;
 }
 
 .tailwind .max-h-0{
@@ -630,6 +658,10 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 
 .tailwind .w-full{
   width: 100% !important;
+}
+
+.tailwind .w-4{
+  width: 1rem !important;
 }
 
 .tailwind .min-w-\\[120px\\]{
@@ -1050,6 +1082,10 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   font-weight: 500 !important;
 }
 
+.tailwind .font-normal{
+  font-weight: 400 !important;
+}
+
 .tailwind .uppercase{
   text-transform: uppercase !important;
 }
@@ -1088,6 +1124,10 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 
 .tailwind .leading-\\[23px\\]{
   line-height: 23px !important;
+}
+
+.tailwind .leading-4{
+  line-height: 1rem !important;
 }
 
 .tailwind .tracking-\\[-0\\.0281rem\\]{
@@ -1261,6 +1301,18 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 /* For Internet Explorer and older Edge */
 * {
   -ms-overflow-style: none;
+}
+
+.checked\\:border-white:checked{
+  --tw-border-opacity: 1 !important;
+  border-color: rgba(255, 255, 255, 1) !important;
+  border-color: rgba(255, 255, 255, var(--tw-border-opacity, 1)) !important;
+}
+
+.checked\\:bg-white:checked{
+  --tw-bg-opacity: 1 !important;
+  background-color: rgba(255, 255, 255, 1) !important;
+  background-color: rgba(255, 255, 255, var(--tw-bg-opacity, 1)) !important;
 }
 
 .hover\\:border-gray-200:hover{
@@ -18368,7 +18420,9 @@ function FiltersBody(_ref) {
     setActiveFilters = _ref.setActiveFilters,
     availableFilters = _ref.availableFilters,
     searchRef = _ref.searchRef,
-    searchMode = _ref.searchMode;
+    searchMode = _ref.searchMode,
+    showPastEvents = _ref.showPastEvents,
+    setShowPastEvents = _ref.setShowPastEvents;
   var _React$useState = react.useState(activeFilters.search),
     _React$useState2 = _slicedToArray(_React$useState, 2),
     searchTerm = _React$useState2[0],
@@ -18476,7 +18530,33 @@ function FiltersBody(_ref) {
       });
     },
     isDisabled: Object.keys(activeFilters).length === 0
-  })), /*#__PURE__*/react.createElement(ui_FilterCategory, {
+  })), /*#__PURE__*/react.createElement("div", {
+    className: "flex gap-2 items-start"
+  }, /*#__PURE__*/react.createElement("div", {
+    className: "relative mt-[0.5px]"
+  }, /*#__PURE__*/react.createElement("input", {
+    type: "checkbox",
+    name: "pastEvents",
+    id: "pastEvents",
+    className: "w-4 h-4 appearance-none border border-white bg-black checked:bg-white checked:border-white cursor-pointer",
+    checked: showPastEvents,
+    onChange: function onChange(e) {
+      return setShowPastEvents(e.target.checked);
+    }
+  }), showPastEvents && /*#__PURE__*/react.createElement("svg", {
+    className: "absolute top-0 left-0 w-4 h-4 pointer-events-none",
+    viewBox: "0 0 16 16",
+    fill: "none"
+  }, /*#__PURE__*/react.createElement("path", {
+    d: "M3 8L6 11L13 4",
+    stroke: "black",
+    strokeWidth: "2",
+    strokeLinecap: "round",
+    strokeLinejoin: "round"
+  }))), /*#__PURE__*/react.createElement("label", {
+    htmlFor: "pastEvents",
+    className: "font-[400] text-[14px] cursor-pointer leading-4"
+  }, "Show Past Events")), /*#__PURE__*/react.createElement(ui_FilterCategory, {
     text: "Search",
     ref: searchRef
   }, /*#__PURE__*/react.createElement("div", {
@@ -18728,7 +18808,9 @@ function Filters(_ref) {
     setCity = _ref.setCity,
     availableFilters = _ref.availableFilters,
     activeFilters = _ref.activeFilters,
-    setActiveFilters = _ref.setActiveFilters;
+    setActiveFilters = _ref.setActiveFilters,
+    showPastEvents = _ref.showPastEvents,
+    setShowPastEvents = _ref.setShowPastEvents;
   var _React$useState = react.useState(0),
     _React$useState2 = Filters_slicedToArray(_React$useState, 2),
     headerHeight = _React$useState2[0],
@@ -18815,7 +18897,9 @@ function Filters(_ref) {
   }, /*#__PURE__*/react.createElement(FiltersBody, {
     activeFilters: activeFilters,
     setActiveFilters: setActiveFilters,
-    availableFilters: availableFilters
+    availableFilters: availableFilters,
+    showPastEvents: showPastEvents,
+    setShowPastEvents: setShowPastEvents
   })));
 }
 ;// ./src/utils/timetodayofweek.js
@@ -18997,7 +19081,9 @@ function MobileFilters(_ref) {
     setActiveFilters = _ref.setActiveFilters,
     filterToggle = _ref.filterToggle,
     setFilterToggle = _ref.setFilterToggle,
-    searchMode = _ref.searchMode;
+    searchMode = _ref.searchMode,
+    showPastEvents = _ref.showPastEvents,
+    setShowPastEvents = _ref.setShowPastEvents;
   var searchRef = react.useRef(null);
   react.useEffect(function () {
     if (filterToggle) {
@@ -19059,7 +19145,9 @@ function MobileFilters(_ref) {
     setActiveFilters: setActiveFilters,
     availableFilters: availableFilters,
     searchRef: searchRef,
-    searchMode: searchMode
+    searchMode: searchMode,
+    showPastEvents: showPastEvents,
+    setShowPastEvents: setShowPastEvents
   })))));
 }
 ;// ./src/MobileCityDropdown.js
@@ -19299,9 +19387,9 @@ var afterNow = function afterNow(date) {
   var todayString = "".concat(year, "-").concat(month, "-").concat(day);
 
   // Get event date string (YYYY-MM-DD format) - events are already in NY timezone
-  var eventString = date.split('T')[0]; // Direct string split instead of Date parsing
+  var eventString = date.split('T')[0];
 
-  // Compare date strings directly
+  // Compare date strings directly - return true if event is today or in the future
   return eventString >= todayString;
 };
 var App = function App() {
@@ -19311,52 +19399,49 @@ var App = function App() {
     setData = _React$useState2[1];
   var _React$useState3 = react.useState([]),
     _React$useState4 = App_slicedToArray(_React$useState3, 2),
-    filteredData = _React$useState4[0],
-    setFilteredData = _React$useState4[1];
-  var _React$useState5 = react.useState(true),
+    pastEvents = _React$useState4[0],
+    setPastEvents = _React$useState4[1];
+  var _React$useState5 = react.useState([]),
     _React$useState6 = App_slicedToArray(_React$useState5, 2),
-    isLoading = _React$useState6[0],
-    setIsLoading = _React$useState6[1];
-  var _React$useState7 = react.useState(null),
+    filteredData = _React$useState6[0],
+    setFilteredData = _React$useState6[1];
+  var _React$useState7 = react.useState(true),
     _React$useState8 = App_slicedToArray(_React$useState7, 2),
-    error = _React$useState8[0],
-    setError = _React$useState8[1];
-  var _React$useState9 = react.useState("NYC"),
+    isLoading = _React$useState8[0],
+    setIsLoading = _React$useState8[1];
+  var _React$useState9 = react.useState(null),
     _React$useState10 = App_slicedToArray(_React$useState9, 2),
-    city = _React$useState10[0],
-    setCity = _React$useState10[1];
-  var _React$useState11 = react.useState(window.innerWidth),
+    error = _React$useState10[0],
+    setError = _React$useState10[1];
+  var _React$useState11 = react.useState("NYC"),
     _React$useState12 = App_slicedToArray(_React$useState11, 2),
-    windowWidth = _React$useState12[0],
-    setWindowWidth = _React$useState12[1];
-  var _React$useState13 = react.useState(false),
+    city = _React$useState12[0],
+    setCity = _React$useState12[1];
+  var _React$useState13 = react.useState(window.innerWidth),
     _React$useState14 = App_slicedToArray(_React$useState13, 2),
-    filterToggle = _React$useState14[0],
-    setFilterToggle = _React$useState14[1];
+    windowWidth = _React$useState14[0],
+    setWindowWidth = _React$useState14[1];
   var _React$useState15 = react.useState(false),
     _React$useState16 = App_slicedToArray(_React$useState15, 2),
-    searchMode = _React$useState16[0],
-    setSearchMode = _React$useState16[1];
+    filterToggle = _React$useState16[0],
+    setFilterToggle = _React$useState16[1];
   var _React$useState17 = react.useState(false),
     _React$useState18 = App_slicedToArray(_React$useState17, 2),
-    isValidEmail = _React$useState18[0],
-    setIsValidEmail = _React$useState18[1];
-  var _React$useState19 = react.useState(""),
+    searchMode = _React$useState18[0],
+    setSearchMode = _React$useState18[1];
+  var _React$useState19 = react.useState(false),
     _React$useState20 = App_slicedToArray(_React$useState19, 2),
-    email = _React$useState20[0],
-    setEmail = _React$useState20[1];
-  var _React$useState21 = react.useState({
-      date: [],
-      neighborhood: [],
-      start_time: [],
-      topics: [],
-      types: [],
-      search: ""
-    }),
+    showPastEvents = _React$useState20[0],
+    setShowPastEvents = _React$useState20[1];
+  var _React$useState21 = react.useState(false),
     _React$useState22 = App_slicedToArray(_React$useState21, 2),
-    availableFilters = _React$useState22[0],
-    setAvailableFilters = _React$useState22[1];
-  var _React$useState23 = react.useState({
+    isValidEmail = _React$useState22[0],
+    setIsValidEmail = _React$useState22[1];
+  var _React$useState23 = react.useState(""),
+    _React$useState24 = App_slicedToArray(_React$useState23, 2),
+    email = _React$useState24[0],
+    setEmail = _React$useState24[1];
+  var _React$useState25 = react.useState({
       date: [],
       neighborhood: [],
       start_time: [],
@@ -19364,9 +19449,20 @@ var App = function App() {
       types: [],
       search: ""
     }),
-    _React$useState24 = App_slicedToArray(_React$useState23, 2),
-    activeFilters = _React$useState24[0],
-    setActiveFilters = _React$useState24[1];
+    _React$useState26 = App_slicedToArray(_React$useState25, 2),
+    availableFilters = _React$useState26[0],
+    setAvailableFilters = _React$useState26[1];
+  var _React$useState27 = react.useState({
+      date: [],
+      neighborhood: [],
+      start_time: [],
+      topics: [],
+      types: [],
+      search: ""
+    }),
+    _React$useState28 = App_slicedToArray(_React$useState27, 2),
+    activeFilters = _React$useState28[0],
+    setActiveFilters = _React$useState28[1];
 
   // Parse URL parameters on component mount
   react.useEffect(function () {
@@ -19445,7 +19541,7 @@ var App = function App() {
     });
     var loadData = /*#__PURE__*/function () {
       var _ref2 = App_asyncToGenerator(/*#__PURE__*/App_regeneratorRuntime().mark(function _callee2() {
-        var result, filteredResult, tier1Events, tier2Events, tier3Events, regularEvents, i, j, _ref3, _i, _j, _ref4, _i2, _j2, _ref5, sortedResult;
+        var result, currentEvents, pastEventsResult, formatEvents, tier1Events, tier2Events, tier3Events, regularEvents, i, j, _ref3, _i, _j, _ref4, _i2, _j2, _ref5, sortedResult, sortedPastEvents;
         return App_regeneratorRuntime().wrap(function _callee2$(_context2) {
           while (1) switch (_context2.prev = _context2.next) {
             case 0:
@@ -19472,54 +19568,61 @@ var App = function App() {
                 }
               });
 
-              // Filter out events that have already passed
-              filteredResult = result.filter(function (event) {
+              // Separate past and current/future events
+              currentEvents = result.filter(function (event) {
                 return afterNow(event.start_time);
               });
-              filteredResult.forEach(function (event) {
-                event.formats = event.formats.map(function (format) {
-                  if (format.startsWith("B") || format.startsWith(" B")) {
-                    return "Breakfast, Brunch or Lunch";
-                  } else if (format.startsWith("Ha")) {
-                    return "Happy Hour";
-                  } else if (format.startsWith("Match")) {
-                    return "Matchmaking";
-                  } else if (format.startsWith("Pan")) {
-                    return "Panel / Fireside Chat";
-                  } else if (format.startsWith("Pitch")) {
-                    return "Pitch Event / Demo Day";
-                  } else if (format.startsWith("Round") || format.startsWith("Work")) {
-                    return "Roundtable / Workshop";
-                  }
-                  return format;
+              pastEventsResult = result.filter(function (event) {
+                return !afterNow(event.start_time);
+              }); // Apply format transformations to both current and past events
+              formatEvents = function formatEvents(events) {
+                events.forEach(function (event) {
+                  event.formats = event.formats.map(function (format) {
+                    if (format.startsWith("B") || format.startsWith(" B")) {
+                      return "Breakfast, Brunch or Lunch";
+                    } else if (format.startsWith("Ha")) {
+                      return "Happy Hour";
+                    } else if (format.startsWith("Match")) {
+                      return "Matchmaking";
+                    } else if (format.startsWith("Pan")) {
+                      return "Panel / Fireside Chat";
+                    } else if (format.startsWith("Pitch")) {
+                      return "Pitch Event / Demo Day";
+                    } else if (format.startsWith("Round") || format.startsWith("Work")) {
+                      return "Roundtable / Workshop";
+                    }
+                    return format;
+                  });
+                  event.themes = event.themes.map(function (theme) {
+                    if (theme.startsWith("Crypto") || theme.startsWith("Crpyto")) {
+                      return "Crypto / Web3";
+                    } else if (theme.startsWith("Deep")) {
+                      return "Deep Tech";
+                    } else if (theme.startsWith("GTM")) {
+                      return "GTM";
+                    } else if (theme.startsWith("International")) {
+                      return "International / Expansion";
+                    } else if (theme.startsWith("Men") || theme.startsWith("men")) {
+                      return "";
+                    }
+                    return theme;
+                  });
                 });
-                event.themes = event.themes.map(function (theme) {
-                  if (theme.startsWith("Crypto") || theme.startsWith("Crpyto")) {
-                    return "Crypto / Web3";
-                  } else if (theme.startsWith("Deep")) {
-                    return "Deep Tech";
-                  } else if (theme.startsWith("GTM")) {
-                    return "GTM";
-                  } else if (theme.startsWith("International")) {
-                    return "International / Expansion";
-                  } else if (theme.startsWith("Men") || theme.startsWith("men")) {
-                    return "";
-                  }
-                  return theme;
-                });
-              });
+              };
+              formatEvents(currentEvents);
+              formatEvents(pastEventsResult);
 
               // Separate events by tier
-              tier1Events = filteredResult.filter(function (event) {
+              tier1Events = currentEvents.filter(function (event) {
                 return event.starred_on_calendar === "TIER_1";
               });
-              tier2Events = filteredResult.filter(function (event) {
+              tier2Events = currentEvents.filter(function (event) {
                 return event.starred_on_calendar === "TIER_2";
               });
-              tier3Events = filteredResult.filter(function (event) {
+              tier3Events = currentEvents.filter(function (event) {
                 return event.starred_on_calendar === "TIER_3";
               });
-              regularEvents = filteredResult.filter(function (event) {
+              regularEvents = currentEvents.filter(function (event) {
                 return !event.starred_on_calendar || event.starred_on_calendar !== "TIER_1" && event.starred_on_calendar !== "TIER_2" && event.starred_on_calendar !== "TIER_3";
               }); // Randomize TIER_1 events
               for (i = tier1Events.length - 1; i > 0; i--) {
@@ -19556,26 +19659,36 @@ var App = function App() {
                 item.day = timeTodayOfWeek(item.start_time);
                 item.time = timeToAmPm(item.start_time);
               });
+
+              // Sort and format past events (most recent first)
+              sortedPastEvents = pastEventsResult.sort(function (a, b) {
+                return new Date(b.start_time) - new Date(a.start_time);
+              });
+              sortedPastEvents.forEach(function (item) {
+                item.day = timeTodayOfWeek(item.start_time);
+                item.time = timeToAmPm(item.start_time);
+              });
               setData(sortedResult);
+              setPastEvents(sortedPastEvents);
               setAvailableFilters(sortFilters(sortedResult));
-              _context2.next = 30;
+              _context2.next = 36;
               break;
-            case 27:
-              _context2.prev = 27;
+            case 33:
+              _context2.prev = 33;
               _context2.t0 = _context2["catch"](0);
               setError(_context2.t0.message);
               //console.error("Error fetching data:", err);
-            case 30:
-              _context2.prev = 30;
+            case 36:
+              _context2.prev = 36;
               setTimeout(function () {
                 setIsLoading(false);
               }, 100);
-              return _context2.finish(30);
-            case 33:
+              return _context2.finish(36);
+            case 39:
             case "end":
               return _context2.stop();
           }
-        }, _callee2, null, [[0, 27, 30, 33]]);
+        }, _callee2, null, [[0, 33, 36, 39]]);
       }));
       return function loadData() {
         return _ref2.apply(this, arguments);
@@ -19589,9 +19702,41 @@ var App = function App() {
     setFilteredData(data);
   }, [city]);
 
+  // Update available filters based on showPastEvents
+  react.useEffect(function () {
+    if (showPastEvents && pastEvents.length > 0) {
+      setAvailableFilters(sortFilters(pastEvents));
+      // Clear active filters when switching to past events to avoid confusion
+      setActiveFilters(function (prev) {
+        return {
+          date: [],
+          neighborhood: [],
+          start_time: [],
+          topics: [],
+          types: [],
+          search: prev.search // Keep search term
+        };
+      });
+    } else if (data.length > 0) {
+      setAvailableFilters(sortFilters(data));
+      // Clear active filters when switching back to current events
+      setActiveFilters(function (prev) {
+        return {
+          date: [],
+          neighborhood: [],
+          start_time: [],
+          topics: [],
+          types: [],
+          search: prev.search // Keep search term
+        };
+      });
+    }
+  }, [showPastEvents, pastEvents, data]);
+
   //filter data based on active filters
   react.useEffect(function () {
-    var filtered = applyFilters(data, activeFilters);
+    var dataToFilter = showPastEvents ? pastEvents : data;
+    var filtered = applyFilters(dataToFilter, activeFilters);
     // Apply custom sorting based on activeFilters.date
     if (filtered.length > 0) {
       // First separate events by tier
@@ -19631,7 +19776,7 @@ var App = function App() {
     }
     //console.log(activeFilters);
     setFilteredData(filtered);
-  }, [activeFilters, data]);
+  }, [activeFilters, data, showPastEvents, pastEvents]);
 
   // Add resize event listener
   react.useEffect(function () {
@@ -19845,7 +19990,9 @@ var App = function App() {
     setCity: setCity,
     availableFilters: availableFilters,
     activeFilters: activeFilters,
-    setActiveFilters: setActiveFilters
+    setActiveFilters: setActiveFilters,
+    showPastEvents: showPastEvents,
+    setShowPastEvents: setShowPastEvents
   }), /*#__PURE__*/react.createElement("div", {
     className: "grow"
   })) : filterToggle && /*#__PURE__*/react.createElement(MobileFilters, {
@@ -19856,7 +20003,9 @@ var App = function App() {
     setActiveFilters: setActiveFilters,
     filterToggle: filterToggle,
     setFilterToggle: setFilterToggle,
-    searchMode: searchMode
+    searchMode: searchMode,
+    showPastEvents: showPastEvents,
+    setShowPastEvents: setShowPastEvents
   })))));
 };
 /* harmony default export */ const src_App = (App);
