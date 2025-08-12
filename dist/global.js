@@ -578,22 +578,6 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   margin-top: 2rem !important;
 }
 
-.tailwind .mt-\\[1px\\]{
-  margin-top: 1px !important;
-}
-
-.tailwind .mt-\\[2px\\]{
-  margin-top: 2px !important;
-}
-
-.tailwind .mt-\\[3px\\]{
-  margin-top: 3px !important;
-}
-
-.tailwind .mt-\\[-1px\\]{
-  margin-top: -1px !important;
-}
-
 .tailwind .mt-\\[0\\.5px\\]{
   margin-top: 0.5px !important;
 }
@@ -610,6 +594,10 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   display: none !important;
 }
 
+.tailwind .h-4{
+  height: 1rem !important;
+}
+
 .tailwind .h-\\[12px\\]{
   height: 12px !important;
 }
@@ -623,10 +611,6 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   height: 100% !important;
 }
 
-.tailwind .h-4{
-  height: 1rem !important;
-}
-
 .tailwind .max-h-0{
   max-height: 0px !important;
 }
@@ -637,6 +621,10 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 
 .tailwind .min-h-\\[20rem\\]{
   min-height: 20rem !important;
+}
+
+.tailwind .w-4{
+  width: 1rem !important;
 }
 
 .tailwind .w-\\[12px\\]{
@@ -658,10 +646,6 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 
 .tailwind .w-full{
   width: 100% !important;
-}
-
-.tailwind .w-4{
-  width: 1rem !important;
 }
 
 .tailwind .min-w-\\[120px\\]{
@@ -1082,16 +1066,16 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   font-weight: 500 !important;
 }
 
-.tailwind .font-normal{
-  font-weight: 400 !important;
-}
-
 .tailwind .uppercase{
   text-transform: uppercase !important;
 }
 
 .tailwind .capitalize{
   text-transform: capitalize !important;
+}
+
+.tailwind .leading-4{
+  line-height: 1rem !important;
 }
 
 .tailwind .leading-\\[0\\.5rem\\]{
@@ -1124,10 +1108,6 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 
 .tailwind .leading-\\[23px\\]{
   line-height: 23px !important;
-}
-
-.tailwind .leading-4{
-  line-height: 1rem !important;
 }
 
 .tailwind .tracking-\\[-0\\.0281rem\\]{
@@ -18297,26 +18277,27 @@ function _fetchData() {
             _context.next = 8;
             break;
           }
-          _context.next = 12;
+          _context.next = 13;
           break;
         case 8:
           _context.next = 10;
           return response2.json();
         case 10:
           data = _context.sent;
+          console.log("ok", data);
           return _context.abrupt("return", data);
-        case 12:
-          _context.next = 17;
+        case 13:
+          _context.next = 18;
           break;
-        case 14:
-          _context.prev = 14;
+        case 15:
+          _context.prev = 15;
           _context.t0 = _context["catch"](0);
           return _context.abrupt("return", 10);
-        case 17:
+        case 18:
         case "end":
           return _context.stop();
       }
-    }, _callee, null, [[0, 14]]);
+    }, _callee, null, [[0, 15]]);
   }));
   return _fetchData.apply(this, arguments);
 }
@@ -18327,7 +18308,7 @@ function CitySelector(_ref) {
     setCity = _ref.setCity,
     city = _ref.city,
     currentCity = _ref.currentCity;
-  if (city !== "NYC") {
+  if (city !== "SF") {
     return /*#__PURE__*/react.createElement("div", {
       className: "flex-grow basis-0 border-[1px] border-[#777777] p-[4px] cursor-not-allowed text-gray-400 bg-[#181818]"
     }, /*#__PURE__*/react.createElement("div", {
@@ -19034,11 +19015,13 @@ function applyFilters(data, activeFilters) {
           return true;
         }
 
-        // Search in event name, hosts, and any other relevant fields
+        // Search in event name, hosts, neighborhood, topics (themes), and optional description
         var searchTerm = activeFilters.search.toLowerCase();
         return item.event_name.toLowerCase().includes(searchTerm) || item.hosts && item.hosts.some(function (host) {
           return host.toLowerCase().includes(searchTerm);
-        }) || item.neighborhood && item.neighborhood.toLowerCase().includes(searchTerm);
+        }) || item.neighborhood && item.neighborhood.toLowerCase().includes(searchTerm) || item.themes && item.themes.some(function (theme) {
+          return typeof theme === "string" && theme.toLowerCase().includes(searchTerm);
+        }) || typeof item.description === "string" && item.description.toLowerCase().includes(searchTerm);
       }
 
       // For non-search filters (arrays)
@@ -19367,7 +19350,7 @@ var afterNow = function afterNow(date) {
   // Get current date in NY timezone
   var now = new Date();
   var formatter = new Intl.DateTimeFormat("en", {
-    timeZone: "America/New_York",
+    timeZone: "America/Los_Angeles",
     year: "numeric",
     month: "2-digit",
     day: "2-digit"
@@ -19376,18 +19359,18 @@ var afterNow = function afterNow(date) {
 
   // Extract parts by type instead of assuming array order
   var year = parts.find(function (part) {
-    return part.type === 'year';
+    return part.type === "year";
   }).value;
   var month = parts.find(function (part) {
-    return part.type === 'month';
+    return part.type === "month";
   }).value;
   var day = parts.find(function (part) {
-    return part.type === 'day';
+    return part.type === "day";
   }).value;
   var todayString = "".concat(year, "-").concat(month, "-").concat(day);
 
   // Get event date string (YYYY-MM-DD format) - events are already in NY timezone
-  var eventString = date.split('T')[0];
+  var eventString = date.split("T")[0];
 
   // Compare date strings directly - return true if event is today or in the future
   return eventString >= todayString;
@@ -19413,7 +19396,7 @@ var App = function App() {
     _React$useState10 = App_slicedToArray(_React$useState9, 2),
     error = _React$useState10[0],
     setError = _React$useState10[1];
-  var _React$useState11 = react.useState("NYC"),
+  var _React$useState11 = react.useState("SF"),
     _React$useState12 = App_slicedToArray(_React$useState11, 2),
     city = _React$useState12[0],
     setCity = _React$useState12[1];

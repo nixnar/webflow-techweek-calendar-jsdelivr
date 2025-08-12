@@ -16,7 +16,7 @@ export default async function fetchData(city) {
       //console.log("not ok", response2);
     } else {
       const data = await response2.json();
-      //console.log("ok", data);
+      console.log("ok", data);
       return data;
     }
   } catch (error) {

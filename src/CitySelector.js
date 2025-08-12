@@ -1,7 +1,7 @@
 import React from "react";
 
 export default function CitySelector({ data, setCity, city, currentCity }) {
-  if (city !== "NYC") {
+  if (city !== "SF") {
     return (
       <div className="flex-grow basis-0 border-[1px] border-[#777777] p-[4px] cursor-not-allowed text-gray-400 bg-[#181818]">
         <div

@@ -23,7 +23,7 @@ export default function applyFilters(data, activeFilters) {
           return true;
         }
 
-        // Search in event name, hosts, and any other relevant fields
+        // Search in event name, hosts, neighborhood, topics (themes), and optional description
         const searchTerm = activeFilters.search.toLowerCase();
         return (
           item.event_name.toLowerCase().includes(searchTerm) ||
@@ -32,7 +32,15 @@ export default function applyFilters(data, activeFilters) {
               host.toLowerCase().includes(searchTerm)
             )) ||
           (item.neighborhood &&
-            item.neighborhood.toLowerCase().includes(searchTerm))
+            item.neighborhood.toLowerCase().includes(searchTerm)) ||
+          (item.themes &&
+            item.themes.some(
+              (theme) =>
+                typeof theme === "string" &&
+                theme.toLowerCase().includes(searchTerm)
+            )) ||
+          (typeof item.description === "string" &&
+            item.description.toLowerCase().includes(searchTerm))
         );
       }
 

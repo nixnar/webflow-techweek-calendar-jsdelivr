@@ -15,21 +15,21 @@ const afterNow = (date) => {
   // Get current date in NY timezone
   const now = new Date();
   const formatter = new Intl.DateTimeFormat("en", {
-    timeZone: "America/New_York",
+    timeZone: "America/Los_Angeles",
     year: "numeric",
     month: "2-digit",
     day: "2-digit",
   });
   const parts = formatter.formatToParts(now);
-  
+
   // Extract parts by type instead of assuming array order
-  const year = parts.find(part => part.type === 'year').value;
-  const month = parts.find(part => part.type === 'month').value;
-  const day = parts.find(part => part.type === 'day').value;
+  const year = parts.find((part) => part.type === "year").value;
+  const month = parts.find((part) => part.type === "month").value;
+  const day = parts.find((part) => part.type === "day").value;
   const todayString = `${year}-${month}-${day}`;
 
   // Get event date string (YYYY-MM-DD format) - events are already in NY timezone
-  const eventString = date.split('T')[0];
+  const eventString = date.split("T")[0];
 
   // Compare date strings directly - return true if event is today or in the future
   return eventString >= todayString;
@@ -41,7 +41,7 @@ const App = () => {
   const [filteredData, setFilteredData] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
   const [error, setError] = React.useState(null);
-  const [city, setCity] = React.useState("NYC");
+  const [city, setCity] = React.useState("SF");
   const [windowWidth, setWindowWidth] = React.useState(window.innerWidth);
   const [filterToggle, setFilterToggle] = React.useState(false);
   const [searchMode, setSearchMode] = React.useState(false);
@@ -143,11 +143,11 @@ const App = () => {
         const currentEvents = result.filter((event) => {
           return afterNow(event.start_time);
         });
-        
+
         const pastEventsResult = result.filter((event) => {
           return !afterNow(event.start_time);
         });
-        
+
         // Apply format transformations to both current and past events
         const formatEvents = (events) => {
           events.forEach((event) => {
